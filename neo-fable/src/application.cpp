@@ -1,3 +1,6 @@
+#include <iostream>
+
+#include <GLEW/GL/glew.h>
 #include <GLFW/glfw3.h>
 
 int main(void)
@@ -17,6 +20,12 @@ int main(void)
 
 	/* Make the window's context current */
 	glfwMakeContextCurrent(window);
+
+	GLenum err = glewInit();
+	if (GLEW_OK != err)
+	{
+		std::cout << "glewInit failed" << std::endl;
+	}
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
