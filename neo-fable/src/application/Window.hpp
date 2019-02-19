@@ -6,30 +6,45 @@
 #include <GLEW/GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#include "../events/events.hpp"
 
-namespace graphics {
+namespace application {
 	extern bool glfwInitialized;
+
+	using windowEventCallback = std::function<void(events::Event&)>;
 
 	struct WindowConfig 
 	{
 		std::string title = "you forgot to give it a title you doof (also prob a width and height)";
 		unsigned int width = 720;
 		unsigned int height = 480;
+		windowEventCallback onEvent;
 	};
-
 
 	class Window
 	{
-	private:
-		GLFWwindow* window;
-		bool open;
 	public:
-		Window();
+		static Window* create(const WindowConfig& config);
+		Window(WindowConfig config);
 		~Window();
+
 		bool init(WindowConfig config);
 		void makeCurrentContext();
 		void update();
 		bool shouldUpdate();
+
+		void createCallbacks();
+
+		void setEventCallback(const windowEventCallback callback);
+
+		unsigned int getHeight();
+		unsigned int getWidth();
+
+	private:
+		GLFWwindow* window;
+		WindowConfig config;
+
+		bool open;
 	};
 }
 

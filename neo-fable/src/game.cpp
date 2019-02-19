@@ -1,19 +1,16 @@
 #include <iostream>
-#include "graphics/Window.hpp"
 
+#include "application/Application.hpp"
 
-graphics::Window window;
+Application neoFable({ "derp", 100, 100 });
 
 int main(void)
 {
-
-	if (!window.init({ "Neo Fable" })) return -1;
-
-	while (window.shouldUpdate())
+	while (neoFable.shouldUpdate())
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		window.update();
+		neoFable.update();
 	}
 
 	glfwTerminate();
