@@ -19,8 +19,6 @@ namespace application {
 	{
 		auto it = std::find(layers.begin(), layers.end(), layer);
 		if (it != layers.end())
-		{
 			layers.erase(it);
-		}
 	}
 }

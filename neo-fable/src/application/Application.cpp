@@ -16,7 +16,7 @@ void Application::onEvent(events::Event& e)
 
 	if (e.getType() == events::eventType::windowClose)
 	{
-		// glfwTerminate();
+		glfwTerminate();
 	}
 }
 
