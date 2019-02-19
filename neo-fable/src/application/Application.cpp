@@ -12,13 +12,12 @@ Application::Application(application::WindowConfig config)
 
 void Application::onEvent(events::Event& e) 
 {
-	std::cout << "got event: " << e.getType() << std::endl;
+	e.debugPrint();
 
-	if (e.getType() == events::eventType::windowResize)
+	if (e.getType() == events::eventType::windowClose)
 	{
-		std::cout << window->getHeight() << ", " << window->getWidth() << std::endl;
+		// glfwTerminate();
 	}
-
 }
 
 void Application::update()

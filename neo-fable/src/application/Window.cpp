@@ -68,21 +68,92 @@ namespace application {
 		{
 			WindowConfig& data = *(WindowConfig*)glfwGetWindowUserPointer(window);
 
-			std::cout << "derping" << std::endl;
-
 			data.width = w;
 			data.height = h;
 
 			events::WindowResize ev(w, h);
-			if (data.onEvent)
+			if (data.onEvent) { data.onEvent(ev); }
+		});
+
+		glfwSetWindowCloseCallback(window, [](GLFWwindow* window)
+		{
+			WindowConfig& data = *(WindowConfig*)glfwGetWindowUserPointer(window);
+
+			events::WindowClosed ev;
+			if (data.onEvent) { data.onEvent(ev); }
+		});
+
+		glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
+		{
+			WindowConfig& data = *(WindowConfig*)glfwGetWindowUserPointer(window);
+
+			if(action == GLFW_PRESS) 
 			{
-				std::cout << "is true" << std::endl;
-				data.onEvent(ev);
-			}
-			else
+				events::KeyDown ev(key);
+				if (data.onEvent) { data.onEvent(ev); }
+			} 
+			else if (action == GLFW_RELEASE)
 			{
-				std::cout << "is false" << std::endl;
+				events::KeyUp ev(key);
+				if (data.onEvent) { data.onEvent(ev); }
 			}
+		});
+
+		glfwSetCursorPosCallback(window, [](GLFWwindow* window, double x, double y)
+		{
+			WindowConfig& data = *(WindowConfig*)glfwGetWindowUserPointer(window);
+
+			events::MouseMove ev(x, y);
+			if (data.onEvent) { data.onEvent(ev); }
+		});
+
+		glfwSetMouseButtonCallback(window, [](GLFWwindow* window, int button, int action, int mods)
+		{
+			WindowConfig& data = *(WindowConfig*)glfwGetWindowUserPointer(window);
+
+			if (action == GLFW_PRESS)
+			{
+				events::MouseDown ev(button);
+				if (data.onEvent) { data.onEvent(ev); }
+			}
+			else if (action == GLFW_RELEASE)
+			{
+				events::MouseUp ev(button);
+				if (data.onEvent) { data.onEvent(ev); }
+			}
+		});
+
+		glfwSetScrollCallback(window, [](GLFWwindow* window, double x, double y)
+		{
+			WindowConfig& data = *(WindowConfig*)glfwGetWindowUserPointer(window);
+
+			events::MouseScroll ev(x, y);
+			if (data.onEvent) { data.onEvent(ev); }
+		});
+
+		glfwSetWindowPosCallback(window, [](GLFWwindow* window, int x, int y)
+		{
+			WindowConfig& data = *(WindowConfig*)glfwGetWindowUserPointer(window);
+
+			events::WindowMove ev(x, y);
+			if (data.onEvent) { data.onEvent(ev); }
+		});
+
+		glfwSetWindowFocusCallback(window, [](GLFWwindow* window, int focused)
+		{
+			WindowConfig& data = *(WindowConfig*)glfwGetWindowUserPointer(window);
+
+			if (focused == GLFW_TRUE)
+			{
+				events::WindowFocus ev;
+				if (data.onEvent) { data.onEvent(ev); }
+			}
+			else if (focused == GLFW_FALSE)
+			{
+				events::WindowBlur ev;
+				if (data.onEvent) { data.onEvent(ev); }
+			}
+
 		});
 	}
 
@@ -109,7 +180,6 @@ namespace application {
 	{
 		return config.width;
 	}
-
 
 	void Window::setEventCallback(const windowEventCallback callback)
 	{

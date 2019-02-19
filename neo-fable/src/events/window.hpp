@@ -6,6 +6,9 @@ namespace events {
 	{
 	public:
 		WindowFocus() {};
+		void debugPrint() const override
+			{ std::cout << "WindowFocus" << std::endl; }
+
 		GET_TYPE(windowFocus);
 	};
 
@@ -13,6 +16,9 @@ namespace events {
 	{
 	public:
 		WindowBlur() {};
+		void debugPrint() const override
+			{ std::cout << "WindowBlur" << std::endl; }
+
 		GET_TYPE(windowBlur);
 	};
 
@@ -20,6 +26,9 @@ namespace events {
 	{
 	public:
 		WindowClosed() {};
+		void debugPrint() const override
+			{ std::cout << "WindowClosed" << std::endl; }
+
 		GET_TYPE(windowClose);
 	};
 
@@ -27,6 +36,9 @@ namespace events {
 	{
 	public:
 		WindowMove(int x, int y) : x(x), y(y) {};
+		void debugPrint() const override
+			{ std::cout << "WindowMove: " << x << ", " << y << std::endl; }
+
 		GET_TYPE(windowMove);
 		inline int getX() const { return x; }
 		inline int getY() const { return y; }
@@ -39,6 +51,9 @@ namespace events {
 	{
 	public:
 		WindowResize(int w, int h) : w(w), h(h) {};
+		void debugPrint() const override
+			{ std::cout << "WindowResize: " << w << ", " << h << std::endl; }
+
 		GET_TYPE(windowResize);
 		inline int getWidth() const { return w; }
 		inline int getHeight() const { return h; }

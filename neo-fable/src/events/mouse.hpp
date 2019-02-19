@@ -3,7 +3,7 @@
 
 
 namespace events {
-	class MouseButton : Event
+	class MouseButton : public Event
 	{
 	public:
 		int inline getButton() const { return button; }
@@ -17,6 +17,9 @@ namespace events {
 	{
 	public:
 		MouseDown(int button) : MouseButton(button) {};
+		void debugPrint() const override
+			{ std::cout << "MouseDown: " << button << std::endl; }
+
 		GET_TYPE(mouseDown);
 	};
 
@@ -25,6 +28,9 @@ namespace events {
 	{
 	public:
 		MouseUp(int button) : MouseButton(button) {};
+		void debugPrint() const override
+			{ std::cout << "MouseUp: " << button << std::endl; }
+
 		GET_TYPE(mouseUp);
 	};
 
@@ -32,22 +38,28 @@ namespace events {
 	class MouseMove : public Event
 	{
 	public:
-		MouseMove(int x, int y) : x(x), y(y) {};
+		MouseMove(double x, double y) : x(x), y(y) {};
+		void debugPrint() const override
+			{ std::cout << "MouseMove: " << x << ", " << y << std::endl; }
+
 		GET_TYPE(mouseMove);
-		int inline getX() const { return x; }
-		int inline getY() const { return y; }
+		double inline getX() const { return x; }
+		double inline getY() const { return y; }
 	private:
-		int x, y;
+		double x, y;
 	};
 
 	class MouseScroll : public Event
 	{
 	public:
-		MouseScroll(int x, int y) : x(x), y(y) {};
+		MouseScroll(double x, double y) : x(x), y(y) {};
+		void debugPrint() const override
+			{ std::cout << "MouseScroll: " << x << ", " << y << std::endl; }
+
 		GET_TYPE(mouseScroll);
-		int inline getX() const { return x; }
-		int inline getY() const { return y; }
+		double inline getX() const { return x; }
+		double inline getY() const { return y; }
 	private:
-		int x, y;
+		double x, y;
 	};
 }

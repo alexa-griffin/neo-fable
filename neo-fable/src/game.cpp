@@ -2,7 +2,7 @@
 
 #include "application/Application.hpp"
 
-Application neoFable({ "derp", 100, 100 });
+Application neoFable({ "derp", 480, 480 });
 
 int main(void)
 {

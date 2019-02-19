@@ -6,7 +6,6 @@ namespace events {
 	{
 	public:
 		inline int GetKeyCode() const { return keyCode; }
-
 	protected:
 		KeyPress(int keyCode) : keyCode(keyCode) {}
 		int keyCode;
@@ -16,13 +15,19 @@ namespace events {
 	{
 	public:
 		KeyDown(int keyCode) : KeyPress(keyCode) {}
+		void debugPrint() const override
+			{ std::cout << "KeyDown: " << keyCode << std::endl; }
+
 		GET_TYPE(keyDown);
 	};
 
-	class KeyUp : public KeyPress 
-{
+	class KeyUp : public KeyPress
+	{
 	public:
 		KeyUp(int keyCode) : KeyPress(keyCode) {}
+		void debugPrint() const override
+			{ std::cout << "KeyUp: " << keyCode << std::endl; }
+
 		GET_TYPE(keyUp);
 	};
 }

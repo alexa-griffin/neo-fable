@@ -6,7 +6,7 @@
 namespace events {
 	enum eventType
 	{
-		none = 0, // meta
+		none = 0, // meta & for errors
 		mouseDown, mouseUp, mouseMove, mouseScroll, // mouse
 		keyDown, keyUp, // keyboard
 		windowFocus, windowBlur, windowMove, windowResize, windowClose // window
@@ -16,6 +16,8 @@ namespace events {
 	{
 	public:
 		virtual eventType getType() const = 0;
+		virtual void debugPrint() const = 0;
+
 	protected:
 		bool handled = false;
 	};
