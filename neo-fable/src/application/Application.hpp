@@ -2,6 +2,7 @@
 
 #include "Window.hpp"
 #include "LayerStack.hpp"
+#include "Layer.hpp"
 #include "../events/events.hpp"
 
 class Application
@@ -13,10 +14,10 @@ public:
 	void update();
 	bool shouldUpdate();
 
-	void pushOverlay(Layer *layer);
-	void popOverlay(Layer *layer);
-	void pushLayer(Layer *layer);
-	void popLayer(Layer *layer);
+	void pushOverlay(application::Layer *layer);
+	void popOverlay(application::Layer *layer);
+	void pushLayer(application::Layer *layer);
+	void popLayer(application::Layer *layer);
 
 private:
 	std::unique_ptr<application::Window> window;

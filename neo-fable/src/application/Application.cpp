@@ -23,6 +23,15 @@ void Application::onEvent(events::Event& e)
 void Application::update()
 {
 	window->update();
+	for (application::Layer* layer : layerStack)
+	{
+		layer->update();
+	}
+
+	for (application::Layer* overlay : overlayStack)
+	{
+		overlay->update();
+	}
 }
 
 // checks if all layers and the window are ok
@@ -33,22 +42,22 @@ bool Application::shouldUpdate()
 
 
 // layer stack (wrapper around multiple layer stacks for overlay priority)
-void Application::pushOverlay(Layer *layer)
+void Application::pushOverlay(application::Layer *layer)
 {
 	overlayStack.push(layer);
 }
 
-void Application::popOverlay(Layer *layer)
+void Application::popOverlay(application::Layer *layer)
 {
 	overlayStack.pop(layer);
 }
 
-void Application::pushLayer(Layer *layer)
+void Application::pushLayer(application::Layer *layer)
 {
 	layerStack.push(layer);
 }
 
-void Application::popLayer(Layer *layer)
+void Application::popLayer(application::Layer *layer)
 {
 	layerStack.pop(layer);
 }

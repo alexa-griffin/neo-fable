@@ -14,12 +14,12 @@ namespace application {
 
 	void LayerStack::push(Layer* layer)
 	{
-		layers.insert(myvector.begin(), layer)
+		layers.insert(layers.begin(), layer);
 	}
 
 	void LayerStack::pop(Layer* layer)
 	{
-		auto it = std::find(layer.begin(), layer.end(), layer);
+		auto it = std::find(layers.begin(), layers.end(), layer);
 		if (it != layers.end())
 		{
 			layers.erase(it);

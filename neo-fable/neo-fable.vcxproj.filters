@@ -30,6 +30,9 @@
     <ClCompile Include="src\application\LayerStack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\layers\TestLayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\events\events.hpp">
@@ -53,10 +56,13 @@
     <ClInclude Include="src\application\Application.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\application\LayerStack.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="src\application\Layer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\application\LayerStack.hpp">
+    <ClInclude Include="src\layers\TestLayer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
