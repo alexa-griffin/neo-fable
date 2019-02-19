@@ -7,9 +7,7 @@ namespace application {
 	LayerStack::~LayerStack()
 	{
 		for (Layer* layer : layers) 
-		{
 			delete layer;
-		}
 	}
 
 	void LayerStack::push(Layer* layer)
