@@ -8,7 +8,7 @@ namespace application {
 		return new Window(config);
 	}
 
-	Window::Window(WindowConfig config) : open(true)
+	Window::Window(WindowConfig config)
 	{
 		init(config);
 	}
@@ -23,6 +23,7 @@ namespace application {
 		this->config.width = config.width;
 		this->config.height = config.height;
 		this->config.title = config.title;
+		this->config.open = true;
 
 		// init glfw
 		if (!glfwInitialized && !glfwInit())
@@ -78,6 +79,8 @@ namespace application {
 		glfwSetWindowCloseCallback(window, [](GLFWwindow* window)
 		{
 			WindowConfig& data = *(WindowConfig*)glfwGetWindowUserPointer(window);
+
+			data.open = false;
 
 			events::WindowClosed ev;
 			if (data.onEvent) { data.onEvent(ev); }
@@ -161,14 +164,12 @@ namespace application {
 	{
 		glfwSwapBuffers(window);
 		glfwPollEvents();
-
-		open = !glfwWindowShouldClose(window);
 	}
 
 	// checks if all things are ok to update
 	bool Window::shouldUpdate()
 	{
-		return open;
+		return config.open;
 	}
 
 	unsigned int Window::getHeight()

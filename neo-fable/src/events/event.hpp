@@ -2,6 +2,7 @@
 
 #include <string>
 #include <functional>
+#include <iostream>
 
 namespace events {
 	enum eventType

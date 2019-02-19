@@ -30,3 +30,25 @@ bool Application::shouldUpdate()
 {
 	return window->shouldUpdate();
 }
+
+
+// layer stack (wrapper around multiple layer stacks for overlay priority)
+void Application::pushOverlay(Layer *layer)
+{
+	overlayStack.push(layer);
+}
+
+void Application::popOverlay(Layer *layer)
+{
+	overlayStack.pop(layer);
+}
+
+void Application::pushLayer(Layer *layer)
+{
+	layerStack.push(layer);
+}
+
+void Application::popLayer(Layer *layer)
+{
+	layerStack.pop(layer);
+}

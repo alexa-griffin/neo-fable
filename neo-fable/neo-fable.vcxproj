@@ -154,12 +154,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\application\LayerStack.cpp" />
     <ClCompile Include="src\application\Application.cpp" />
+    <ClCompile Include="src\application\Layer.cpp" />
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\application\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\application\LayerStack.hpp" />
     <ClInclude Include="src\application\Application.hpp" />
+    <ClInclude Include="src\application\Layer.hpp" />
     <ClInclude Include="src\events\event.hpp" />
     <ClInclude Include="src\events\events.hpp" />
     <ClInclude Include="src\events\keyboard.hpp" />

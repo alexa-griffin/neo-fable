@@ -18,6 +18,7 @@ namespace application {
 		std::string title = "you forgot to give it a title you doof (also prob a width and height)";
 		unsigned int width = 720;
 		unsigned int height = 480;
+		bool open = true;
 		windowEventCallback onEvent;
 	};
 
@@ -43,8 +44,6 @@ namespace application {
 	private:
 		GLFWwindow* window;
 		WindowConfig config;
-
-		bool open;
 	};
 }
 
