@@ -11,7 +11,7 @@ namespace layers {
 		TestLayer(std::string name) : Layer(name) {};
 		~TestLayer();
 
-		void onEvent(Event& e);
+		virtual bool onEvent(Event& e);
 		virtual void update();
 
 	};

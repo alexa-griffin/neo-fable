@@ -9,14 +9,15 @@ namespace layers {
 	{
 	}
 
-	void TestLayer::onEvent(Event &e)
+	bool TestLayer::onEvent(Event &e)
 	{
 		std::cout << "test layer event!" << std::endl;
-		e.debugPrint();
+
+		return false;
 	}
 
 	void TestLayer::update()
 	{
-		std::cout << "updating" << std::endl;
+		// std::cout << "updating" << std::endl;
 	}
 }

@@ -15,7 +15,8 @@ namespace application {
 		// lifecycle methods
 		virtual void onMount() {}
 		virtual void onUnmount() {}
-		virtual void onEvent(::events::Event& e) {}
+		virtual bool onEvent(::events::Event& e) { return false;  } 
+		// bool to return if the event is handled
 
 	protected:
 		std::string name; // for debuging

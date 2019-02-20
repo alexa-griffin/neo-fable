@@ -18,6 +18,28 @@ void Application::onEvent(events::Event& e)
 	{
 		glfwTerminate();
 	}
+
+	bool handled = false;
+
+	for (application::Layer* overlay : overlayStack)
+	{
+		if (overlay->onEvent(e))
+		{
+			handled = true;
+			break;
+		}
+	}
+	
+	if (handled) return;
+
+	for (application::Layer* layer : layerStack)
+	{
+		if (layer->onEvent(e))
+		{
+			handled = true;
+			break;
+		}
+	}
 }
 
 void Application::update()
@@ -41,7 +63,7 @@ bool Application::shouldUpdate()
 }
 
 
-// layer stack (wrapper around multiple layer stacks for overlay priority)
+// layer stack functionality (wrapper around multiple layer stacks for overlay priority)
 void Application::pushOverlay(application::Layer *layer)
 {
 	overlayStack.push(layer);
