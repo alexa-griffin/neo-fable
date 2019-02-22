@@ -91,7 +91,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dep\;$(SolutionDir)src\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dep\;$(SolutionDir)src\;$(SolutionDir)src\vendor\;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);GLEW_STATIC</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -106,7 +106,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dep\;$(SolutionDir)src\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dep\;$(SolutionDir)src\;$(SolutionDir)src\vendor\;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);GLEW_STATIC</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -123,7 +123,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dep\;$(SolutionDir)src\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dep\;$(SolutionDir)src\;$(SolutionDir)src\vendor\;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);GLEW_STATIC</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -142,7 +142,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dep\;$(SolutionDir)src\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dep\;$(SolutionDir)src\;$(SolutionDir)src\vendor\;</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);GLEW_STATIC</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -159,7 +159,11 @@
     <ClCompile Include="src\application\Layer.cpp" />
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\application\Window.cpp" />
+    <ClCompile Include="src\graphics\opengl\debug.cpp" />
+    <ClCompile Include="src\graphics\opengl\IndexBuffer.cpp" />
     <ClCompile Include="src\layers\TestLayer.cpp" />
+    <ClCompile Include="src\vendor\spd_image\spd_image.cpp" />
+    <ClCompile Include="src\graphics\opengl\VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application\Layer.hpp" />
@@ -171,7 +175,15 @@
     <ClInclude Include="src\events\mouse.hpp" />
     <ClInclude Include="src\events\window.hpp" />
     <ClInclude Include="src\application\Window.hpp" />
+    <ClInclude Include="src\graphics\opengl\debug.hpp" />
+    <ClInclude Include="src\graphics\graphics.hpp" />
+    <ClInclude Include="src\graphics\opengl\IndexBuffer.hpp" />
     <ClInclude Include="src\layers\TestLayer.hpp" />
+    <ClInclude Include="src\vendor\spd_image\stb_image.h" />
+    <ClInclude Include="src\graphics\opengl\VertexBuffer.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\res\shaders\basic.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
