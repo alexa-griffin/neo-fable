@@ -10,7 +10,9 @@ namespace graphics {
 	{
 		while (GLenum err = glGetError())
 		{
+			return false;
 			std::cout << "[openGL error]: (" << err << ")" << f << ", " << file << ":" << line << std::endl;
 		}
+		return true;
 	}
 }

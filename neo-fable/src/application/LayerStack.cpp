@@ -13,6 +13,7 @@ namespace application {
 	void LayerStack::push(Layer* layer)
 	{
 		layers.insert(layers.begin(), layer);
+		layer->onMount();
 	}
 
 	void LayerStack::pop(Layer* layer)

@@ -22,7 +22,7 @@ namespace graphics {
 
 	void VertexBuffer::unbind() const
 	{
-		GL_DEBUG_CALL(glDeleteBuffers(1, &rendererID))
+		GL_DEBUG_CALL(glDeleteBuffers(1, &rendererID));
 	}
 }
 
