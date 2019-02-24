@@ -3,7 +3,7 @@
 #define GL_ASSERT(f) if(!(f)) __debugbreak()
 #define GL_DEBUG_CALL(f) glClearErrors(); \
 						 (f); \
-						 GL_ASSERT(glLogErrors(#f, __FILE__, __LINE__))
+						 glLogErrors(#f, __FILE__, __LINE__)
 
 static void glClearErrors()
 {
@@ -12,12 +12,13 @@ static void glClearErrors()
 
 static bool glLogErrors(const char* f, const char* file, int line)
 {
-	while (GLenum err = glGetError())
+	GLenum err;
+	while ((err = glGetError()) != GL_NO_ERROR)
 	{
-		return false;
-		std::cout << "[openGL error]: (" << err << ")" << f << ", " << file << ":" << line << std::endl;
+		std::cout << "[openGL error] (" << err << "): " << f << ", " << file << ": " << line << std::endl;
+		// return true;
 	}
-	return true;
+	return false;
 }
 
 namespace layers {
@@ -39,12 +40,10 @@ namespace layers {
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
-		auto vertShaderFile = data_loader::loadFileToString("./data/graphics/shaders/basic.vert.shader");
-		auto fragShaderFile = data_loader::loadFileToString("./data/graphics/shaders/basic.frag.shader");
-
+		auto vertShaderFile = data_loader::loadFileToString("./data/shaders/basic.vert.shader");
+		auto fragShaderFile = data_loader::loadFileToString("./data/shaders/basic.frag.shader");
 		const char* vertShaderSrc = vertShaderFile.content.c_str();
 		const char* fragShaderSrc = fragShaderFile.content.c_str();
-
 
 		GLuint program = glCreateProgram();
 
@@ -55,6 +54,22 @@ namespace layers {
 		GLuint fragShader = glCreateShader(GL_FRAGMENT_SHADER);
 		glShaderSource(fragShader, 1, &fragShaderSrc, nullptr);
 		glCompileShader(fragShader);
+
+		glAttachShader(program, vertShader);
+		glAttachShader(program, fragShader);
+		glLinkProgram(program);
+		glValidateProgram(program);
+
+		int len;
+
+		glGetProgramiv(program, GL_INFO_LOG_LENGTH, &len);
+
+		char* err = new char[len];
+		
+		glGetProgramInfoLog(program, len, &len, err);
+
+		std::cout << err << std::endl;
+		GL_DEBUG_CALL(glUseProgram(program));
 	};
 
 	TestLayer::~TestLayer()
