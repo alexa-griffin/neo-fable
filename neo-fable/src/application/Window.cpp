@@ -169,7 +169,7 @@ namespace application {
 	// checks if all things are ok to update
 	bool Window::shouldUpdate()
 	{
-		return config.open;
+		return config.open && !glfwWindowShouldClose(window);
 	}
 
 	unsigned int Window::getHeight()
@@ -187,5 +187,4 @@ namespace application {
 		config.onEvent = callback;
 		createCallbacks();
 	}
-
 }

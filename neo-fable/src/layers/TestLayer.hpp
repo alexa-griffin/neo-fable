@@ -1,7 +1,7 @@
 #pragma once
 #include "../application/Layer.hpp"
 #include "../graphics/graphics.hpp"
-
+#include "../data_loader/util.hpp"
 
 namespace layers {
 	using namespace ::application;
@@ -15,11 +15,10 @@ namespace layers {
 
 		virtual bool onEvent(Event& e);
 		virtual void update();
-		virtual void render();
 		virtual void onMount();
 
 	private:
-		unsigned int bufferID;
+		GLuint buffer;
 	};
 }
 

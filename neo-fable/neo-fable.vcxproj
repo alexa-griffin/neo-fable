@@ -99,6 +99,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)dep\GLFW\lib-vc2015;$(SolutionDir)dep\GLEW\lib;</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32s.lib;</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>if not exist $(SolutionDir)bin\Win32\Debug\data mklink /J $(SolutionDir)bin\Win32\Debug\data $(ProjectDir)data\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -114,6 +117,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)dep\GLFW\lib-vc2015;$(SolutionDir)dep\GLEW\lib;</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32s.lib;</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>if not exist $(SolutionDir)bin\Win32\Debug\data mklink /J $(SolutionDir)bin\Win32\Debug\data $(ProjectDir)data\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -133,6 +139,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)dep\GLFW\lib-vc2015;$(SolutionDir)dep\GLEW\lib;</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32s.lib;</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>if not exist $(SolutionDir)bin\Win32\Debug\data mklink /J $(SolutionDir)bin\Win32\Debug\data $(ProjectDir)data\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -152,23 +161,26 @@
       <AdditionalLibraryDirectories>$(SolutionDir)dep\GLFW\lib-vc2015;$(SolutionDir)dep\GLEW\lib;</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32s.lib;</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>if not exist $(SolutionDir)bin\Win32\Debug\data mklink /J $(SolutionDir)bin\Win32\Debug\data $(ProjectDir)data\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\application\LayerStack.cpp" />
     <ClCompile Include="src\application\Application.cpp" />
     <ClCompile Include="src\application\Layer.cpp" />
+    <ClCompile Include="src\data_loader\util.cpp" />
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\application\Window.cpp" />
     <ClCompile Include="src\graphics\opengl\debug.cpp" />
-    <ClCompile Include="src\graphics\opengl\IndexBuffer.cpp" />
     <ClCompile Include="src\layers\TestLayer.cpp" />
     <ClCompile Include="src\vendor\spd_image\spd_image.cpp" />
-    <ClCompile Include="src\graphics\opengl\VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application\Layer.hpp" />
     <ClInclude Include="src\application\LayerStack.hpp" />
     <ClInclude Include="src\application\Application.hpp" />
+    <ClInclude Include="src\data_loader\util.hpp" />
     <ClInclude Include="src\events\event.hpp" />
     <ClInclude Include="src\events\events.hpp" />
     <ClInclude Include="src\events\keyboard.hpp" />
@@ -177,13 +189,12 @@
     <ClInclude Include="src\application\Window.hpp" />
     <ClInclude Include="src\graphics\opengl\debug.hpp" />
     <ClInclude Include="src\graphics\graphics.hpp" />
-    <ClInclude Include="src\graphics\opengl\IndexBuffer.hpp" />
     <ClInclude Include="src\layers\TestLayer.hpp" />
     <ClInclude Include="src\vendor\spd_image\stb_image.h" />
-    <ClInclude Include="src\graphics\opengl\VertexBuffer.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\res\shaders\basic.shader" />
+    <None Include="data\shaders\basic.frag.shader" />
+    <None Include="data\shaders\basic.vert.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

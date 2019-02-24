@@ -2,8 +2,9 @@
 
 #include "application/Application.hpp"
 #include "layers/TestLayer.hpp"
+#include "data_loader/util.hpp"
 
-Application neoFable({ "derp", 480, 480 });
+Application neoFable({ "derp", 480, 360 });
 
 layers::TestLayer test("test layer");
 
@@ -13,8 +14,7 @@ int main(void)
 
 	while (neoFable.shouldUpdate())
 	{
-		glClear(GL_COLOR_BUFFER_BIT);
-
+		// glClear(GL_COLOR_BUFFER_BIT);
 		neoFable.update();
 	}
 

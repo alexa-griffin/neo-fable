@@ -39,10 +39,7 @@
     <ClCompile Include="src\graphics\opengl\debug.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\opengl\VertexBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\opengl\IndexBuffer.cpp">
+    <ClCompile Include="src\data_loader\util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,14 +83,12 @@
     <ClInclude Include="src\graphics\opengl\debug.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\graphics\opengl\VertexBuffer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphics\opengl\IndexBuffer.hpp">
+    <ClInclude Include="src\data_loader\util.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\res\shaders\basic.shader" />
+    <None Include="data\shaders\basic.frag.shader" />
+    <None Include="data\shaders\basic.vert.shader" />
   </ItemGroup>
 </Project>

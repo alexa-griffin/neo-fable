@@ -12,7 +12,7 @@ Application::Application(application::WindowConfig config)
 
 void Application::onEvent(events::Event& e) 
 {
-	e.debugPrint();
+	// e.debugPrint();
 
 	if (e.getType() == events::eventType::windowClose)
 	{
@@ -44,7 +44,6 @@ void Application::onEvent(events::Event& e)
 
 void Application::update()
 {
-	window->update();
 	for (application::Layer* layer : layerStack)
 	{
 		layer->update();
@@ -54,6 +53,8 @@ void Application::update()
 	{
 		overlay->update();
 	}
+
+	window->update();
 }
 
 // checks if all layers and the window are ok
