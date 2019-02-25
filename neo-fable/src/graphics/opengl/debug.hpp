@@ -10,11 +10,13 @@
 #else
 	#define GL_ASSERT(f) if(!(f)) __debugbreak()
 	#define GL_DEBUG_CALL(f) ::graphics::glClearErrors(); \
-							 (f); \
+							 GL_ASSERT(f); \
 							 GL_ASSERT(::graphics::glLogErrors(#f, __FILE__, __LINE__))
 #endif
 
 namespace graphics {
 	void glClearErrors();
-	bool glLogErrors(const char* f, const char* file, int line);
+	void glLogErrors(const char* f, const char* file, int line);
+	void glShaderLogErrors(GLuint shader);
+	void glProgramLogErrors(GLuint program);
 }

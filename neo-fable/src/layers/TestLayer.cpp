@@ -1,10 +1,5 @@
 #include "TestLayer.hpp"
 
-#define GL_ASSERT(f) if(!(f)) __debugbreak()
-#define GL_DEBUG_CALL(f) glClearErrors(); \
-						 (f); \
-						 glLogErrors(#f, __FILE__, __LINE__)
-
 static void glClearErrors()
 {
 	while (glGetError() != GL_NO_ERROR);
@@ -50,26 +45,21 @@ namespace layers {
 		GLuint vertShader = glCreateShader(GL_VERTEX_SHADER);
 		glShaderSource(vertShader, 1, &vertShaderSrc, nullptr);
 		glCompileShader(vertShader);
+		graphics::glShaderLogErrors(vertShader);
 
 		GLuint fragShader = glCreateShader(GL_FRAGMENT_SHADER);
 		glShaderSource(fragShader, 1, &fragShaderSrc, nullptr);
 		glCompileShader(fragShader);
+		graphics::glShaderLogErrors(fragShader);
 
 		glAttachShader(program, vertShader);
 		glAttachShader(program, fragShader);
 		glLinkProgram(program);
 		glValidateProgram(program);
 
-		int len;
+		graphics::glProgramLogErrors(program);
 
-		glGetProgramiv(program, GL_INFO_LOG_LENGTH, &len);
-
-		char* err = new char[len];
-		
-		glGetProgramInfoLog(program, len, &len, err);
-
-		std::cout << err << std::endl;
-		GL_DEBUG_CALL(glUseProgram(program));
+		glUseProgram(program);
 	};
 
 	TestLayer::~TestLayer()
