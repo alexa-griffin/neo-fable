@@ -91,7 +91,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dep\;$(SolutionDir)src\;$(SolutionDir)src\vendor\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dep\;$(ProjectDir)src\;$(ProjectDir)src\vendor\</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);GLEW_STATIC</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -109,7 +109,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dep\;$(SolutionDir)src\;$(SolutionDir)src\vendor\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dep\;$(ProjectDir)src\;$(ProjectDir)src\vendor\</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);GLEW_STATIC</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -129,7 +129,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dep\;$(SolutionDir)src\;$(SolutionDir)src\vendor\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dep\;$(ProjectDir)src\;$(ProjectDir)src\vendor\</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);GLEW_STATIC</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -151,7 +151,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dep\;$(SolutionDir)src\;$(SolutionDir)src\vendor\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dep\;$(ProjectDir)src\;$(ProjectDir)src\vendor\</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);GLEW_STATIC</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -169,17 +169,19 @@
     <ClCompile Include="src\application\LayerStack.cpp" />
     <ClCompile Include="src\application\Application.cpp" />
     <ClCompile Include="src\application\Layer.cpp" />
+    <ClCompile Include="src\application\log.cpp" />
     <ClCompile Include="src\data_loader\util.cpp" />
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\application\Window.cpp" />
     <ClCompile Include="src\graphics\opengl\debug.cpp" />
     <ClCompile Include="src\layers\TestLayer.cpp" />
-    <ClCompile Include="src\vendor\spd_image\spd_image.cpp" />
+    <ClCompile Include="src\vendor\spd_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application\Layer.hpp" />
     <ClInclude Include="src\application\LayerStack.hpp" />
     <ClInclude Include="src\application\Application.hpp" />
+    <ClInclude Include="src\application\log.hpp" />
     <ClInclude Include="src\data_loader\util.hpp" />
     <ClInclude Include="src\events\event.hpp" />
     <ClInclude Include="src\events\events.hpp" />
@@ -191,6 +193,8 @@
     <ClInclude Include="src\graphics\graphics.hpp" />
     <ClInclude Include="src\layers\TestLayer.hpp" />
     <ClInclude Include="src\vendor\spd_image\stb_image.h" />
+    <ClInclude Include="src\vendor\termcolor\LICENCE" />
+    <ClInclude Include="src\vendor\termcolor\termcolor.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\shaders\basic.frag.shader" />

@@ -19,6 +19,7 @@ namespace layers {
 
 	private:
 		GLuint buffer;
+		GLuint ibo;
 	};
 }
 

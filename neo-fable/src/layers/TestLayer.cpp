@@ -23,14 +23,24 @@ namespace layers {
 	TestLayer::TestLayer(std::string name) : Layer(name) 
 	{
 		float positions[] = {
+			 0.5,  0.5,
+			-0.5,  0.5,
 			-0.5, -0.5,
-			 0.0,  0.5,
 			 0.5, -0.5
+		};
+
+		GLuint iBuffer[] = {
+			0, 1, 3,
+			1, 2, 3
 		};
 
 		glGenBuffers(1, &buffer);
 		glBindBuffer(GL_ARRAY_BUFFER, buffer);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(positions), positions, GL_STATIC_DRAW);
+
+		glGenBuffers(1, &ibo);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(iBuffer), iBuffer, GL_STATIC_DRAW);
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
@@ -74,7 +84,8 @@ namespace layers {
 
 	void TestLayer::update()
 	{
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		//glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 	}
 
 	void TestLayer::onMount()

@@ -33,13 +33,16 @@
     <ClCompile Include="src\layers\TestLayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\vendor\spd_image\spd_image.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\graphics\opengl\debug.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\data_loader\util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vendor\spd_image\stb_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\application\log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -84,6 +87,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\data_loader\util.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vendor\termcolor\termcolor.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vendor\termcolor\LICENCE">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\application\log.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
