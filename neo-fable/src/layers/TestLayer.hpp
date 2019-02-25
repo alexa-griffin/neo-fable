@@ -20,6 +20,10 @@ namespace layers {
 	private:
 		GLuint buffer;
 		GLuint ibo;
+
+		float h;
+		float inc;
+		int colorLocal;
 	};
 }
 

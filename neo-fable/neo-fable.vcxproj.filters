@@ -45,6 +45,9 @@
     <ClCompile Include="src\application\log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\graphics\renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\events\events.hpp">
@@ -98,9 +101,13 @@
     <ClInclude Include="src\application\log.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\graphics\renderer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="data\shaders\basic.frag.shader" />
     <None Include="data\shaders\basic.vert.shader" />
+    <None Include="data\shaders\color.frag.shader" />
   </ItemGroup>
 </Project>

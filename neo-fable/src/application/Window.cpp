@@ -44,6 +44,8 @@ namespace application {
 
 		makeCurrentContext();
 
+		glfwSwapInterval(1);
+
 		// init glew
 		if (const GLenum err = glewInit(); GLEW_OK != err)
 		{

@@ -20,7 +20,7 @@ namespace layers {
 	using namespace ::application;
 	using namespace ::events;
 
-	TestLayer::TestLayer(std::string name) : Layer(name) 
+	TestLayer::TestLayer(std::string name) : Layer(name), h(0), inc(0.1)
 	{
 		float positions[] = {
 			 0.5,  0.5,
@@ -46,7 +46,7 @@ namespace layers {
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
 		auto vertShaderFile = data_loader::loadFileToString("./data/shaders/basic.vert.shader");
-		auto fragShaderFile = data_loader::loadFileToString("./data/shaders/basic.frag.shader");
+		auto fragShaderFile = data_loader::loadFileToString("./data/shaders/color.frag.shader");
 		const char* vertShaderSrc = vertShaderFile.content.c_str();
 		const char* fragShaderSrc = fragShaderFile.content.c_str();
 
@@ -70,6 +70,8 @@ namespace layers {
 		graphics::glProgramLogErrors(program);
 
 		glUseProgram(program);
+
+		colorLocal = glGetUniformLocation(program, "uColor");
 	};
 
 	TestLayer::~TestLayer()
@@ -83,6 +85,22 @@ namespace layers {
 
 	void TestLayer::update()
 	{
+		if (h > 1)
+		{
+			inc = -0.1;
+		}
+		else if (h < 0)
+		{
+			inc = 0.1;
+		}
+		
+		h += inc;
+
+		LOG_VAR(h);
+		LOG_VAR(inc);
+
+		glUniform4f(colorLocal, h, 0.3, 0.8, 1.0);
+
 		//glDrawArrays(GL_TRIANGLES, 0, 3);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 	}
