@@ -14,7 +14,7 @@ namespace data_loader {
 		{
 			res.success = false;
 			res.content = "";
-			std::cout << "failed to load file:" << path << std::endl;
+			LOG_WARN("failed to load file", path);
 		}
 
 		return res;

@@ -3,6 +3,7 @@
 #include <GLEW/GL/glew.h>
 #include <iostream>
 
+#include "application/log.hpp"
 
 #ifdef __PRODUCTION_BUILD__
 	#define GL_ASSERT(f) (f)

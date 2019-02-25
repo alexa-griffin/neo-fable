@@ -22,27 +22,6 @@ namespace events {
 	protected:
 		bool handled = false;
 	};
-
-	/*class Dispatcher
-	{
-		template<typename T>
-		using eventCallback = std::function<bool(T&)>;
-
-	public:
-		Dispatcher(Event& e) : event(e) {}
-		bool Dispatch(eventCallback<T> callback)
-		{
-			if (event.getType() == T::getType())
-			{
-				m_Event.Handled = callback(*(T*)&m_Event);
-				return true;
-			}
-			return false;
-		}
-
-	private:
-		Event& event;
-	};*/
 }
 
 #define GET_TYPE(type) static eventType getStaticType() { return eventType::##type; } \

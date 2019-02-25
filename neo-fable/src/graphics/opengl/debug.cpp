@@ -10,7 +10,7 @@ namespace graphics {
 	{
 		while (GLenum err = glGetError())
 		{
-			std::cout << "[openGL error]: (" << err << ")" << f << ", " << file << ":" << line << std::endl;
+			LOG_ERROR(err);
 		}
 	}
 
@@ -24,7 +24,7 @@ namespace graphics {
 			glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &len);
 			char* err = new char[len];
 			glGetShaderInfoLog(shader, len, &len, err);
-			std::cout << err << std::endl;
+			LOG_ERROR(err);
 
 			delete err;
 		}
@@ -32,12 +32,17 @@ namespace graphics {
 
 	void glProgramLogErrors(GLuint program)
 	{
-		int len;
-		glGetProgramiv(program, GL_INFO_LOG_LENGTH, &len);
-		char* err = new char[len];
-		glGetProgramInfoLog(program, len, &len, err);
-		std::cout << err << std::endl;
+		int compiled;
+		glGetShaderiv(program, GL_VALIDATE_STATUS, &compiled);
+		if (compiled == GL_FALSE)
+		{
+			int len;
+			glGetShaderiv(program, GL_INFO_LOG_LENGTH, &len);
+			char* err = new char[len];
+			glGetShaderInfoLog(program, len, &len, err);
+			LOG_ERROR(err);
 
-		delete err;
+			delete err;
+		}
 	}
 }

@@ -12,12 +12,7 @@ Application::Application(application::WindowConfig config)
 
 void Application::onEvent(events::Event& e) 
 {
-	// e.debugPrint();
-
-	if (e.getType() == events::eventType::windowClose)
-	{
-		glfwTerminate();
-	}
+	e.debugPrint();
 
 	bool handled = false;
 

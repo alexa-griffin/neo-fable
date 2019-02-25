@@ -1,6 +1,8 @@
 #pragma once
 #include "termcolor/termcolor.hpp"
 
+//TODO: make log level settings
+
 namespace application {
 	namespace log {
 		//TODO: make this an external file
@@ -16,7 +18,7 @@ namespace application {
 		template<typename T, typename... Args>
 		inline void print(T f, Args... args) 
 		{
-			std::cout << f << ", ";
+			std::cout << f << " ";
 			print(args ...);
 		};
 	}

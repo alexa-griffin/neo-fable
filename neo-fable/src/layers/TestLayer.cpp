@@ -10,7 +10,7 @@ static bool glLogErrors(const char* f, const char* file, int line)
 	GLenum err;
 	while ((err = glGetError()) != GL_NO_ERROR)
 	{
-		std::cout << "[openGL error] (" << err << "): " << f << ", " << file << ": " << line << std::endl;
+		LOG_ERROR(err, file, line);
 		// return true;
 	}
 	return false;
@@ -78,7 +78,6 @@ namespace layers {
 
 	bool TestLayer::onEvent(Event &e)
 	{
-		// std::cout << "test layer event!" << std::endl;
 		return false;
 	}
 

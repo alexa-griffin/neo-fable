@@ -1,5 +1,6 @@
 #pragma once
 #include "event.hpp"
+#include "application/log.hpp"
 
 
 namespace events {
@@ -18,7 +19,7 @@ namespace events {
 	public:
 		MouseDown(int button) : MouseButton(button) {};
 		void debugPrint() const override
-			{ std::cout << "MouseDown: " << button << std::endl; }
+			{ LOG_INFO("mouse down event:", button); }
 
 		GET_TYPE(mouseDown);
 	};
@@ -29,7 +30,7 @@ namespace events {
 	public:
 		MouseUp(int button) : MouseButton(button) {};
 		void debugPrint() const override
-			{ std::cout << "MouseUp: " << button << std::endl; }
+			{ LOG_INFO("mouse up event:", button); }
 
 		GET_TYPE(mouseUp);
 	};
@@ -40,7 +41,7 @@ namespace events {
 	public:
 		MouseMove(double x, double y) : x(x), y(y) {};
 		void debugPrint() const override
-			{ std::cout << "MouseMove: " << x << ", " << y << std::endl; }
+			{ LOG_INFO("mouse move event: (", x, ", ", y, ")"); }
 
 		GET_TYPE(mouseMove);
 		double inline getX() const { return x; }
@@ -54,7 +55,7 @@ namespace events {
 	public:
 		MouseScroll(double x, double y) : x(x), y(y) {};
 		void debugPrint() const override
-			{ std::cout << "MouseScroll: " << x << ", " << y << std::endl; }
+			{ LOG_INFO("mouse scroll event: (", x, ", ", y, ")"); }
 
 		GET_TYPE(mouseScroll);
 		double inline getX() const { return x; }

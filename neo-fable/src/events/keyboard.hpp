@@ -1,5 +1,6 @@
 #pragma once
 #include "event.hpp"
+#include "application/log.hpp"
 
 namespace events {
 	class KeyPress : public Event 
@@ -16,7 +17,7 @@ namespace events {
 	public:
 		KeyDown(int keyCode) : KeyPress(keyCode) {}
 		void debugPrint() const override
-			{ std::cout << "KeyDown: " << keyCode << std::endl; }
+			{ LOG_INFO("keydown event:", keyCode); }
 
 		GET_TYPE(keyDown);
 	};
@@ -26,7 +27,7 @@ namespace events {
 	public:
 		KeyUp(int keyCode) : KeyPress(keyCode) {}
 		void debugPrint() const override
-			{ std::cout << "KeyUp: " << keyCode << std::endl; }
+			{ LOG_INFO("keyup event:", keyCode); }
 
 		GET_TYPE(keyUp);
 	};

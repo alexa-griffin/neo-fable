@@ -29,7 +29,7 @@ namespace application {
 		if (!glfwInitialized && !glfwInit())
 		{
 			glfwInitialized = true;
-			std::cout << "glfwInit failed or was already initialized" << std::endl;
+			LOG_ERROR("glfwInit failed or was already initialized");
 			return false;
 		}
 
@@ -37,7 +37,7 @@ namespace application {
 		if (window = glfwCreateWindow(config.width, config.height, config.title.c_str(), NULL, NULL); 
 			!window)
 		{
-			std::cout << "glfwCreateWindow failed" << std::endl;
+			LOG_ERROR("glfwCreateWindow failed");
 			glfwTerminate();
 			return false;
 		}
@@ -47,7 +47,7 @@ namespace application {
 		// init glew
 		if (const GLenum err = glewInit(); GLEW_OK != err)
 		{
-			std::cout << "glewInit failed" << std::endl;
+			LOG_ERROR("glewInit failed");
 			return false;
 		}
 
