@@ -1,9 +1,9 @@
 #include "util.hpp"
 
 namespace data_loader {
-	FileResult<std::string> loadFileToString(std::string path) 
+	FileResult loadFileToString(std::string path) 
 	{
-		FileResult<std::string> res;
+		FileResult res;
 		std::ifstream file(path);
 		if (file.is_open()) 
 		{
@@ -14,9 +14,10 @@ namespace data_loader {
 		{
 			res.success = false;
 			res.content = "";
-			LOG_WARN("failed to load file", path);
+			LOG_WARN("failed to load file: ", path);
 		}
-
 		return res;
 	}
+
+	
 }

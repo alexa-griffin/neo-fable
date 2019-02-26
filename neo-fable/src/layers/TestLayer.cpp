@@ -1,21 +1,4 @@
 #include "TestLayer.hpp"
-
-static void glClearErrors()
-{
-	while (glGetError() != GL_NO_ERROR);
-}
-
-static bool glLogErrors(const char* f, const char* file, int line)
-{
-	GLenum err;
-	while ((err = glGetError()) != GL_NO_ERROR)
-	{
-		LOG_ERROR(err, file, line);
-		// return true;
-	}
-	return false;
-}
-
 namespace layers {
 	using namespace ::application;
 	using namespace ::events;
@@ -29,10 +12,17 @@ namespace layers {
 			 0.5, -0.5
 		};
 
-		GLuint iBuffer[] = {
-			0, 1, 3,
-			1, 2, 3
-		};
+		GLuint *iBuffer[6] = { graphics::renderer::generateIndexBuffer(positions) };
+
+		// how i would like to abstract this:
+		// renderer::renderVertices(positions, vertShaderSrc, fragShaderSrc)
+		// requires iBuffer of length: (n - 2) * 3
+		// with buffer pattern of
+		// for(0 to ibufferLength)
+		//	iBuffer[i] = (i % 3) == 0 ? 0 : ((i % 3) + Math.floor(i / 3))
+		//TODO: there must be some way to refactor the previous line
+
+		// renderer::renderPolygon(radius, vertices )
 
 		glGenBuffers(1, &buffer);
 		glBindBuffer(GL_ARRAY_BUFFER, buffer);
@@ -40,7 +30,7 @@ namespace layers {
 
 		glGenBuffers(1, &ibo);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(iBuffer), iBuffer, GL_STATIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(&iBuffer), &iBuffer, GL_STATIC_DRAW);
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
@@ -64,6 +54,7 @@ namespace layers {
 
 		glAttachShader(program, vertShader);
 		glAttachShader(program, fragShader);
+
 		glLinkProgram(program);
 		glValidateProgram(program);
 
@@ -86,18 +77,11 @@ namespace layers {
 	void TestLayer::update()
 	{
 		if (h > 1)
-		{
 			inc = -0.1;
-		}
 		else if (h < 0)
-		{
 			inc = 0.1;
-		}
 		
 		h += inc;
-
-		LOG_VAR(h);
-		LOG_VAR(inc);
 
 		glUniform4f(colorLocal, h, 0.3, 0.8, 1.0);
 
