@@ -16,30 +16,20 @@ namespace layers {
 			0, 1, 2,
 			0, 2, 3
 		};
-
-		// how i would like to abstract this:
-		// renderer::renderVertices(positions, vertShaderSrc, fragShaderSrc)
-		// requires iBuffer of length: (n - 2) * 3
-		// with buffer pattern of
-		// for(0 to ibufferLength)
-		//	iBuffer[i] = (i % 3) == 0 ? 0 : ((i % 3) + Math.floor(i / 3))
-		//TODO: there must be some way to refactor the previous line
-
-		// renderer::renderPolygon(radius, vertices )
-
+		
 		glGenBuffers(1, &buffer);
 		glBindBuffer(GL_ARRAY_BUFFER, buffer);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(positions), positions, GL_STATIC_DRAW);
 
 		glGenBuffers(1, &ibo);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(&iBuffer), &iBuffer, GL_STATIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(iBuffer), iBuffer, GL_STATIC_DRAW);
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
 		auto vertShaderFile = data_loader::loadFileToString("./data/shaders/basic.vert.shader");
-		auto fragShaderFile = data_loader::loadFileToString("./data/shaders/color.frag.shader");
+		auto fragShaderFile = data_loader::loadFileToString("./data/shaders/basic.frag.shader");
 		const char* vertShaderSrc = vertShaderFile.content.c_str();
 		const char* fragShaderSrc = fragShaderFile.content.c_str();
 
