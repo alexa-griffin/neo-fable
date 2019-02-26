@@ -1,7 +1,7 @@
 #pragma once
 #include "../application/Layer.hpp"
 #include "../graphics/graphics.hpp"
-#include "../graphics/renderer.hpp"
+#include "../graphics/graphics.hpp"
 #include "../data_loader/util.hpp"
 
 namespace layers {

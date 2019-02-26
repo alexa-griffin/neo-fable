@@ -12,7 +12,10 @@ namespace layers {
 			 0.5, -0.5
 		};
 
-		GLuint *iBuffer[6] = { graphics::renderer::generateIndexBuffer(positions) };
+		GLuint iBuffer[6] = { 
+			0, 1, 2,
+			0, 2, 3
+		};
 
 		// how i would like to abstract this:
 		// renderer::renderVertices(positions, vertShaderSrc, fragShaderSrc)
