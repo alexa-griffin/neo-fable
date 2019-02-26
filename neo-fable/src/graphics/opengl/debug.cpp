@@ -1,20 +1,22 @@
 #include "debug.hpp"
 
-namespace graphics {
-	void glClearErrors()
+namespace opengl {
+	void clearErrors()
 	{
 		while (glGetError() != GL_NO_ERROR);
 	}
 
-	void glLogErrors(const char* f, const char* file, int line)
+	bool logErrors(const char* f, const char* file, int line)
 	{
 		while (GLenum err = glGetError())
 		{
 			LOG_ERROR(err);
+			return true;
 		}
+		return false;
 	}
 
-	void glShaderLogErrors(GLuint shader)
+	bool shaderLogErrors(GLuint shader)
 	{
 		int compiled;
 		glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
@@ -27,10 +29,12 @@ namespace graphics {
 			LOG_ERROR(err);
 
 			delete err;
+			return false;
 		}
+		return true;
 	}
 
-	void glProgramLogErrors(GLuint program)
+	bool programLogErrors(GLuint program)
 	{
 		int compiled;
 		glGetShaderiv(program, GL_VALIDATE_STATUS, &compiled);
@@ -43,6 +47,9 @@ namespace graphics {
 			LOG_ERROR(err);
 
 			delete err;
+			return false;
 		}
+
+		return true;
 	}
 }

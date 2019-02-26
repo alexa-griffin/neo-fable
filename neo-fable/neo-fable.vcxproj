@@ -166,6 +166,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\graphics\opengl\Program.cpp" />
+    <ClCompile Include="src\graphics\opengl\Shader.cpp" />
     <ClCompile Include="src\application\LayerStack.cpp" />
     <ClCompile Include="src\application\Application.cpp" />
     <ClCompile Include="src\application\Layer.cpp" />
@@ -175,12 +177,17 @@
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\application\Window.cpp" />
     <ClCompile Include="src\graphics\opengl\debug.cpp" />
+    <ClCompile Include="src\graphics\opengl\IndexBuffer.cpp" />
+    <ClCompile Include="src\graphics\opengl\VertexBuffer.cpp" />
     <ClCompile Include="src\resource_manager\texture_manager.cpp" />
     <ClCompile Include="src\layers\TestLayer.cpp" />
     <ClCompile Include="src\vendor\stb_image\stb_image.cpp" />
     <ClCompile Include="src\graphics\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\graphics\opengl.hpp" />
+    <ClInclude Include="src\graphics\opengl\Program.hpp" />
+    <ClInclude Include="src\graphics\opengl\Shader.hpp" />
     <ClInclude Include="src\application\Layer.hpp" />
     <ClInclude Include="src\application\LayerStack.hpp" />
     <ClInclude Include="src\application\Application.hpp" />
@@ -195,6 +202,8 @@
     <ClInclude Include="src\application\Window.hpp" />
     <ClInclude Include="src\graphics\opengl\debug.hpp" />
     <ClInclude Include="src\graphics\graphics.hpp" />
+    <ClInclude Include="src\graphics\opengl\IndexBuffer.hpp" />
+    <ClInclude Include="src\graphics\opengl\VertexBuffer.hpp" />
     <ClInclude Include="src\resource_manager\manager.hpp" />
     <ClInclude Include="src\resource_manager\texture_manager.hpp" />
     <ClInclude Include="src\layers\TestLayer.hpp" />

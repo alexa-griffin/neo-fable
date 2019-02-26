@@ -9,15 +9,15 @@
 	#define GL_ASSERT(f) (f)
 	#define GL_DEBUG_CALL(f) (f)
 #else
-	#define GL_ASSERT(f) if(!(f)) __debugbreak()
-	#define GL_DEBUG_CALL(f) ::graphics::glClearErrors(); \
-							 GL_ASSERT(f); \
-							 GL_ASSERT(::graphics::glLogErrors(#f, __FILE__, __LINE__))
+	#define GL_ASSERT(e) if(!(e)) __debugbreak()
+	#define GL_DEBUG_CALL(f) ::opengl::clearErrors(); \
+							 f; \
+							 GL_ASSERT(::opengl::logErrors(#f, __FILE__, __LINE__))
 #endif
 
-namespace graphics {
-	void glClearErrors();
-	void glLogErrors(const char* f, const char* file, int line);
-	void glShaderLogErrors(GLuint shader);
-	void glProgramLogErrors(GLuint program);
+namespace opengl {
+	void clearErrors();
+	bool logErrors(const char* f, const char* file, int line);
+	bool shaderLogErrors(GLuint shader);
+	bool programLogErrors(GLuint program);
 }
