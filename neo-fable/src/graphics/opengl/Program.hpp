@@ -24,7 +24,6 @@ namespace opengl {
 		{
 			if (uniformParams.find(var) != uniformParams.end())
 			{
-				LOG_INFO(args...);
 				f(uniformParams[var], args...);
 			}
 			else

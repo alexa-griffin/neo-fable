@@ -28,8 +28,13 @@ namespace layers {
 
 		opengl::Program program;
 
-		float h;
-		float inc;
+		float r;
+		float incR;
+		float g;
+		float incG;
+		float b;
+		float incB;
+
 		int colorLocal;
 	};
 }

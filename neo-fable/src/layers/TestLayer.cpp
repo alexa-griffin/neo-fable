@@ -6,7 +6,7 @@ namespace layers {
 	using namespace ::events;
 
 	TestLayer::TestLayer(std::string name) 
-		: Layer(name), h(0), inc(0.1)
+		: Layer(name), r(0), g(0), b(0), incR(0.1), incG(0.1), incB(0.1)
 	{
 		float positions[] = {
 			 0.5,  0.5,
@@ -51,14 +51,20 @@ namespace layers {
 
 	void TestLayer::update()
 	{
-		if (h > 1) inc = -0.01;
-		else if (h < 0) inc = 0.01;
-		
-		h += inc;
+		if (r < 0) incR = 0.1;
+		else if (r > 1) incR = -0.1;
 
-		// glUniform4f(colorLocal, h, 0.3, 0.8, 1.0);
+		if (g < 0) incG = 0.15;
+		else if (g > 1) incG = -0.15;
 
-		program.setUniform("uColor", glUniform4f, h, 0.3, 0.8, 1.0);
+		if (b < 0) incB = 0.2;
+		else if (b > 1) incB = -0.2;
+
+		r += incR;
+		g += incG;
+		b += incB;
+
+		program.setUniform("uColor", glUniform4f, r, g, b, 1.0);
 
 		//glDrawArrays(GL_TRIANGLES, 0, 3);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
