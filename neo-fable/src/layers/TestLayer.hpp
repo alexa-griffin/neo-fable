@@ -1,7 +1,6 @@
 #pragma once
 #include "../application/Layer.hpp"
 #include "../graphics/graphics.hpp"
-#include "../graphics/graphics.hpp"
 #include "../data_loader/util.hpp"
 
 #include "../graphics/opengl.hpp"

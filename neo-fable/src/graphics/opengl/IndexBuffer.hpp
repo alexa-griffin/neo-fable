@@ -7,7 +7,7 @@ namespace opengl {
 	class IndexBuffer
 	{
 	public:
-		IndexBuffer(const GLuint* data, unsigned int length);
+		IndexBuffer(float* data, unsigned int length);
 		inline IndexBuffer() {};
 
 		void bind() const;

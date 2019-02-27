@@ -15,13 +15,8 @@ namespace layers {
 			 0.5, -0.5
 		};
 
-		GLuint iBuffer[6] = {
-			0, 1, 2,
-			0, 2, 3
-		};
-
 		vbo = opengl::VertexBuffer(positions, 4 * 2 * sizeof(float));
-		ibo = opengl::IndexBuffer(iBuffer, 6);
+		ibo = opengl::IndexBuffer(positions, 4);
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);

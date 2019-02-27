@@ -1,3 +1,3 @@
 #pragma once
 
-#include "opengl/debug.hpp"
+#include "graphics/renderer.hpp"
