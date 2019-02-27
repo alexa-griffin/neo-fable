@@ -22,8 +22,9 @@ namespace opengl {
 		template<typename F, typename... Args>
 		inline void setUniform(const char* var, F f, Args... args)
 		{
-			if (uniformParams[var])
+			if (uniformParams.find(var) != uniformParams.end())
 			{
+				LOG_INFO(args...);
 				f(uniformParams[var], args...);
 			}
 			else

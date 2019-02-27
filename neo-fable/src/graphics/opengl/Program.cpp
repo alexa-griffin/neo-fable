@@ -32,13 +32,15 @@ namespace opengl {
 
 	void Program::createUniform(const char* var)
 	{
-		if (uniformParams[var])
+		if (uniformParams.find(var) != uniformParams.end())
 		{
 			LOG_WARN("uniform: ", var, " already exists in program: ", uid);
 		}
 		else
 		{
 			uniformParams.insert(std::pair<std::string, GLint>(var, glGetUniformLocation(uid, var)));
+
+			LOG_INFO(uniformParams[var]);
 		}
 	}
 }

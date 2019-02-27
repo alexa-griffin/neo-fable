@@ -27,7 +27,7 @@ namespace layers {
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
 		vertShader = opengl::Shader(GL_VERTEX_SHADER, "./data/shaders/basic.vert.shader");
-		fragShader = opengl::Shader(GL_FRAGMENT_SHADER, "./data/shaders/basic.frag.shader");
+		fragShader = opengl::Shader(GL_FRAGMENT_SHADER, "./data/shaders/color.frag.shader");
 
 		program = opengl::Program();
 
