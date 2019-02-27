@@ -24,7 +24,7 @@ namespace opengl {
 		{
 			if (uniformParams[var])
 			{
-				F(uniformParams[var], args...);
+				f(uniformParams[var], args...);
 			}
 			else
 			{
