@@ -19,8 +19,19 @@ namespace opengl {
 		bool compile();
 		void use();
 
-		template<typename F, typename ...Args>
-		void setUniform(const char* var, F f, Args... args);
+		template<typename F, typename... Args>
+		inline void setUniform(const char* var, F f, Args... args)
+		{
+			if (uniformParams[var])
+			{
+				F(uniformParams[var], args...);
+			}
+			else
+			{
+				LOG_WARN("uniform: ", var, " does not exist in program: ", uid);
+			}
+		}
+
 
 		void createUniform(const char* var);
 	private:
