@@ -27,14 +27,14 @@ namespace layers {
 
 		opengl::Program program;
 
+		GLuint tileTexture;
+
 		float r;
 		float incR;
 		float g;
 		float incG;
 		float b;
 		float incB;
-
-		int colorLocal;
 	};
 }
 

@@ -172,7 +172,6 @@
     <ClCompile Include="src\application\Application.cpp" />
     <ClCompile Include="src\application\Layer.cpp" />
     <ClCompile Include="src\application\log.cpp" />
-    <ClCompile Include="src\data_loader\file_loader.cpp" />
     <ClCompile Include="src\data_loader\util.cpp" />
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\application\Window.cpp" />
@@ -193,7 +192,6 @@
     <ClInclude Include="src\application\LayerStack.hpp" />
     <ClInclude Include="src\application\Application.hpp" />
     <ClInclude Include="src\application\log.hpp" />
-    <ClInclude Include="src\data_loader\file_loader.hpp" />
     <ClInclude Include="src\data_loader\util.hpp" />
     <ClInclude Include="src\events\event.hpp" />
     <ClInclude Include="src\events\events.hpp" />

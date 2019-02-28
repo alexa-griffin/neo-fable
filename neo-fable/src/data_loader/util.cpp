@@ -19,5 +19,12 @@ namespace data_loader {
 		return res;
 	}
 
-	
+	ImageData loadImage(std::string path)
+	{
+		ImageData res;
+
+		res.data = stbi_load(path.c_str(), &res.width, &res.height, &res.channels, 0);
+
+		return res;
+	}
 }

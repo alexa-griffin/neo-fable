@@ -15,6 +15,25 @@ namespace layers {
 			 0.5, -0.5
 		};
 
+		float texCoords[] = {
+			0, 0,
+			1, 0,
+			0, 1,
+			1, 1
+		};
+
+		auto image = data_loader::loadImage("./data/graphics/tile.png");
+
+		glGenTextures(1, &tileTexture);
+
+		glBindTexture(GL_TEXTURE_2D, tileTexture);
+
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image.width, image.height, 0, GL_RGB, GL_UNSIGNED_BYTE, image.data);
+
+		
+		stbi_image_free(image.data);
+
+
 		vbo = opengl::VertexBuffer(positions, 4 * 2 * sizeof(float));
 		ibo = opengl::IndexBuffer(positions, 4);
 
