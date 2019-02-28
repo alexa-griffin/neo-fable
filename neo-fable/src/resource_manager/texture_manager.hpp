@@ -5,13 +5,13 @@
 
 #include "stb_image/stb_image.h"
 
-#include "graphics/Texture.hpp"
+#include "graphics/opengl/Texture.hpp"
 
 
 namespace resources {
 	namespace textures {
-		std::map<unsigned int, graphics::Texture> allTextures;
-		graphics::Texture load(std::string path);
+		std::map<unsigned int, opengl::Texture> allTextures;
+		opengl::Texture load(std::string path);
 		
 	}
 }

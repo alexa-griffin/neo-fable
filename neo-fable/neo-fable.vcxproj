@@ -182,7 +182,7 @@
     <ClCompile Include="src\resource_manager\texture_manager.cpp" />
     <ClCompile Include="src\layers\TestLayer.cpp" />
     <ClCompile Include="src\vendor\stb_image\stb_image.cpp" />
-    <ClCompile Include="src\graphics\Texture.cpp" />
+    <ClCompile Include="src\graphics\opengl\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\graphics\opengl.hpp" />
@@ -207,7 +207,7 @@
     <ClInclude Include="src\resource_manager\manager.hpp" />
     <ClInclude Include="src\resource_manager\texture_manager.hpp" />
     <ClInclude Include="src\layers\TestLayer.hpp" />
-    <ClInclude Include="src\graphics\Texture.hpp" />
+    <ClInclude Include="src\graphics\opengl\Texture.hpp" />
     <ClInclude Include="TODO.md" />
     <ClInclude Include="src\util\util.hpp" />
     <ClInclude Include="src\vendor\stb_image\stb_image.h" />

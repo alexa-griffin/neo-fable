@@ -5,6 +5,8 @@
 
 #include "../graphics/opengl.hpp"
 
+#include "glm/glm.hpp"
+
 namespace layers {
 	using namespace ::application;
 	using namespace ::events;
@@ -21,6 +23,8 @@ namespace layers {
 	private:
 		opengl::VertexBuffer vbo;
 		opengl::IndexBuffer ibo;
+
+		opengl::Texture texture;
 
 		opengl::Shader vertShader;
 		opengl::Shader fragShader;

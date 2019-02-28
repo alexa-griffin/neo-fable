@@ -9,10 +9,10 @@ namespace layers {
 		: Layer(name), r(0), g(0), b(0), incR(0.1), incG(0.1), incB(0.1)
 	{
 		float positions[] = {
-			 0.5,  0.5,
-			-0.5,  0.5,
-			-0.5, -0.5,
-			 0.5, -0.5
+			 0.5f,  0.5f,
+			-0.5f,  0.5f,
+			-0.5f, -0.5f,
+			 0.5f, -0.5f
 		};
 
 		float texCoords[] = {
@@ -22,20 +22,10 @@ namespace layers {
 			1, 1
 		};
 
-		auto image = data_loader::loadImage("./data/graphics/tile.png");
-
-		glGenTextures(1, &tileTexture);
-
-		glBindTexture(GL_TEXTURE_2D, tileTexture);
-
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image.width, image.height, 0, GL_RGB, GL_UNSIGNED_BYTE, image.data);
-
-		
-		stbi_image_free(image.data);
-
-
 		vbo = opengl::VertexBuffer(positions, 4 * 2 * sizeof(float));
 		ibo = opengl::IndexBuffer(positions, 4);
+
+		texture = opengl::Texture("./data/graphics/test.png");
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
@@ -65,20 +55,20 @@ namespace layers {
 
 	void TestLayer::update()
 	{
-		if (r < 0) incR = 0.1;
-		else if (r > 1) incR = -0.1;
+		if (r < 0) incR = 0.1f;
+		else if (r > 1) incR = -0.1f;
 
-		if (g < 0) incG = 0.15;
-		else if (g > 1) incG = -0.15;
+		if (g < 0) incG = 0.15f;
+		else if (g > 1) incG = -0.15f;
 
-		if (b < 0) incB = 0.2;
-		else if (b > 1) incB = -0.2;
+		if (b < 0) incB = 0.2f;
+		else if (b > 1) incB = -0.2f;
 
 		r += incR;
 		g += incG;
 		b += incB;
 
-		program.setUniform("uColor", glUniform4f, r, g, b, 1.0);
+		program.setUniform("uColor", glUniform4f, r, g, b, 1.0f);
 
 		//glDrawArrays(GL_TRIANGLES, 0, 3);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
