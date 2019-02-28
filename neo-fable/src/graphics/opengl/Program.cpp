@@ -39,8 +39,6 @@ namespace opengl {
 		else
 		{
 			uniformParams.insert(std::pair<std::string, GLint>(var, glGetUniformLocation(uid, var)));
-
-			LOG_INFO(uniformParams[var]);
 		}
 	}
 }

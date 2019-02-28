@@ -1,14 +1,6 @@
 #include "Texture.hpp"
 
 namespace opengl {
-	Texture::Texture(unsigned char *data, unsigned int w, unsigned int h) 
-		: buffer(data), width(w), height(h) 
-	{
-		glGenTextures(1, &uid);
-		bind();
-		configure();
-	}
-
 	Texture::Texture(std::string path) : path(path)
 	{
 		stbi_set_flip_vertically_on_load(1);
@@ -22,6 +14,7 @@ namespace opengl {
 		configure();
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
+		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 
 	void Texture::bind(unsigned int slot) const

@@ -218,6 +218,8 @@
     <None Include="data\shaders\basic.frag.shader" />
     <None Include="data\shaders\basic.vert.shader" />
     <None Include="data\shaders\color.frag.shader" />
+    <None Include="data\shaders\texture.frag.shader" />
+    <None Include="data\shaders\texture.vert.shader" />
     <None Include="NOTES.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

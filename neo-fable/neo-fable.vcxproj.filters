@@ -158,5 +158,7 @@
     <None Include="data\shaders\basic.vert.shader" />
     <None Include="data\shaders\color.frag.shader" />
     <None Include="NOTES.md" />
+    <None Include="data\shaders\texture.frag.shader" />
+    <None Include="data\shaders\texture.vert.shader" />
   </ItemGroup>
 </Project>

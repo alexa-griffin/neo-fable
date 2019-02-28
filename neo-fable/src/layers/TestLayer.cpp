@@ -9,29 +9,27 @@ namespace layers {
 		: Layer(name), r(0), g(0), b(0), incR(0.1), incG(0.1), incB(0.1)
 	{
 		float positions[] = {
-			 0.5f,  0.5f,
-			-0.5f,  0.5f,
-			-0.5f, -0.5f,
-			 0.5f, -0.5f
+			// position     // colors           // texture coords
+			 0.5f,  0.5f,   1.0f, 0.0f, 0.0f,   0.0f, 0.0f,
+			-0.5f,  0.5f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,
+			-0.5f, -0.5f,   0.0f, 0.0f, 1.0f,   1.0f, 1.0f,
+			 0.5f, -0.5f,   0.0f, 1.0f, 1.0f,   0.0f, 1.0f
 		};
 
-		float texCoords[] = {
-			0, 0,
-			1, 0,
-			0, 1,
-			1, 1
-		};
+		opengl::logErrors("before", "", 1);
+		texture = opengl::Texture("./data/graphics/test.png");
+		texture.bind();
+		opengl::logErrors("after", "", 1);
 
 		vbo = opengl::VertexBuffer(positions, 4 * 2 * sizeof(float));
-		ibo = opengl::IndexBuffer(positions, 4);
+		ibo = opengl::IndexBuffer(4);
 
-		texture = opengl::Texture("./data/graphics/test.png");
 
 		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 8, (void*)(6 * sizeof(float)));
 
-		vertShader = opengl::Shader(GL_VERTEX_SHADER, "./data/shaders/basic.vert.shader");
-		fragShader = opengl::Shader(GL_FRAGMENT_SHADER, "./data/shaders/color.frag.shader");
+		vertShader = opengl::Shader(GL_VERTEX_SHADER, "./data/shaders/texture.vert.shader");
+		fragShader = opengl::Shader(GL_FRAGMENT_SHADER, "./data/shaders/texture.frag.shader");
 
 		program = opengl::Program();
 
@@ -70,7 +68,6 @@ namespace layers {
 
 		program.setUniform("uColor", glUniform4f, r, g, b, 1.0f);
 
-		//glDrawArrays(GL_TRIANGLES, 0, 3);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 	}
 
