@@ -32,8 +32,8 @@ namespace opengl {
 			}
 		}
 
-
 		void createUniform(const char* var);
+		inline const GLuint getUID() const { return uid; }
 	private:
 		GLuint uid;
 		std::map<std::string, GLint> uniformParams;

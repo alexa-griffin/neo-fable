@@ -2,8 +2,8 @@
 
 
 namespace layers {
-	using namespace ::application;
-	using namespace ::events;
+	using namespace application;
+	using namespace events;
 
 	TestLayer::TestLayer(std::string name) 
 		: Layer(name), r(0), g(0), b(0), incR(0.1), incG(0.1), incB(0.1)
@@ -16,28 +16,39 @@ namespace layers {
 			 0.5f, -0.5f,   0.0f, 1.0f, 1.0f,   0.0f, 1.0f
 		};
 
-		opengl::logErrors("before", "", 1);
-		texture = opengl::Texture("./data/graphics/test.png");
-		texture.bind();
-		opengl::logErrors("after", "", 1);
+		GL_DEBUG_CALL(GLuint posAttrib = glGetAttribLocation(program.getUID(), "position"));
+		GL_DEBUG_CALL(glEnableVertexAttribArray(posAttrib));
+		GL_DEBUG_CALL(glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 7, (void*)(0)));
 
-		vbo = opengl::VertexBuffer(positions, 4 * 2 * sizeof(float));
+		// texture = opengl::Texture("./data/graphics/test.png");
+		// texture.bind();
+
+		vbo = opengl::VertexBuffer(positions, sizeof(positions));
 		ibo = opengl::IndexBuffer(4);
 
-
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 8, (void*)(6 * sizeof(float)));
-
-		vertShader = opengl::Shader(GL_VERTEX_SHADER, "./data/shaders/texture.vert.shader");
-		fragShader = opengl::Shader(GL_FRAGMENT_SHADER, "./data/shaders/texture.frag.shader");
+		vertShader = opengl::Shader(GL_VERTEX_SHADER, "./data/shaders/basic.vert.shader");
+		fragShader = opengl::Shader(GL_FRAGMENT_SHADER, "./data/shaders/basic.frag.shader");
 
 		program = opengl::Program();
 
 		program.attach(vertShader);
 		program.attach(fragShader);
 
+		//if (!program.compile()) { LOG_ERROR("program failed to compile"); }
 		program.compile();
 		program.use();
+
+
+		//TODO: abstract this into the Program class
+		// program.attribPointer("name", size, type, normalize, stride, offset);
+
+		// GLuint texAttrib = glGetAttribLocation(program.getUID(), "iTexCoord");
+		// glEnableVertexAttribArray(texAttrib); 
+		// glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 7, (void*)(5 * sizeof(float)));
+		// 
+		// GLuint colorAttrib = glGetAttribLocation(program.getUID(), "iColor");
+		// glEnableVertexAttribArray(colorAttrib);
+		// glVertexAttribPointer(colorAttrib, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 7, (void*)(2 * sizeof(float)));
 
 		program.createUniform("uColor");
 	};

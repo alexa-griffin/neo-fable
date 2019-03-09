@@ -14,19 +14,18 @@ namespace opengl {
 
 	void Program::attach(Shader shader)
 	{
-		glAttachShader(uid, shader.uid);
+		GL_DEBUG_CALL(glAttachShader(uid, shader.uid));
 	}
 
 	void Program::use()
 	{
-		glUseProgram(uid);
+		GL_DEBUG_CALL(glUseProgram(uid));
 	}
 
 	bool Program::compile()
 	{
-		glLinkProgram(uid);
-		glValidateProgram(uid);
-
+		GL_DEBUG_CALL(glLinkProgram(uid));
+		GL_DEBUG_CALL(glValidateProgram(uid));
 		return programLogErrors(uid);
 	}
 

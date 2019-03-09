@@ -8,3 +8,4 @@
 - [ ] make auto generation of index buffers (prob a class?)
 - [ ] make single call rendering work
 - [ ] make renderer queue
+- [ ] add `GL_DEBUG_CALL` to all opengl calls

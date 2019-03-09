@@ -22,6 +22,8 @@ namespace opengl {
 		}
 
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexLength * sizeof(GLuint), ibo, GL_STATIC_DRAW);
+
+		delete ibo;
 	}
 
 	void IndexBuffer::bind() const

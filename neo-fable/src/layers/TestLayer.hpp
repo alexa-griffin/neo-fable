@@ -8,16 +8,13 @@
 #include "glm/glm.hpp"
 
 namespace layers {
-	using namespace ::application;
-	using namespace ::events;
-
-	class TestLayer : public Layer
+	class TestLayer : public application::Layer
 	{
 	public:
 		TestLayer(std::string name);
 		~TestLayer();
 
-		virtual bool onEvent(Event& e);
+		virtual bool onEvent(events::Event& e);
 		virtual void update();
 		virtual void onMount();
 	private:

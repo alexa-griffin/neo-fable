@@ -31,18 +31,16 @@ namespace application {
 	#define LOG_INFO(m)
 	#define LOG_VAR(v)
 #else
-	#define LOG_ERROR(...) \
-		std::cout << ::termcolor::red << "[ERROR]" << ::termcolor::reset << ": (" \
-		<< __FILE__ << ":" << __LINE__ << "), "; \
-		::application::log::print(__VA_ARGS__)
-	#define LOG_WARN(...)  \
-		std::cout << ::termcolor::green << "[WARN]" << ::termcolor::reset << ": (" \
-		<< __FILE__ << ":" << __LINE__ << "), "; \
-		::application::log::print(__VA_ARGS__)
-	#define LOG_INFO(...)  \
-		std::cout << ::termcolor::cyan << "[INFO]" << ::termcolor::reset << ": (" \
-		<< __FILE__ << ":" << __LINE__ << "), "; \
-		::application::log::print(__VA_ARGS__)
+//TODO: define log levels for these
+#define LOG_ERROR(...) \
+	std::cout << ::termcolor::red << "[ERROR]" << ::termcolor::reset << ": "; \
+	::application::log::print(__VA_ARGS__)
+#define LOG_WARN(...)  \
+	std::cout << ::termcolor::yellow << "[WARNING]" << ::termcolor::reset << ": "; \
+	::application::log::print(__VA_ARGS__)
+#define LOG_INFO(...)  \
+	std::cout << ::termcolor::cyan << "[INFO]" << ::termcolor::reset << ": "; \
+	::application::log::print(__VA_ARGS__)
+// for logging expression names and values
 #define LOG_VAR(v) ::application::log::print(#v, v)
-
 #endif

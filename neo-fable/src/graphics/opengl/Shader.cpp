@@ -5,9 +5,8 @@ namespace opengl {
 	Shader::Shader(GLenum type, std::string path)
 		: path(path), type(type)
 	{
-		uid = glCreateShader(type);
-
-		LOG_VAR(uid);
+		//logErrors("before", "", 0);
+		GL_DEBUG_CALL(uid = glCreateShader(type));
 
 		load();
 		compile();
@@ -25,7 +24,7 @@ namespace opengl {
 		{
 			src = shaderFile.content;
 			const char* tmp = src.c_str(); //HACK: here to make glShaderSource happy
-			glShaderSource(uid, 1, &tmp, nullptr);
+			GL_DEBUG_CALL(glShaderSource(uid, 1, &tmp, nullptr));
 			return true;
 		}
 		else
@@ -37,12 +36,12 @@ namespace opengl {
 
 	bool Shader::compile()
 	{
-		glCompileShader(uid);
+		GL_DEBUG_CALL(glCompileShader(uid));
 		return shaderLogErrors(uid);
 	}
 
 	void Shader::attachTo(Program program)
 	{
-		glAttachShader(program.uid, uid);
+		GL_DEBUG_CALL(glAttachShader(program.uid, uid));
 	}
 }
