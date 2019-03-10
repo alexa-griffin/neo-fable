@@ -8,7 +8,7 @@ out vec3 oColor;
 out vec2 oTexCoord;
 
 void main() {
-	gl_Position = vec4(iPos, 0.0, 1.0);
 	oColor = iColor;
 	oTexCoord = iTexCoord;
+	gl_Position = vec4(iPos, 0.0, 1.0);
 }

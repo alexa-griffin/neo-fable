@@ -6,7 +6,7 @@ namespace opengl {
 		while (glGetError() != GL_NO_ERROR);
 	}
 
-	std::string formatError(GLenum err) 
+	const char* formatError(GLenum err) 
 	{
 		//TODO: maybe not make this such a hack
 		if (err == GL_INVALID_ENUM) return "GL_INVALID_ENUM";

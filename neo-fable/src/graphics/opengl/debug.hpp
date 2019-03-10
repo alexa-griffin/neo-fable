@@ -1,4 +1,4 @@
-#pragma once
+	#pragma once
 
 #include <GLEW/GL/glew.h>
 #include <iostream>
@@ -16,4 +16,5 @@ namespace opengl {
 	bool logErrors(const char* f, const char* file, int line);
 	bool shaderLogErrors(GLuint shader);
 	bool programLogErrors(GLuint program);
+	const char* formatError(GLenum err);
 }

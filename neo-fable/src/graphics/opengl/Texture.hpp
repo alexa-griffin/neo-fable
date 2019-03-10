@@ -5,6 +5,7 @@
 #include "GLEW/GL/glew.h"
 
 #include "data_loader/util.hpp"
+#include "debug.hpp" 
 
 namespace opengl {
 	class Texture
