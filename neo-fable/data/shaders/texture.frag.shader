@@ -1,12 +1,12 @@
 #version 330 core
 
-out vec4 oColor;
+in vec2 fTexCoord;
+in vec3 fColor;
 
-in vec2 iTexCoord;
-in vec4 iColor;
+out vec4 oColor;
 
 uniform sampler2D img;
 
 void main() {
-	oColor = texture(img, iTexCoord);
+	oColor = texture(img, fTexCoord);
 }

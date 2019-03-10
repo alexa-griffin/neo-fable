@@ -1,14 +1,14 @@
 #version 330 core
 
-layout(location = 0) in vec2 iPos;
-layout(location = 1) in vec3 iColor;
-layout(location = 2) in vec2 iTexCoord;
+in vec2 iPos;
+in vec3 iColor;
+in vec2 iTexCoord;
 
-out vec3 oColor;
-out vec2 oTexCoord;
+out vec3 fColor;
+out vec2 fTexCoord;
 
 void main() {
-	oColor = iColor;
-	oTexCoord = iTexCoord;
+	fColor = iColor;
+	fTexCoord = iTexCoord;
 	gl_Position = vec4(iPos, 0.0, 1.0);
 }
