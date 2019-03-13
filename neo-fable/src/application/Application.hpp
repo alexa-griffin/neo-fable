@@ -10,6 +10,8 @@ class Application
 public:
 	Application(application::WindowConfig config);
 
+	std::shared_ptr<application::Window> getWindow() { return window; };
+
 	void onEvent(events::Event &e);
 	void update();
 	bool shouldUpdate();
@@ -20,7 +22,7 @@ public:
 	void popLayer(application::Layer *layer);
 
 private:
-	std::unique_ptr<application::Window> window;
+	std::shared_ptr<application::Window> window;
 	application::LayerStack overlayStack;
 	application::LayerStack layerStack;
 };

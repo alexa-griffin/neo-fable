@@ -14,31 +14,21 @@ void Application::onEvent(events::Event& e)
 {
 	e.debugPrint();
 
-	bool handled = false;
-
 	for (application::Layer* overlay : overlayStack)
 	{
-		if (overlay->onEvent(e))
-		{
-			handled = true;
-			break;
-		}
+		if (overlay->onEvent(e)) return;
 	}
-	
-	if (handled) return;
 
 	for (application::Layer* layer : layerStack)
 	{
-		if (layer->onEvent(e))
-		{
-			handled = true;
-			break;
-		}
+		if (layer->onEvent(e)) return;
 	}
 }
 
 void Application::update()
 {
+	window->renderCtx.clearScreen();
+
 	for (application::Layer* layer : layerStack)
 	{
 		layer->update();

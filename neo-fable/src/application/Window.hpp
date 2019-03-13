@@ -8,6 +8,8 @@
 
 #include "../events/events.hpp"
 
+#include "../graphics/graphics.hpp"
+
 namespace application {
 	extern bool glfwInitialized;
 
@@ -44,6 +46,9 @@ namespace application {
 	private:
 		GLFWwindow* window;
 		WindowConfig config;
+
+	public:
+		graphics::Renderer renderCtx;
 	};
 }
 

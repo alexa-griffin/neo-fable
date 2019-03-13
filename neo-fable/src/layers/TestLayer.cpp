@@ -1,19 +1,20 @@
 #include "TestLayer.hpp"
 
 
+
 namespace layers {
 	using namespace application;
 	using namespace events;
 
-	TestLayer::TestLayer(std::string name) 
-		: Layer(name), r(0), g(0), b(0), incR(0.1), incG(0.1), incB(0.1)
+	TestLayer::TestLayer(std::string name, std::shared_ptr<application::Window> win)
+		: Layer(name, win), i(0)
 	{
 		float positions[] = {
 			// position     // colors           // texture coords
-			 0.5f,  0.5f,   1.0f, 0.0f, 0.0f,   1.0f, 0.0f,
-			-0.5f,  0.5f,   0.0f, 1.0f, 0.0f,   0.0f, 0.0f,
-			-0.5f, -0.5f,   0.0f, 0.0f, 1.0f,   0.0f, 1.0f,
-			 0.5f, -0.5f,   0.0f, 1.0f, 1.0f,   1.0f, 1.0f
+		   100.0f, 100.0f,   0.3f, 0.0f, 0.6f,   1.0f, 1.0f, // clockwise from bottom left
+			 0.0f, 100.0f,   0.3f, 1.0f, 0.6f,   0.0f, 1.0f,
+			 0.0f, 0.0f,     0.0f, 0.0f, 1.0f,   0.0f, 0.0f,
+		   100.0f, 0.0f,     0.0f, 0.6f, 0.6f,   1.0f, 0.0f
 		};
 
 		vbo = opengl::VertexBuffer(positions, sizeof(positions));
@@ -30,8 +31,9 @@ namespace layers {
 		program.compile();
 		program.use();
 
-		//TODO: abstract this into the Program class
-		// program.attribPointer("name", size, type, normalize, stride, offset);
+		// TODO: abstract this into the Program class
+		// program.attribPointer("name", size, type, normalize, offset);
+		// prob define stride in the vbo
 
 		GL_DEBUG_CALL(GLuint posAttrib = glGetAttribLocation(program.getUID(), "iPos"));
 		GL_DEBUG_CALL(glEnableVertexAttribArray(posAttrib));
@@ -50,20 +52,37 @@ namespace layers {
 
 		program.createUniform("img");
 		program.setUniform("img", glUniform1i, 0);
+
+		glm::mat4 proj = glm::ortho(0.0f, (float)window->getWidth(), 0.0f, (float)window->getHeight());
+		
+		program.createUniform("proj");
+		program.setUniform("proj", glUniformMatrix4fv, 1, GL_FALSE, glm::value_ptr(proj));
+
+		program.createUniform("translation");
 	};
 
 	TestLayer::~TestLayer()
 	{
 	}
 
-	bool TestLayer::onEvent(Event &e)
+	bool TestLayer::onEvent(const events::Event &event)
 	{
+		if (event.getType() == events::eventType::mouseScroll) // make this a macro?
+		{
+			events::MouseScroll& e = (events::MouseScroll&)event;
+			i += e.getY() * 20;
+			return false;
+		}
 		return false;
 	}
 
 	void TestLayer::update()
 	{
+		// i += 2;
+		glm::mat4 transform = glm::mat4(1.0f);
+		transform = glm::rotate(transform, glm::radians((float)i), glm::vec3(0.0f, 1.0f, 1.0f));
 
+		program.setUniform("translation", glUniformMatrix4fv, 1, GL_FALSE, glm::value_ptr(transform));
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 	}
 

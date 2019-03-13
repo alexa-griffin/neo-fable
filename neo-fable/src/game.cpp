@@ -1,13 +1,11 @@
-#include <iostream>
-
 #include "application/log.hpp"
 #include "application/Application.hpp"
 #include "layers/TestLayer.hpp"
 #include "data_loader/util.hpp"
 
-Application neoFable({ "derp", 480, 360 });
+Application neoFable({ "derp", 700, 360 });
 
-layers::TestLayer test("test layer");
+layers::TestLayer test("test layer", neoFable.getWindow());
 
 int main(void)
 {
