@@ -3,7 +3,7 @@
 
 namespace graphics {
 	Renderable::Renderable(const void* data, unsigned int dataLen, opengl::Program prog)
-		: ibo(dataLen) ,vbo(data, dataLen), shader(prog), transform(1.0f)
+		: ibo(dataLen) ,vbo(data, dataLen), shader(prog), transform(1.0f), tint(1.0f)
 	{
 
 	}

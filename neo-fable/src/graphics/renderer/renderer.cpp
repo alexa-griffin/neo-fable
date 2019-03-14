@@ -33,7 +33,7 @@ namespace graphics {
 		// set ortho projection for renderable shader
 		// all renderables are assumed to have a mat4 uniform "orthoProj"
 		obj.shader.setUniform("orthoProg", glUniformMatrix4fv, 1, GL_FALSE, glm::value_ptr(orthoProj));
-	
+
 		obj.draw();
 	}
 }
