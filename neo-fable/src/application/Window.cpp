@@ -75,6 +75,8 @@ namespace application {
 			data.height = h;
 
 			events::WindowResize ev(w, h);
+			data.rCtx.resizeOrthoProj((float)w, (float)h);
+
 			if (data.onEvent) { data.onEvent(ev); }
 		});
 

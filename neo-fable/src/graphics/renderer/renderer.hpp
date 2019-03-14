@@ -5,7 +5,11 @@
 
 #include <GLEW/GL/glew.h>
 #include <GLFW/glfw3.h>
+
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
+#include "../application/log.hpp"
 
 namespace graphics {
 	class Renderer
@@ -17,8 +21,7 @@ namespace graphics {
 		void clearScreen();
 		void clearScreen(float r, float g, float b, float a);
 
-		void createShader(std::string identifier, std::string vertPath, std::string fragPath);
-		void resizeOrthoProj(int w, int h);
+		void resizeOrthoProj(float w, float h);
 
 	private:
 		// ortho matrix

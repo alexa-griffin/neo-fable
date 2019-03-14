@@ -2,6 +2,8 @@
 
 
 namespace graphics {
+	glm::mat4 Renderer::orthoProj;
+
 	Renderer::~Renderer()
 	{
 	}
@@ -16,5 +18,10 @@ namespace graphics {
 	void Renderer::clearScreen()
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
+	}
+
+	void Renderer::resizeOrthoProj(float w, float h)
+	{
+		orthoProj = glm::ortho(0.0f, w, 0.0f, h);
 	}
 }

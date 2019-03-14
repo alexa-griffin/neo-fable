@@ -10,7 +10,7 @@ namespace graphics {
 	class Renderable
 	{
 	public:
-		Renderable(float data, unsigned int dataLen, opengl::Program prog);
+		Renderable(const void* data, unsigned int dataLen, opengl::Program prog);
 		~Renderable();
 
 		// transforms

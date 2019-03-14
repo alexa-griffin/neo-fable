@@ -2,8 +2,10 @@
 
 
 namespace graphics {
-	Renderable::Renderable(float data, unsigned int dataLen, opengl::Program prog)
+	Renderable::Renderable(const void* data, unsigned int dataLen, opengl::Program prog)
+		: ibo(dataLen) ,vbo(data, dataLen), shader(prog), transform(1.0f)
 	{
+
 	}
 
 	Renderable::~Renderable()
@@ -31,5 +33,4 @@ namespace graphics {
 
 	void Renderable::translate(glm::vec3 trans)
 		{ transform = glm::translate(transform, trans); }
-
 }
