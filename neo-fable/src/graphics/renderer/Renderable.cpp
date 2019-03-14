@@ -33,4 +33,10 @@ namespace graphics {
 
 	void Renderable::translate(glm::vec3 trans)
 		{ transform = glm::translate(transform, trans); }
+
+	void Renderable::applyTransforms()
+	{
+		// all renderables are assumed to have a mat4 uniform "transform"
+		shader.setUniform("transform", glUniformMatrix4fv, 1, GL_FALSE, glm::value_ptr(transform));
+	}
 }

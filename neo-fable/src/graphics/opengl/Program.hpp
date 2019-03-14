@@ -24,17 +24,9 @@ namespace opengl {
 		template<typename F, typename... Args>
 		void setUniform(const char* var, F f, Args... args)
 		{
-			if (uniformParams.find(var) != uniformParams.end())
-			{
-				f(uniformParams[var], args...);
-			}
-			else
-			{
-				LOG_WARN("uniform: ", var, " does not exist in program: ", uid);
-			}
+			f(glGetUniformLocation(uid, var), args...);
 		}
 
-		void createUniform(const char* var);
 		inline const GLuint getUID() const { return uid; }
 
 		void attribPointer(const char* name, unsigned int length, GLenum type, GLenum normalize, unsigned int stride, unsigned int offset);

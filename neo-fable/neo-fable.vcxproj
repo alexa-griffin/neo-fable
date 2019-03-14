@@ -456,6 +456,8 @@
     <ClInclude Include="src\vendor\termcolor\termcolor.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="data\shaders\main.frag.shader" />
+    <None Include="data\shaders\main.vert.shader" />
     <None Include="data\shaders\tests\basic.frag.shader" />
     <None Include="data\shaders\tests\basic.vert.shader" />
     <None Include="data\shaders\tests\color.frag.shader" />

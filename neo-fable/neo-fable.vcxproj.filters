@@ -1276,5 +1276,7 @@
     <None Include="data\shaders\tests\color.frag.shader" />
     <None Include="data\shaders\tests\texture.frag.shader" />
     <None Include="data\shaders\tests\texture.vert.shader" />
+    <None Include="data\shaders\main.frag.shader" />
+    <None Include="data\shaders\main.vert.shader" />
   </ItemGroup>
 </Project>

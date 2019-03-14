@@ -30,15 +30,11 @@ namespace layers {
 		// renderable
 		texture = opengl::Texture("./data/graphics/test.png");
 		texture.bind();
-		program.createUniform("img");
 		program.setUniform("img", glUniform1i, 0);
-
-		program.createUniform("translation");
 
 		// this should be in the renderer
 		//TODO: update on window resize
 		glm::mat4 proj = glm::ortho(0.0f, (float)window->getWidth(), 0.0f, (float)window->getHeight());
-		program.createUniform("proj");
 		program.setUniform("proj", glUniformMatrix4fv, 1, GL_FALSE, glm::value_ptr(proj));
 	};
 

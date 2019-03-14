@@ -4,6 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "../opengl.hpp"
+#include "Renderer.hpp"
 
 
 namespace graphics {
@@ -13,7 +14,7 @@ namespace graphics {
 		Renderable(const void* data, unsigned int dataLen, opengl::Program prog);
 		~Renderable();
 
-		// transforms
+		// transform methods
 		void rotateX(float deg);
 		void rotateY(float deg);
 		void rotateZ(float deg);
@@ -21,17 +22,22 @@ namespace graphics {
 		void scaleY(float scalar);
 		void scaleZ(float scalar);
 		void translate(glm::vec3 trans);
+		void applyTransforms();
+
+		virtual void draw() {};
 
 	protected:
 		opengl::VertexBuffer vbo; // buffers
 		opengl::IndexBuffer  ibo;
 
-		glm::mat4 transform; // transform (scale, rotation, etc)
+		glm::mat4 transform; // scale, rotation, etc
 
 		glm::vec4 tint;
 		opengl::Texture texture;
 
 		opengl::Program shader;
+
+		friend class Renderer;
 	};
 
 }

@@ -6,7 +6,8 @@ namespace opengl {
 	{
 		uid = glCreateProgram();
 	}
-
+	
+	//TODO: make this take a map so it supports other types of shaders
 	Program::Program(std::string vertPath, std::string fragPath)
 	{
 		uid = glCreateProgram();
@@ -41,18 +42,6 @@ namespace opengl {
 		GL_DEBUG_CALL(glLinkProgram(uid));
 		GL_DEBUG_CALL(glValidateProgram(uid));
 		return programLogErrors(uid);
-	}
-
-	void Program::createUniform(const char* var)
-	{
-		if (uniformParams.find(var) != uniformParams.end())
-		{
-			LOG_WARN("uniform: ", var, " already exists in program: ", uid);
-		}
-		else
-		{
-			uniformParams.insert(std::pair<std::string, GLint>(var, glGetUniformLocation(uid, var)));
-		}
 	}
 
 	void Program::attribPointer(const char* name, unsigned int length, GLenum type, GLenum normalize, unsigned int stride, unsigned int offset)
