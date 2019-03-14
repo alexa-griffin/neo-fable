@@ -5,7 +5,6 @@ namespace opengl {
 	Shader::Shader(GLenum type, std::string path)
 		: path(path), type(type)
 	{
-		//logErrors("before", "", 0);
 		GL_DEBUG_CALL(uid = glCreateShader(type));
 
 		load();
@@ -14,7 +13,7 @@ namespace opengl {
 
 	Shader::~Shader()
 	{
-		// glDeleteShader(uid);
+		glDeleteShader(uid);
 	}
 
 	bool Shader::load()

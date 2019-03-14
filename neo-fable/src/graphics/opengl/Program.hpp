@@ -13,6 +13,8 @@ namespace opengl {
 	{
 	public:
 		Program();
+		Program(std::string vertPath, std::string fragPath);
+
 		~Program();
 
 		void attach(Shader shader);

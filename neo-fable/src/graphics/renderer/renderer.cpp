@@ -3,6 +3,7 @@
 
 namespace graphics {
 	glm::mat4 Renderer::orthoProj;
+	std::map<std::string, opengl::Program> Renderer::shaders;
 
 	Renderer::~Renderer()
 	{

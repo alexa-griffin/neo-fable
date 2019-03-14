@@ -20,16 +20,7 @@ namespace layers {
 		vbo = opengl::VertexBuffer(positions, sizeof(positions));
 		opengl::IndexBuffer ibo = opengl::IndexBuffer(4);
 
-		vertShader = opengl::Shader(GL_VERTEX_SHADER, "./data/shaders/texture.vert.shader");
-		fragShader = opengl::Shader(GL_FRAGMENT_SHADER, "./data/shaders/texture.frag.shader");
-
-		program = opengl::Program();
-
-		program.attach(vertShader);
-		program.attach(fragShader);
-
-		program.compile();
-		program.use();
+		program = opengl::Program("./data/shaders/tests/texture.vert.shader", "./data/shaders/tests/texture.frag.shader");
 
 		// actually prob define stride in the vbo idk
 		program.attribPointer("iPos", 2, GL_FLOAT, GL_FALSE, sizeof(float) * 7, sizeof(float) * 0);

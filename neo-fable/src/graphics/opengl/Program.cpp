@@ -7,6 +7,20 @@ namespace opengl {
 		uid = glCreateProgram();
 	}
 
+	Program::Program(std::string vertPath, std::string fragPath)
+	{
+		uid = glCreateProgram();
+
+		Shader vertShader = opengl::Shader(GL_VERTEX_SHADER, vertPath);
+		Shader fragShader = opengl::Shader(GL_FRAGMENT_SHADER, fragPath);
+
+		attach(vertShader);
+		attach(fragShader);
+
+		compile();
+		use();
+	}
+
 	Program::~Program()
 	{
 		// glDeleteProgram(uid);

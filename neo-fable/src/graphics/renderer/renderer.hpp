@@ -11,6 +11,8 @@
 
 #include "../application/log.hpp"
 
+#include "../opengl.hpp"
+
 namespace graphics {
 	class Renderer
 	{
@@ -27,7 +29,7 @@ namespace graphics {
 		// ortho matrix
 		static glm::mat4 orthoProj;
 
-		// shader list
-		std::map<std::string, GLint> shaders;
+		// map of all shaders
+		static std::map<std::string, opengl::Program> shaders;
 	};
 }
