@@ -166,6 +166,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\graphics\renderer\Renderable.cpp" />
     <ClCompile Include="src\graphics\renderer\Renderer.cpp" />
     <ClCompile Include="src\graphics\opengl\Program.cpp" />
     <ClCompile Include="src\graphics\opengl\Shader.cpp" />
@@ -186,6 +187,7 @@
     <ClCompile Include="src\graphics\opengl\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\graphics\renderer\Renderable.hpp" />
     <ClInclude Include="src\graphics\renderer\Renderer.hpp" />
     <ClInclude Include="src\graphics\opengl.hpp" />
     <ClInclude Include="src\graphics\opengl\Program.hpp" />

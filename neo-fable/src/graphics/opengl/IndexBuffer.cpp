@@ -17,8 +17,8 @@ namespace opengl {
 		GLuint *ibo = new GLuint[indexLength];
 
 		for (unsigned int i = 0; i < indexLength; i++) {
-			ibo[i] = (((i % 3) == 0 ? 0 : ((i % 3) + (std::floor(i / 3)))));
 			//TODO: refactor this because there is no way this is preformant...
+			ibo[i] = (((i % 3) == 0 ? 0 : ((i % 3) + (std::floor(i / 3)))));
 		}
 
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexLength * sizeof(GLuint), ibo, GL_STATIC_DRAW);

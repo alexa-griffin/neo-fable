@@ -14,14 +14,12 @@ namespace graphics {
 		~Renderable();
 
 		// transforms
-		void rotateX(float deg, float s);
-		void rotateY(float deg, float s);
-		void rotateZ(float deg, float s);
-
-		void scaleX(float scalar, float s);
-		void scaleY(float scalar, float s);
-		void scaleZ(float scalar, float s);
-
+		void rotateX(float deg);
+		void rotateY(float deg);
+		void rotateZ(float deg);
+		void scaleX(float scalar);
+		void scaleY(float scalar);
+		void scaleZ(float scalar);
 		void translate(glm::vec3 trans);
 
 	protected:
