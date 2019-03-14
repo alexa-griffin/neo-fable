@@ -12,7 +12,6 @@ namespace resources {
 	namespace textures {
 		std::map<unsigned int, opengl::Texture> allTextures;
 		opengl::Texture load(std::string path);
-		
 	}
 }
 

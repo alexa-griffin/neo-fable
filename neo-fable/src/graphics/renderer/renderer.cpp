@@ -2,10 +2,6 @@
 
 
 namespace graphics {
-	Renderer::Renderer()
-	{
-	}
-
 	Renderer::~Renderer()
 	{
 	}

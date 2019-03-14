@@ -34,6 +34,8 @@ namespace opengl {
 
 		void createUniform(const char* var);
 		inline const GLuint getUID() const { return uid; }
+
+		void attribPointer(const char* name, unsigned int length, GLenum type, GLenum normalize, unsigned int stride, unsigned int offset);
 	private:
 		GLuint uid;
 		std::map<std::string, GLint> uniformParams;

@@ -5,6 +5,7 @@
 #include "Layer.hpp"
 #include "../events/events.hpp"
 
+
 class Application
 {
 public:
@@ -23,6 +24,7 @@ public:
 
 private:
 	std::shared_ptr<application::Window> window;
+	
 	application::LayerStack overlayStack;
 	application::LayerStack layerStack;
 };

@@ -40,4 +40,11 @@ namespace opengl {
 			uniformParams.insert(std::pair<std::string, GLint>(var, glGetUniformLocation(uid, var)));
 		}
 	}
+
+	void Program::attribPointer(const char* name, unsigned int length, GLenum type, GLenum normalize, unsigned int stride, unsigned int offset)
+	{
+		GL_DEBUG_CALL(GLuint attrib = glGetAttribLocation(uid, name));
+		GL_DEBUG_CALL(glEnableVertexAttribArray(attrib));
+		GL_DEBUG_CALL(glVertexAttribPointer(attrib, length, type, normalize, stride, (void*)(offset)));
+	}
 }

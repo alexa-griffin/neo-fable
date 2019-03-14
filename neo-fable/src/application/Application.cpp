@@ -3,10 +3,9 @@
 
 Application::Application(application::WindowConfig config)
 {
+	// window setup
 	window = std::unique_ptr<application::Window>(application::Window::create(config));
-
 	window->setEventCallback(std::bind(&Application::onEvent, this, std::placeholders::_1));
-
 	window->createCallbacks();
 }
 
@@ -27,7 +26,7 @@ void Application::onEvent(events::Event& e)
 
 void Application::update()
 {
-	window->renderCtx.clearScreen();
+	window->rCtx.clearScreen();
 
 	for (application::Layer* layer : layerStack)
 	{
@@ -49,7 +48,7 @@ bool Application::shouldUpdate()
 }
 
 
-// layer stack functionality (wrapper around multiple layer stacks for overlay priority)
+// layer stack functionality (wrapper around multiple layer stacks for overlay render priority)
 void Application::pushOverlay(application::Layer *layer)
 {
 	overlayStack.push(layer);

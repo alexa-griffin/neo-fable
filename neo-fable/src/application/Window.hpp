@@ -7,7 +7,6 @@
 #include <GLFW/glfw3.h>
 
 #include "../events/events.hpp"
-
 #include "../graphics/graphics.hpp"
 
 namespace application {
@@ -48,7 +47,7 @@ namespace application {
 		WindowConfig config;
 
 	public:
-		graphics::Renderer renderCtx;
+		graphics::Renderer rCtx;
 	};
 }
 
