@@ -6,6 +6,7 @@
 #include "../data_loader/util.hpp"
 
 #include "../graphics/opengl.hpp"
+#include "../graphics/graphics.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -22,8 +23,6 @@ namespace layers {
 		virtual void update();
 		virtual void onMount();
 	private:
-		opengl::VertexBuffer vbo;
-		opengl::IndexBuffer ibo;
 
 		opengl::Texture texture;
 
@@ -35,6 +34,8 @@ namespace layers {
 		GLuint tileTexture;
 
 		int i;
+
+		graphics::Renderable box;
 	};
 }
 

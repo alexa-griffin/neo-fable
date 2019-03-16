@@ -94,6 +94,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)dep\;$(ProjectDir)src\;$(ProjectDir)src\vendor\</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);GLEW_STATIC</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)dep\GLFW\lib-vc2015;$(SolutionDir)dep\GLEW\lib;</AdditionalLibraryDirectories>
@@ -112,6 +113,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)dep\;$(ProjectDir)src\;$(ProjectDir)src\vendor\</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);GLEW_STATIC</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)dep\GLFW\lib-vc2015;$(SolutionDir)dep\GLEW\lib;</AdditionalLibraryDirectories>
@@ -132,6 +134,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)dep\;$(ProjectDir)src\;$(ProjectDir)src\vendor\</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);GLEW_STATIC</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -154,6 +157,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)dep\;$(ProjectDir)src\;$(ProjectDir)src\vendor\</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);GLEW_STATIC</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -209,6 +213,7 @@
     <ClInclude Include="src\resource_manager\manager.hpp" />
     <ClInclude Include="src\layers\TestLayer.hpp" />
     <ClInclude Include="src\graphics\opengl\Texture.hpp" />
+    <ClInclude Include="src\util\color.hpp" />
     <ClInclude Include="src\vendor\glm\common.hpp" />
     <ClInclude Include="src\vendor\glm\detail\compute_common.hpp" />
     <ClInclude Include="src\vendor\glm\detail\compute_vector_relational.hpp" />

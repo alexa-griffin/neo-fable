@@ -27,12 +27,11 @@ namespace graphics {
 
 		void resizeOrthoProj(float w, float h);
 
-		void draw(Renderable& obj);
+		void draw(Renderable obj, opengl::Program program);
 	private:
-		// ortho matrix
+		// view matrix
 		static glm::mat4 orthoProj;
 
 		static std::map<std::string, opengl::Program> programs;
-
 	};
 }

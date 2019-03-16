@@ -8,13 +8,16 @@ namespace opengl {
 	{
 	public:
 		IndexBuffer(unsigned int length);
-		inline IndexBuffer() {};
+		IndexBuffer() {};
 
 		void bind() const;
 		void unbind() const;
-		const inline unsigned int getLength() const { return length; }
+		const unsigned int getLength() const { return indexLength; }
+		const unsigned int getOriginLength() const { return length; }
+
 	private:
 		GLuint uid;
 		unsigned int length;
+		unsigned int indexLength;
 	};
 }

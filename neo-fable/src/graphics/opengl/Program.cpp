@@ -10,7 +10,7 @@ namespace opengl {
 	//TODO: make this take a map so it supports other types of shaders
 	Program::Program(std::string vertPath, std::string fragPath)
 	{
-		uid = glCreateProgram();
+		GL_DEBUG_CALL(uid = glCreateProgram());
 
 		Shader vertShader = opengl::Shader(GL_VERTEX_SHADER, vertPath);
 		Shader fragShader = opengl::Shader(GL_FRAGMENT_SHADER, fragPath);

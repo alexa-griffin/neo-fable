@@ -13,7 +13,7 @@ namespace opengl {
 
 	Shader::~Shader()
 	{
-		glDeleteShader(uid);
+		// glDeleteShader(uid);
 	}
 
 	bool Shader::load()

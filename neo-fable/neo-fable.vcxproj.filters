@@ -875,6 +875,9 @@
     <ClInclude Include="src\graphics\renderer\Renderable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\util\color.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="NOTES.md" />
