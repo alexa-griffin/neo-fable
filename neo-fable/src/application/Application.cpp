@@ -7,6 +7,7 @@ Application::Application(application::WindowConfig config)
 	window = std::unique_ptr<application::Window>(application::Window::create(config));
 	window->setEventCallback(std::bind(&Application::onEvent, this, std::placeholders::_1));
 	window->createCallbacks();
+	window->rCtx.resizeOrthoProj(config.width, config.height);
 }
 
 void Application::onEvent(events::Event& e) 

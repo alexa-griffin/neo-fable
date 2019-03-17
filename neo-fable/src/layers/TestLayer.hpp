@@ -26,14 +26,9 @@ namespace layers {
 
 		opengl::Texture texture;
 
-		opengl::Shader vertShader;
-		opengl::Shader fragShader;
-
 		opengl::Program program;
 
 		GLuint tileTexture;
-
-		int i;
 
 		graphics::Renderable box;
 	};

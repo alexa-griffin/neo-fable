@@ -13,9 +13,10 @@
 #include "../application/log.hpp"
 
 #include "../opengl.hpp"
-#include "Renderable.hpp"
 
 namespace graphics {
+	class Renderable;
+
 	class Renderer
 	{
 	public:
@@ -27,7 +28,8 @@ namespace graphics {
 
 		void resizeOrthoProj(float w, float h);
 
-		void draw(Renderable obj, opengl::Program program);
+		void draw(Renderable &obj, opengl::Program program);
+
 	private:
 		// view matrix
 		static glm::mat4 orthoProj;

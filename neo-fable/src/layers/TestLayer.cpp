@@ -7,7 +7,7 @@ namespace layers {
 	using namespace events;
 
 	TestLayer::TestLayer(std::string name, std::shared_ptr<application::Window> win)
-		: Layer(name, win), i(0)
+		: Layer(name, win)
 	{
 		float positions[] = {
 			// position      // colors           // texture coords
@@ -28,14 +28,9 @@ namespace layers {
 
 
 		// renderable
-		texture = opengl::Texture(	"./data/graphics/test.png");
+		texture = opengl::Texture("./data/graphics/test.png");
 		texture.bind();
 		program.setUniform("img", glUniform1i, 0);
-
-		// this should be in the renderer
-		//TODO: update on window resize
-		glm::mat4 proj = glm::ortho(0.0f, (float)window->getWidth(), 0.0f, (float)window->getHeight());
-		program.setUniform("proj", glUniformMatrix4fv, 1, GL_FALSE, glm::value_ptr(proj));
 	};
 
 	TestLayer::~TestLayer()
@@ -44,13 +39,8 @@ namespace layers {
 
 	void TestLayer::update()
 	{
-		glm::mat4 transform = glm::mat4(1.0f);
-		transform = glm::rotate(transform, glm::radians((float)i), glm::vec3(0.0f, 1.0f, 1.0f));
-		
-		program.setUniform("translation", glUniformMatrix4fv, 1, GL_FALSE, glm::value_ptr(transform));
 
-		box.draw();
-		// glDrawElements(GL_TRIANGLES, ibo.getLength(), GL_UNSIGNED_INT, nullptr);
+		window->rCtx.draw(box, program);
 	}
 
 	bool TestLayer::onEvent(const events::Event &event)
@@ -58,8 +48,7 @@ namespace layers {
 		if (event.getType() == events::eventType::mouseScroll) // make this a macro?
 		{
 			events::MouseScroll& e = (events::MouseScroll&)event;
-			i += e.getY() * 20;
-			return false;
+			box.rotateZ(e.getY());
 		}
 		return false;
 	}
