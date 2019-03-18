@@ -2,21 +2,13 @@
 
 
 namespace graphics {
-	float Renderable::texCoords[] = {
-		0.0f, 0.0f,
-		0.0f, 1.0f,
-		1.0f, 1.0f,
-		1.0f, 0.0f
-	};
-
 	Renderable::Renderable()
 	{
 	}
 
 	Renderable::Renderable(opengl::VertexArray va, unsigned int indices)
-		: transforms(1.0f), vao(va)
+		: transforms(1.0f), vao(va), ibo(indices)
 	{
-		ibo = opengl::IndexBuffer(indices);
 	}
 
 	Renderable::~Renderable()
@@ -39,11 +31,17 @@ namespace graphics {
 
 	void Renderable::addTexture(std::string path)
 	{
+		float texCoords[] = {
+			0.0f, 0.0f,
+			0.0f, 1.0f,
+			1.0f, 1.0f,
+			1.0f, 0.0f
+		};
+
 		opengl::Buffer texBuffer(texCoords, 8, 2);
 		vao.addBuffer(texBuffer, I_TEX_COORD_LOCATION);
 
 		texture = opengl::Texture(path);
-		texture.bind();
 		config.textured = true;
 	}
 
@@ -76,24 +74,18 @@ namespace graphics {
 	// transform methods
 	void Renderable::translate(glm::vec3 m)
 		{ transforms = glm::translate(transforms, m); }
-
 	void Renderable::scaleX(float m)
 		{ transforms = glm::scale(transforms, glm::vec3(m, 0.0f, 0.0f)); }
-
 	void Renderable::scaleY(float m)
 		{ transforms = glm::scale(transforms, glm::vec3(0.0f, m, 0.0f)); }
-
 	void Renderable::scaleZ(float m)
 		{ transforms = glm::scale(transforms, glm::vec3(0.0f, 0.0f, m)); }
 
 	//TODO: make this rotate around object origin
 	void Renderable::rotateX(float m)
 		{ transforms = glm::rotate(transforms, glm::radians(m), glm::vec3(1.0f, 0.0f, 0.0f)); }
-
 	void Renderable::rotateY(float m)
 		{ transforms = glm::rotate(transforms, glm::radians(m), glm::vec3(0.0f, 1.0f, 0.0f)); }
-
 	void Renderable::rotateZ(float m)
 		{ transforms = glm::rotate(transforms, glm::radians(m), glm::vec3(0.0f, 0.0f, 1.0f)); }
-
 }

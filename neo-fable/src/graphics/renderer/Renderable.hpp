@@ -47,8 +47,6 @@ namespace graphics {
 		glm::mat4 transforms;
 
 		friend class Renderer;
-
-		static float texCoords[];
 	};
 }
 

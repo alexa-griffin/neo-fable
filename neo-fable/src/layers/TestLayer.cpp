@@ -38,9 +38,9 @@ namespace layers {
 		box1 = graphics::Renderable(vertices1, 4);
 
 		box.addTexture("./data/graphics/tile.png");
-		box.setFill(RGB(100, 255, 100));
+		box.setFill(RGB(255, 255, 255));
 
-		box1.addTexture("./data/graphics/test.png");
+		box1.addTexture("./data/graphics/tile.png");
 		box1.setFill(RGB(255, 255, 255));
 	};
 
