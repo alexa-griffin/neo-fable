@@ -31,6 +31,7 @@ namespace graphics {
 		program.setUniform("translation", glUniformMatrix4fv, 1, GL_FALSE, glm::value_ptr(transforms));
 		if (config.textured)
 		{
+			texture.bind();
 			program.setUniform("img", glUniform1i, texture.getBoundSlot());
 		}
 		glDrawElements(GL_TRIANGLES, ibo.getLength(), GL_UNSIGNED_INT, nullptr);
@@ -39,38 +40,37 @@ namespace graphics {
 	void Renderable::addTexture(std::string path)
 	{
 		opengl::Buffer texBuffer(texCoords, 8, 2);
-		vao.addBuffer(&texBuffer, I_TEX_COORD_LOCATION);
+		vao.addBuffer(texBuffer, I_TEX_COORD_LOCATION);
 
 		texture = opengl::Texture(path);
 		texture.bind();
 		config.textured = true;
 	}
 
-	void Renderable::addFill(glm::vec3 color)
+	void Renderable::setFill(glm::vec3 color)
 	{
-		float colors[] = {
-			color.r, color.g, color.b,
-			color.r, color.g, color.b,
-			color.r, color.g, color.b,
-			color.r, color.g, color.b,
-		};
-		opengl::Buffer colorBuffer(colors, 12, 3);
-
-		vao.addBuffer(&colorBuffer, I_COLOR_LOCATION);
+		setFill(color, color, color, color);
 	}
 
-	void Renderable::addFill(glm::vec3 bl, glm::vec3 tl, glm::vec3 tr, glm::vec3 br)
+	void Renderable::setFill(glm::vec3 bl, glm::vec3 tl, glm::vec3 tr, glm::vec3 br)
 	{
-
 		float colors[] = {
 			bl.r, bl.g, bl.b,
 			tl.r, tl.g, tl.b,
 			tr.r, tr.g, tr.b,
 			br.r, br.g, br.b,
 		};
-		opengl::Buffer colorBuffer(colors, 12, 3);
 
-		vao.addBuffer(&colorBuffer, I_COLOR_LOCATION);
+		if (!config.tinted)
+		{
+			opengl::Buffer colorBuffer(colors, 12, 3);
+			config.tinted = true;
+			vao.addBuffer(colorBuffer, I_COLOR_LOCATION);
+		}
+		else 
+		{
+			vao.modBuffer(I_COLOR_LOCATION, colors);
+		}
 	}
 
 	// transform methods

@@ -13,17 +13,38 @@ namespace opengl {
 		// 	delete buffers[i].buffer;
 	}
 
-	void VertexArray::addBuffer(Buffer *buffer, GLuint index)
+	void VertexArray::addBuffer(Buffer buffer, GLuint index)
 	{
 		bind();
-		buffer->bind();
+		buffer.bind();
 
 		GL_DEBUG_CALL(glEnableVertexAttribArray(index));
-		GL_DEBUG_CALL(glVertexAttribPointer(index, buffer->getCount(), GL_FLOAT, GL_FALSE, buffer->getLength(), (void*)0));
+		GL_DEBUG_CALL(glVertexAttribPointer(index, buffer.getCount(), GL_FLOAT, GL_FALSE, buffer.getLength(), (void*)0));
 
-		buffers.push_back({ buffer, index });
+		buffers.insert(std::pair<GLuint, Buffer>(index, buffer));
 
-		buffer->unbind();
+		buffer.unbind();
+		unbind();
+	}
+
+	void VertexArray::modBuffer(GLuint index, const float* data)
+	{
+		if (buffers.find(index) == buffers.end())
+		{
+			LOG_ERROR("index: ", index, " does not exist in buffer");
+			return;
+		}
+
+		bind();
+		buffers[index].bind();
+
+		buffers[index].setData(data);
+
+		GL_DEBUG_CALL(glEnableVertexAttribArray(index));
+		GL_DEBUG_CALL(glVertexAttribPointer(index, buffers[index].getCount(), GL_FLOAT, GL_FALSE, buffers[index].getLength(), (void*)0));
+
+
+		buffers[index].unbind();
 		unbind();
 	}
 

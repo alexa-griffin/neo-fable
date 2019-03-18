@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vector>
+#include <map>
 
 #include <GLEW/GL/glew.h>
 
@@ -8,30 +8,23 @@
 #include "debug.hpp"
 
 namespace opengl {
-	struct IndexedBuffer
-	{
-		Buffer *buffer;
-		GLuint index;
-	};
-
 	class VertexArray
 	{
 	public:
 		VertexArray();
 		~VertexArray();
 
-		void addBuffer(Buffer *b, GLuint index);
+		void addBuffer(Buffer b, GLuint index);
+		void modBuffer(GLuint index, const float* data);
 
 		void bind() const;
 		void unbind() const;
-
-		void attribPointers();
 
 	private:
 		GLuint uid;
 		unsigned int stride;
 
-		std::vector<IndexedBuffer> buffers;
+		std::map<GLuint, Buffer> buffers;
 	};
 }
 

@@ -13,6 +13,8 @@ namespace opengl {
 		void bind();
 		void unbind();
 
+		void setData(const float* data);
+
 		inline unsigned int getSize() { return size; };
 		inline unsigned int getLength() { return size / sizeof(float); };
 		inline unsigned int getCount() { return count; };

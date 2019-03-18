@@ -6,7 +6,7 @@ namespace opengl {
 	{
 		GL_DEBUG_CALL(glGenBuffers(1, &uid));
 		bind();
-		GL_DEBUG_CALL(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW));
+		setData(data);
 	}
 
 	void Buffer::bind()
@@ -17,5 +17,12 @@ namespace opengl {
 	void Buffer::unbind()
 	{
 		GL_DEBUG_CALL(glBindBuffer(GL_ARRAY_BUFFER, 0));
+	}
+
+	void Buffer::setData(const float* data)
+	{
+		if (size < sizeof(data)) { LOG_ERROR("data is larger than stored size"); }
+
+		GL_DEBUG_CALL(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW));
 	}
 }
