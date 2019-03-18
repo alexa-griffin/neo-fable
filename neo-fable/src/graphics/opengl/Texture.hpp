@@ -21,7 +21,6 @@ namespace opengl {
 
 		inline int getWidth() const { return width; }
 		inline int getHeight() const { return height; }
-
 	private:
 		// for now useless
 		std::string path; //IDEA: use this to do hot reloading?

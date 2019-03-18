@@ -1,5 +1,5 @@
-# the final api:
+standardize in locations
 
-```cpp
-
-```
+0 - positional matrix
+1 - color matrix
+2 - texture coords

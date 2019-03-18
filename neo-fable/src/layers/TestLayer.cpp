@@ -10,9 +10,9 @@ namespace layers {
 		: Layer(name, win)
 	{
 		float positions[] = {
-		    100.0f, 100.0f, 
+			  0.0f, 0.0f, // bottom left clockwise  
 			  0.0f, 100.0f,
-			  0.0f, 0.0f,  
+		    100.0f, 100.0f, 
 		    100.0f, 0.0f,  
 		};
 
@@ -24,9 +24,9 @@ namespace layers {
 		};
 		
 		float texCoords[] = {
-			1.0f, 1.0f,
-			0.0f, 1.0f,
 			0.0f, 0.0f,
+			0.0f, 1.0f,
+			1.0f, 1.0f,
 			1.0f, 0.0f
 		};
 
@@ -44,12 +44,8 @@ namespace layers {
 
 		box = graphics::Renderable(vertices, 4);
 
-		// actually prob define stride in the vbo idk
-		// program.attribPointer("iPos", 2, GL_FLOAT, GL_FALSE, sizeof(float) * 7, sizeof(float) * 0);
-		// program.attribPointer("iColor", 3, GL_FLOAT, GL_FALSE, sizeof(float) * 7, sizeof(float) * 2);
-		// program.attribPointer("iTexCoord", 2, GL_FLOAT, GL_FALSE, sizeof(float) * 7, sizeof(float) * 5);
-
-		// renderable
+		// should be in renderable
+		// box.bindTexture("./data/graphics/test.png")
 		texture = opengl::Texture("./data/graphics/test.png");
 		texture.bind();
 		program.setUniform("img", glUniform1i, 0);
@@ -66,16 +62,10 @@ namespace layers {
 
 	bool TestLayer::onEvent(const events::Event &event)
 	{
-
 		ON_EVENT(mouseScroll, { // is this actually better?
 			box.rotateZ(e.getY() * 3);
 		});
 
-		// if (event.getType() == events::eventType::mouseScroll) // make this a macro?
-		// {
-		// 	events::MouseScroll& e = (events::MouseScroll&)event;
-		// 	
-		// }
 		return false;
 	}
 
