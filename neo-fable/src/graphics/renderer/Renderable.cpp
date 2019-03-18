@@ -2,6 +2,13 @@
 
 
 namespace graphics {
+	float Renderable::texCoords[] = {
+		0.0f, 0.0f,
+		0.0f, 1.0f,
+		1.0f, 1.0f,
+		1.0f, 0.0f
+	};
+
 	Renderable::Renderable()
 	{
 	}
@@ -22,8 +29,48 @@ namespace graphics {
 		vao.bind();
 
 		program.setUniform("translation", glUniformMatrix4fv, 1, GL_FALSE, glm::value_ptr(transforms));
-
+		if (config.textured)
+		{
+			program.setUniform("img", glUniform1i, texture.getBoundSlot());
+		}
 		glDrawElements(GL_TRIANGLES, ibo.getLength(), GL_UNSIGNED_INT, nullptr);
+	}
+
+	void Renderable::addTexture(std::string path)
+	{
+		opengl::Buffer texBuffer(texCoords, 8, 2);
+		vao.addBuffer(&texBuffer, I_TEX_COORD_LOCATION);
+
+		texture = opengl::Texture(path);
+		texture.bind();
+		config.textured = true;
+	}
+
+	void Renderable::addFill(glm::vec3 color)
+	{
+		float colors[] = {
+			color.r, color.g, color.b,
+			color.r, color.g, color.b,
+			color.r, color.g, color.b,
+			color.r, color.g, color.b,
+		};
+		opengl::Buffer colorBuffer(colors, 12, 3);
+
+		vao.addBuffer(&colorBuffer, I_COLOR_LOCATION);
+	}
+
+	void Renderable::addFill(glm::vec3 bl, glm::vec3 tl, glm::vec3 tr, glm::vec3 br)
+	{
+
+		float colors[] = {
+			bl.r, bl.g, bl.b,
+			tl.r, tl.g, tl.b,
+			tr.r, tr.g, tr.b,
+			br.r, br.g, br.b,
+		};
+		opengl::Buffer colorBuffer(colors, 12, 3);
+
+		vao.addBuffer(&colorBuffer, I_COLOR_LOCATION);
 	}
 
 	// transform methods

@@ -884,6 +884,9 @@
     <ClInclude Include="src\graphics\opengl\Buffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\graphics\shaderLayout.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="NOTES.md" />

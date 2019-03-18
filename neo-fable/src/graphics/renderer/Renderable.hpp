@@ -7,6 +7,7 @@
 #include "../opengl.hpp"
 #include "Renderer.hpp"
 #include "../util/util.hpp"
+#include "../shaderLayout.hpp"
 
 namespace graphics {
 	class Renderable
@@ -19,7 +20,9 @@ namespace graphics {
 
 		virtual void draw(opengl::Program program);
 
-		// virtual void applyTransform(opengl::Program program);
+		virtual void addTexture(std::string path);
+		virtual void addFill(glm::vec3 color);
+		virtual void addFill(glm::vec3 bl, glm::vec3 tl, glm::vec3 tr, glm::vec3 br);
 
 		// transformation methods
 		void translate(glm::vec3 m);
@@ -34,9 +37,18 @@ namespace graphics {
 		opengl::VertexArray vao;
 		opengl::IndexBuffer ibo;
 
+		opengl::Texture texture;
+	
+		struct {
+			bool textured = false;
+			bool tinted = false;
+		} config;
+
 		glm::mat4 transforms;
 
 		friend class Renderer;
+
+		static float texCoords[];
 	};
 }
 

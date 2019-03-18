@@ -1,7 +1,7 @@
 #include "Texture.hpp"
 
 namespace opengl {
-	Texture::Texture(std::string path) : path(path)
+	Texture::Texture(std::string path) : path(path), boundSlot(0)
 	{
 		stbi_set_flip_vertically_on_load(1);
 		auto img = data_loader::loadImage(path);
@@ -17,8 +17,9 @@ namespace opengl {
 		unbind();
 	}
 
-	void Texture::bind(unsigned int slot) const
+	void Texture::bind(unsigned int slot)
 	{
+		boundSlot = slot;
 		GL_DEBUG_CALL(glActiveTexture(GL_TEXTURE0 + slot));
 		GL_DEBUG_CALL(glBindTexture(GL_TEXTURE_2D, uid));
 	}

@@ -191,6 +191,7 @@
     <ClCompile Include="src\graphics\opengl\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\graphics\shaderLayout.hpp" />
     <ClInclude Include="src\graphics\opengl\VertexArray.hpp" />
     <ClInclude Include="src\graphics\renderer\Renderable.hpp" />
     <ClInclude Include="src\graphics\renderer\Renderer.hpp" />

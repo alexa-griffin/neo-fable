@@ -18,9 +18,6 @@ namespace opengl {
 		bind();
 		buffer->bind();
 
-		LOG_INFO("is: ", buffer->getCount(), ", ", buffer->getLength());
-		LOG_INFO("be: ", "n",                ", ", (sizeof(float) * buffer->getCount()));
-
 		GL_DEBUG_CALL(glEnableVertexAttribArray(index));
 		GL_DEBUG_CALL(glVertexAttribPointer(index, buffer->getCount(), GL_FLOAT, GL_FALSE, buffer->getLength(), (void*)0));
 
