@@ -6,10 +6,9 @@ namespace graphics {
 	{
 	}
 
-	Renderable::Renderable(const void* data, unsigned int size, unsigned int indices)
-		: transforms(1.0f)
+	Renderable::Renderable(opengl::VertexArray va, unsigned int indices)
+		: transforms(1.0f), vao(va)
 	{
-		vbo = opengl::VertexBuffer(data, size);
 		ibo = opengl::IndexBuffer(indices);
 	}
 
@@ -20,7 +19,7 @@ namespace graphics {
 	void Renderable::draw(opengl::Program program)
 	{
 		ibo.bind();
-		vbo.bind();
+		vao.bind();
 
 		program.setUniform("translation", glUniformMatrix4fv, 1, GL_FALSE, glm::value_ptr(transforms));
 
@@ -40,6 +39,7 @@ namespace graphics {
 	void Renderable::scaleZ(float m)
 		{ transforms = glm::scale(transforms, glm::vec3(0.0f, 0.0f, m)); }
 
+	//TODO: make this rotate around object origin
 	void Renderable::rotateX(float m)
 		{ transforms = glm::rotate(transforms, glm::radians(m), glm::vec3(1.0f, 0.0f, 0.0f)); }
 

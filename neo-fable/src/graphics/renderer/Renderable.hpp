@@ -13,7 +13,7 @@ namespace graphics {
 	{
 	public:
 		Renderable();
-		Renderable(const void* data, unsigned int size, unsigned int indices);
+		Renderable(opengl::VertexArray va, unsigned int indices);
 
 		virtual ~Renderable();
 
@@ -31,8 +31,8 @@ namespace graphics {
 		void rotateZ(float m);
 
 	protected:
-		opengl::VertexBuffer vbo;
-		opengl::IndexBuffer  ibo;
+		opengl::VertexArray vao;
+		opengl::IndexBuffer ibo;
 
 		glm::mat4 transforms;
 
