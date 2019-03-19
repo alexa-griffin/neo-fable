@@ -19,7 +19,7 @@ namespace data_loader {
 		return res;
 	}
 
-	ImageData loadImage(std::string path)
+	ImageData loadImage(std::string path) // must be 32bit saved from paint.net
 	{
 		ImageData res;
 

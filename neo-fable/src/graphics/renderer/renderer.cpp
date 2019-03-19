@@ -38,4 +38,18 @@ namespace graphics {
 		
 		obj.draw(program);
 	}
+
+	void Renderer::drawQue()
+	{
+		for (int i = 0; i < quedRenderables.size(); i++)
+		{
+			draw(quedRenderables[i]);
+		}
+	}
+
+	void Renderer::submit(Renderable &obj)
+	{
+		quedRenderables.push_back(&obj);
+		//TODO: some kind of buffer combination
+	}
 }

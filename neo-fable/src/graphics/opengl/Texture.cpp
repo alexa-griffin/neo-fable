@@ -7,8 +7,11 @@ namespace opengl {
 		auto img = data_loader::loadImage(path);
 		width = img.width;
 		height = img.height;
-		bpp = 0;
+		bpp = 1;
 		buffer = img.data;
+
+		// LOG_VAR(buffer);
+
 		glGenTextures(1, &uid);
 		bind();
 		GL_DEBUG_CALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer));

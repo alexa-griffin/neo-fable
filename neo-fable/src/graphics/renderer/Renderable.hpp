@@ -33,16 +33,17 @@ namespace graphics {
 		void rotateY(float m);
 		void rotateZ(float m);
 
+	public:
+		struct {
+			bool textured = false;
+			bool tinted = false;
+		} config;
+
 	protected:
 		opengl::VertexArray vao;
 		opengl::IndexBuffer ibo;
 
 		opengl::Texture texture;
-	
-		struct {
-			bool textured = false;
-			bool tinted = false;
-		} config;
 
 		glm::mat4 transforms;
 
