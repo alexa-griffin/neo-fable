@@ -11,16 +11,16 @@ namespace layers {
 	{
 		float positions[] = {
 			  0.0f, 0.0f, // bottom left clockwise  
-			  0.0f, 32.0f,
-		     32.0f, 32.0f, 
-		     32.0f, 0.0f,  
+			  0.0f, 100.0f,
+		    100.0f, 100.0f, 
+		    100.0f, 0.0f,  
 		};
 
 		float positions1[] = {
 			  0.0f, 0.0f, // bottom left clockwise  
-			  0.0f, 32.0f,
-			 32.0f, 32.0f,
-			 32.0f, 0.0f,
+			  0.0f, 100.0f,
+			100.0f, 100.0f,
+			100.0f, 0.0f,
 		};
 
 		opengl::Buffer posBuffer(positions, 8, 2);
@@ -50,8 +50,10 @@ namespace layers {
 
 	void TestLayer::update()
 	{
-		window->rCtx.draw(box, program);
-		window->rCtx.draw(box1, program);
+		window->rCtx.submit(box, program);
+		window->rCtx.submit(box1, program);
+
+		window->rCtx.drawQue();
 	}
 
 	bool TestLayer::onEvent(const events::Event &event)

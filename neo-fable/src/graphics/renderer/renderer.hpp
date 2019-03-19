@@ -18,6 +18,11 @@
 namespace graphics {
 	class Renderable;
 
+	struct RenderTarget{
+		opengl::Program *program;
+		Renderable *target;
+	};
+
 	class Renderer
 	{
 	public:
@@ -31,14 +36,15 @@ namespace graphics {
 
 		void draw(Renderable &obj, opengl::Program program);
 
-		void submit(Renderable &obj);
+		// void submit(Renderable &obj);
+		void submit(Renderable &obj, opengl::Program &program);
 		void drawQue();
 	private:
 		// view matrix
-		static glm::mat4 orthoProj;
+		glm::mat4 orthoProj;
 
 		static std::map<std::string, opengl::Program> programs;
 		
-		std::vector<Renderable*> quedRenderables;
+		std::vector<RenderTarget> quedRenderables;
 	};
 }

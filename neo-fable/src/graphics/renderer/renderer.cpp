@@ -3,7 +3,6 @@
 
 
 namespace graphics {
-	glm::mat4 Renderer::orthoProj;
 	std::map<std::string, opengl::Program> Renderer::programs;
 
 	Renderer::~Renderer()
@@ -43,13 +42,16 @@ namespace graphics {
 	{
 		for (int i = 0; i < quedRenderables.size(); i++)
 		{
-			draw(quedRenderables[i]);
+			draw(*(quedRenderables[i].target), *(quedRenderables[i].program));
 		}
 	}
 
-	void Renderer::submit(Renderable &obj)
+	void Renderer::submit(Renderable &obj, opengl::Program &program)
 	{
-		quedRenderables.push_back(&obj);
+		RenderTarget t;
+		t.program = &program;
+		t.target = &obj;
+		quedRenderables.push_back(t);
 		//TODO: some kind of buffer combination
 	}
 }
