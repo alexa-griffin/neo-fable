@@ -81,6 +81,8 @@ namespace graphics {
 		{ transforms = glm::scale(transforms, glm::vec3(0.0f, m, 0.0f)); }
 	void Renderable::scaleZ(float m)
 		{ transforms = glm::scale(transforms, glm::vec3(0.0f, 0.0f, m)); }
+	void Renderable::resetTransforms()
+		{ transforms = glm::mat4(1.0f); }
 
 	//TODO: make this rotate around object origin
 	void Renderable::rotateX(float m)

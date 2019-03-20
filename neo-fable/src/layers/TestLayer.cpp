@@ -58,13 +58,14 @@ namespace layers {
 
 	bool TestLayer::onEvent(const events::Event &event)
 	{
-		ON_EVENT(mouseScroll, { // is this actually better?
-			box.rotateZ(e.getY() * 3);
-		});
-
-		// ON_EVENT(mouseMove, {
-		// 	box1.setFill(RGB(100, e.getX(), 255));;
+		// ON_EVENT(mouseScroll, { // is this actually better?
+		// 	box.rotateZ(e.getY() * 3);
 		// });
+
+		ON_EVENT(mouseMove, {
+			box1.resetTransforms();
+			box1.translate(glm::vec3(e.getX() / (window->getWidth() / 2), -e.getY() / (window->getHeight() / 2), 0.0f));
+		});
 
 		return false;
 	}

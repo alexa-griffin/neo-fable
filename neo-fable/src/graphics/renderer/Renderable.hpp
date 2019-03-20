@@ -32,7 +32,7 @@ namespace graphics {
 		void rotateX(float m);
 		void rotateY(float m);
 		void rotateZ(float m);
-
+		void resetTransforms();
 	public:
 		struct {
 			bool textured = false;
