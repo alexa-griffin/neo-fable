@@ -15,15 +15,20 @@ namespace opengl {
 
 	void VertexArray::addBuffer(Buffer buffer, GLuint index)
 	{
-		bind();
-		buffer.bind();
-
-		GL_DEBUG_CALL(glEnableVertexAttribArray(index));
-		GL_DEBUG_CALL(glVertexAttribPointer(index, buffer.getCount(), GL_FLOAT, GL_FALSE, buffer.getLength(), (void*)0));
-
 		buffers.insert(std::pair<GLuint, Buffer>(index, buffer));
+	}
 
-		buffer.unbind();
+	void VertexArray::attribBuffers()
+	{
+		bind();
+
+		for (std::pair<GLuint, Buffer> buffer : buffers)
+		{
+			buffer.second.bind();
+			GL_DEBUG_CALL(glEnableVertexAttribArray(buffer.second.getUID()));
+			GL_DEBUG_CALL(glVertexAttribPointer(buffer.second.getUID(), buffer.second.getCount(), GL_FLOAT, GL_FALSE, buffer.second.getLength(), (void*)0));
+		}
+
 		unbind();
 	}
 

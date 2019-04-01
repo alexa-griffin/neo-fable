@@ -464,6 +464,12 @@
     <ClInclude Include="src\vendor\termcolor\termcolor.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="data\shaders\default\texture.frag.shader" />
+    <None Include="data\shaders\default\texture.vert.shader" />
+    <None Include="data\shaders\default\tinted.frag.shader" />
+    <None Include="data\shaders\default\tinted.vert.shader" />
+    <None Include="data\shaders\default\tintedTextured.frag.shader" />
+    <None Include="data\shaders\default\tintedTextured.vert.shader" />
     <None Include="data\shaders\main.frag.shader" />
     <None Include="data\shaders\main.vert.shader" />
     <None Include="data\shaders\tests\basic.frag.shader" />

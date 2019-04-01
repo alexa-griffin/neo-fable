@@ -1,11 +1,6 @@
 #include "debug.hpp"
 
 namespace opengl {
-	void clearErrors()
-	{
-		while (glGetError() != GL_NO_ERROR);
-	}
-
 	const char* formatError(GLenum err) 
 	{
 		//TODO: maybe not make this such a hack
@@ -22,6 +17,19 @@ namespace opengl {
 		return "but there was no error";
 	}
 
+	void clearErrors()
+	{
+		// LOG_WARN("clearing previous opengl errors");
+		// GLenum err = glGetError();
+		// do {
+		// 	err = glGetError();
+		// 	LOG_ERROR(formatError(err));
+		// } while (err != GL_NO_ERROR);
+
+		while (glGetError() != GL_NO_ERROR);
+	}
+
+
 	bool logErrors(const char* f, const char* file, int line)
 	{
 		bool ret = false;
@@ -29,6 +37,7 @@ namespace opengl {
 		{
 			LOG_ERROR(f, ":", line, " | ", err, "(", formatError(err), ")");
 			ret = true;
+			// do not break here because i want to log all errors
 		}
 		return ret;
 	}

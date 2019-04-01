@@ -8,7 +8,7 @@ namespace application {
 		return new Window(config);
 	}
 
-	Window::Window(WindowConfig config)
+	Window::Window(WindowConfig config) : rCtx(false)
 	{
 		init(config);
 	}
@@ -20,6 +20,8 @@ namespace application {
 
 	bool Window::init(WindowConfig config)
 	{
+		LOG_INFO("initing window");
+
 		this->config.width = config.width;
 		this->config.height = config.height;
 		this->config.title = config.title;
@@ -44,7 +46,7 @@ namespace application {
 
 		makeCurrentContext();
 
-		// glfwSwapInterval(1);
+		glfwSwapInterval(1);
 
 		// init glew
 		if (const GLenum err = glewInit(); GLEW_OK != err)
@@ -52,6 +54,11 @@ namespace application {
 			LOG_ERROR("glewInit failed");
 			return false;
 		}
+
+		// must be last after all glew/glfw calls
+		rCtx = graphics::Renderer(false);
+
+		LOG_INFO("created renderer");
 
 		return true;
 	}
@@ -75,7 +82,6 @@ namespace application {
 			data.height = h;
 
 			events::WindowResize ev(w, h);
-			data.rCtx.resizeOrthoProj((float)w, (float)h);
 
 			if (data.onEvent) { data.onEvent(ev); }
 		});

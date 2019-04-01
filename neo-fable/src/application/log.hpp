@@ -35,12 +35,15 @@ namespace application {
 #define LOG_ERROR(...) \
 	std::cout << ::termcolor::red << "[ERROR]" << ::termcolor::reset << ": "; \
 	::application::log::print(__VA_ARGS__)
+
 #define LOG_WARN(...)  \
 	std::cout << ::termcolor::yellow << "[WARNING]" << ::termcolor::reset << ": "; \
 	::application::log::print(__VA_ARGS__)
+
 #define LOG_INFO(...)  \
 	std::cout << ::termcolor::cyan << "[INFO]" << ::termcolor::reset << ": "; \
 	::application::log::print(__VA_ARGS__)
+
 // for logging expression names and values
 #define LOG_VAR(v) ::application::log::print(#v, v)
 #endif
