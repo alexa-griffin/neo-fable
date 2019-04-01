@@ -7,9 +7,7 @@
 int main(void)
 {
 	Application neoFable({ "derp", 700, 360 });
-	LOG_INFO("created application");
 	layers::TestLayer test("test layer", neoFable.getWindow());
-	LOG_INFO("created layer");
 
 	neoFable.pushLayer(&test);
 

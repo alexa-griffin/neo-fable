@@ -9,7 +9,6 @@ namespace layers {
 	TestLayer::TestLayer(std::string name, std::shared_ptr<application::Window> win)
 		: Layer(name, win)
 	{
-		LOG_INFO("got here");
 		float positions[] = {
 			  0.0f, 0.0f, // bottom left clockwise  
 			  0.0f, 100.0f,
@@ -17,28 +16,22 @@ namespace layers {
 		    100.0f, 0.0f,  
 		};
 
-		LOG_INFO("now here");
+		program = opengl::Program("./data/shaders/tests/texture.vert.shader", "./data/shaders/tests/texture.frag.shader");
 
 		opengl::Buffer posBuffer(positions, 8, 2);
-		opengl::Buffer posBuffer1(positions, 8, 2);
+		// opengl::Buffer posBuffer1(positions, 8, 2);
 
-
-		LOG_INFO("next");
 		opengl::VertexArray vertices = opengl::VertexArray();
-		opengl::VertexArray vertices1 = opengl::VertexArray();
+		// opengl::VertexArray vertices1 = opengl::VertexArray();
 
-
-		LOG_INFO("after vao");
-		// program = opengl::Program("./data/shaders/tests/texture.vert.shader", "./data/shaders/tests/texture.frag.shader");
 
 		vertices.addBuffer(posBuffer, I_POS_LOCATION);
-		vertices1.addBuffer(posBuffer1, I_POS_LOCATION);
+		// vertices1.addBuffer(posBuffer1, I_POS_LOCATION);
 
-		LOG_INFO("add buffer");
 		box = graphics::Renderable(vertices, 4);
 		// box1 = graphics::Renderable(vertices1, 4);
 
-		// box.addTexture("./data/graphics/tile.png");
+		box.addTexture("./data/graphics/tile.png");
 		box.setFill(RGB(255, 255, 255));
 
 		// box1.addTexture("./data/graphics/tile.png");
@@ -51,7 +44,7 @@ namespace layers {
 
 	void TestLayer::update()
 	{
-		window->rCtx.submit(box);
+		window->rCtx.submit(box, program);
 		
 		window->rCtx.drawQue();
 	}

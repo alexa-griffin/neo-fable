@@ -30,10 +30,9 @@ namespace application {
 		// init glfw
 		if (!glfwInitialized && !glfwInit())
 		{
-			glfwInitialized = true;
 			LOG_ERROR("glfwInit failed or was already initialized");
 			return false;
-		}
+		} else glfwInitialized = true;
 
 		// create a window
 		if (window = glfwCreateWindow(config.width, config.height, config.title.c_str(), NULL, NULL); 
@@ -56,7 +55,7 @@ namespace application {
 		}
 
 		// must be last after all glew/glfw calls
-		rCtx = graphics::Renderer(false);
+		rCtx = graphics::Renderer(glfwInitialized);
 
 		LOG_INFO("created renderer");
 
