@@ -7,23 +7,8 @@ namespace layers {
 	using namespace events;
 
 	TestLayer::TestLayer(std::string name, std::shared_ptr<application::Window> win)
-		: Layer(name, win)
+		: Layer(name, win), box(100, 100)
 	{
-		float positions[] = {
-			  0.0f, 0.0f, // bottom left clockwise  
-			  0.0f, 100.0f,
-		    100.0f, 100.0f, 
-		    100.0f, 0.0f,  
-		};
-
-		opengl::Buffer posBuffer(positions, 8, 2);
-
-		opengl::VertexArray vertices = opengl::VertexArray();
-
-		vertices.addBuffer(posBuffer, I_POS_LOCATION);
-
-		box = graphics::Renderable(vertices, 4);
-
 		box.addTexture("./data/graphics/tile.png");
 		box.setFill(RGB(0, 0, 255), RGB(0, 255, 0), RGB(0, 255, 255), RGB(255, 0, 255));
 	};

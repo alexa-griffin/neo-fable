@@ -72,6 +72,9 @@
     <ClCompile Include="src\graphics\opengl\Buffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\graphics\renderer\Rect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\events\events.hpp">
@@ -885,6 +888,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\graphics\shaderLayout.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\renderer\Rect.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

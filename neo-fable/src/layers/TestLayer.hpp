@@ -31,7 +31,7 @@ namespace layers {
 
 		GLuint tileTexture;
 
-		graphics::Renderable box;
+		graphics::Rect box;
 	};
 }
 

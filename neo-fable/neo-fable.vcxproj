@@ -170,6 +170,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\graphics\renderer\Rect.cpp" />
     <ClCompile Include="src\graphics\opengl\VertexArray.cpp" />
     <ClCompile Include="src\graphics\renderer\Renderable.cpp" />
     <ClCompile Include="src\graphics\renderer\Renderer.cpp" />
@@ -191,6 +192,7 @@
     <ClCompile Include="src\graphics\opengl\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\graphics\renderer\Rect.hpp" />
     <ClInclude Include="src\graphics\shaderLayout.hpp" />
     <ClInclude Include="src\graphics\opengl\VertexArray.hpp" />
     <ClInclude Include="src\graphics\renderer\Renderable.hpp" />
