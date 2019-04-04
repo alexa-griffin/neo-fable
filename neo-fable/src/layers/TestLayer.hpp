@@ -24,12 +24,7 @@ namespace layers {
 		virtual void update();
 		virtual void onMount();
 	private:
-
 		opengl::Texture texture;
-
-		opengl::Program program;
-
-		GLuint tileTexture;
 
 		graphics::Rect box;
 	};

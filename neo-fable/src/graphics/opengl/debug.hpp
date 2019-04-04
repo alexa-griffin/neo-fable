@@ -8,7 +8,9 @@
 #ifdef __PRODUCTION_BUILD__
 	#define GL_DEBUG_CALL(f) f
 #else
-	#define GL_DEBUG_CALL(f) opengl::clearErrors(); f; opengl::logErrors(#f, __FILE__, __LINE__)
+	#define GL_DEBUG_CALL(f) opengl::clearErrors(); \
+		f; \
+		opengl::logErrors(#f, __FILE__, __LINE__)
 #endif
 
 namespace opengl {

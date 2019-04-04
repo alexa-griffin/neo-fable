@@ -4,7 +4,7 @@
 namespace opengl {
 	Program::Program()
 	{
-		uid = glCreateProgram();
+		GL_DEBUG_CALL(uid = glCreateProgram());
 	}
 	
 	//TODO: make this take a map so it supports other types of shaders

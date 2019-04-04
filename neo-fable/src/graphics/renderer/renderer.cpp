@@ -11,6 +11,7 @@ namespace graphics {
 
 	void Renderer::loadDefaultPrograms()
 	{
+		LOG_INFO("loading default programs");
 		defaultPrograms.insert(
 			std::pair<defaultProgram, opengl::Program>(defaultProgram::tinted,
 				opengl::Program(
