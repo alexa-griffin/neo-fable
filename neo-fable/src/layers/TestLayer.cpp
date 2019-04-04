@@ -16,13 +16,6 @@ namespace layers {
 		    100.0f, 0.0f,  
 		};
 
-		float positions1[] = {
-			  0.0f, 0.0f, // bottom left clockwise  
-			  0.0f, 100.0f,
-			100.0f, 100.0f,
-			100.0f, 0.0f,
-		};
-
 		opengl::Buffer posBuffer(positions, 8, 2);
 		opengl::Buffer posBuffer1(positions, 8, 2);
 
