@@ -8,7 +8,7 @@ namespace application {
 	class Layer {
 	public:
 		Layer(std::string name, std::shared_ptr<application::Window> win)
-			: name(name) { window = win; };
+			: name(name), window(win) {};
 
 		virtual ~Layer();
 

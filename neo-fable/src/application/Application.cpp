@@ -10,22 +10,18 @@ Application::Application(application::WindowConfig config)
 	window->rCtx.resizeOrthoProj(config.width, config.height);
 }
 
-void Application::onEvent(events::Event& event) 
+void Application::onEvent(events::Event& e) 
 {
-	event.debugPrint();
-
-	ON_WINDOW_RESIZE({
-		window->rCtx.resizeOrthoProj(e.getWidth(), e.getHeight());
-	});
+	e.debugPrint();
 
 	for (application::Layer* overlay : overlayStack)
 	{
-		if (overlay->onEvent(event)) return;
+		if (overlay->onEvent(e)) return;
 	}
 
 	for (application::Layer* layer : layerStack)
 	{
-		if (layer->onEvent(event)) return;
+		if (layer->onEvent(e)) return;
 	}
 }
 

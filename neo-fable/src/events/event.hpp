@@ -6,7 +6,7 @@
 
 namespace events {
 	enum eventType
-	{   // PascalCase for class macro ease of use
+	{
 		none = 0, // meta & for errors
 		mouseDown, mouseUp, mouseMove, mouseScroll, // mouse
 		keyDown, keyUp, // keyboard

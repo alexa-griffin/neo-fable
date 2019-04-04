@@ -19,7 +19,6 @@ namespace graphics {
 	{
 		ibo.bind();
 		vao.bind();
-		vao.attribBuffers();
 
 		program.setUniform("translation", glUniformMatrix4fv, 1, GL_FALSE, glm::value_ptr(transforms));
 		if (config.textured)
@@ -27,7 +26,6 @@ namespace graphics {
 			texture.bind();
 			program.setUniform("img", glUniform1i, texture.getBoundSlot());
 		}
-		
 		glDrawElements(GL_TRIANGLES, ibo.getLength(), GL_UNSIGNED_INT, nullptr);
 	}
 

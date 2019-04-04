@@ -21,6 +21,7 @@ namespace application {
 		unsigned int height = 480;
 		bool open = true;
 		windowEventCallback onEvent;
+		graphics::Renderer rCtx;
 	};
 
 	class Window

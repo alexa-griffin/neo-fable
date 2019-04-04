@@ -20,7 +20,6 @@ namespace opengl {
 		void bind() const;
 		void unbind() const;
 
-		void attribBuffers();
 	private:
 		GLuint uid;
 		unsigned int stride;

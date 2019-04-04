@@ -23,21 +23,10 @@ namespace graphics {
 		Renderable *target;
 	};
 
-	//TODO: make thihs bitmap
-	// loaded in RendererInit
-	enum DefaultProgram
-	{
-		none = 0, 
-		textured, 
-		tinted, 
-		texturedAndTinted, 
-		other
-	};
-
 	class Renderer
 	{
 	public:
-		Renderer(bool preOpengl = true);
+		Renderer() {};
 		~Renderer();
 
 		void clearScreen();
@@ -47,21 +36,15 @@ namespace graphics {
 
 		void draw(Renderable &obj, opengl::Program program);
 
-		void submit(Renderable &obj);
+		// void submit(Renderable &obj);
 		void submit(Renderable &obj, opengl::Program &program);
 		void drawQue();
 	private:
 		// view matrix
 		glm::mat4 orthoProj;
 
-		static std::map<DefaultProgram, opengl::Program> defaultPrograms;
-		bool loadedDefaultPrograms;
-
+		static std::map<std::string, opengl::Program> programs;
+		
 		std::vector<RenderTarget> quedRenderables;
 	};
 }
-
-
-#define TINTED_SHADER ::graphics::DefaultProgram::tinted
-#define TEXTURED_SHADER ::graphics::DefaultProgram::textured
-#define TINTED_TEXTURED_SHADER ::graphics::DefaultProgram::texturedAndTinted
