@@ -55,6 +55,6 @@ namespace graphics {
 
 		static std::map<defaultProgram, opengl::Program> defaultPrograms;
 		
-		std::vector<RenderTarget> quedRenderables;
+		std::vector<RenderTarget*> quedRenderables;
 	};
 }

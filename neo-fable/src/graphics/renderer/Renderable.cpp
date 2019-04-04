@@ -17,8 +17,8 @@ namespace graphics {
 
 	void Renderable::draw(opengl::Program program)
 	{
-		ibo.bind();
 		vao.bind();
+		ibo.bind();
 
 		program.setUniform("translation", glUniformMatrix4fv, 1, GL_FALSE, glm::value_ptr(transforms));
 
@@ -27,7 +27,10 @@ namespace graphics {
 			texture.bind();
 			program.setUniform("img", glUniform1i, texture.getBoundSlot());
 		}
-		glDrawElements(GL_TRIANGLES, ibo.getLength(), GL_UNSIGNED_INT, nullptr);
+		GL_DEBUG_CALL(glDrawElements(GL_TRIANGLES, ibo.getLength(), GL_UNSIGNED_INT, nullptr));
+
+		vao.unbind();
+		ibo.unbind();
 	}
 
 	void Renderable::addTexture(std::string path)

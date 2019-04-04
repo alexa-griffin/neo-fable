@@ -4,9 +4,15 @@ namespace opengl {
 	Buffer::Buffer(const float* data, unsigned int length, unsigned int count)
 		: size(length * sizeof(float)), count(count)
 	{
+		LOG_INFO("creating buffer");
 		GL_DEBUG_CALL(glGenBuffers(1, &uid));
 		bind();
 		setData(data);
+	}
+
+	Buffer::~Buffer()
+	{
+		// glDeleteBuffers(1, &uid);
 	}
 
 	void Buffer::bind()

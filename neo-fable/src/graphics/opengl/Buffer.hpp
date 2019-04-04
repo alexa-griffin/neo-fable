@@ -9,7 +9,7 @@ namespace opengl {
 	public:
 		Buffer(const float* data, unsigned int length, unsigned int count);
 		inline Buffer() {};
-
+		~Buffer();
 		void bind();
 		void unbind();
 

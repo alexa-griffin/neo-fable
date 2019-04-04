@@ -73,35 +73,37 @@ namespace graphics {
 	{
 		for (int i = 0; i < quedRenderables.size(); i++)
 		{
-			draw(*(quedRenderables[i].target), *(quedRenderables[i].program));
+			draw(*(quedRenderables[i]->target), *(quedRenderables[i]->program));
+			delete quedRenderables[i];
+			quedRenderables.erase(quedRenderables.begin() + i);
 		}
 	}
 
 	void Renderer::submit(Renderable &obj, opengl::Program &program)
 	{
-		RenderTarget t;
-		t.program = &program;
-		t.target = &obj;
+		RenderTarget *t = new RenderTarget;
+		t->program = &program;
+		t->target = &obj;
 		quedRenderables.push_back(t);
 		//TODO: some kind of buffer combination
 	}
 
 	void Renderer::submit(Renderable &obj)
 	{
-		RenderTarget t;
-		t.target = &obj;
+		RenderTarget *t = new RenderTarget;
+		t->target = &obj;
 
 		if (obj.config.textured && obj.config.tinted)
 		{
-			t.program = &defaultPrograms[defaultProgram::tintedTextured];
+			t->program = &defaultPrograms[defaultProgram::tintedTextured];
 		} 
 		else if (obj.config.tinted)
 		{
-			t.program = &defaultPrograms[defaultProgram::tinted];
+			t->program = &defaultPrograms[defaultProgram::tinted];
 		}
 		else if (obj.config.textured) 
 		{
-			t.program = &defaultPrograms[defaultProgram::textured];
+			t->program = &defaultPrograms[defaultProgram::textured];
 		}
 		
 		quedRenderables.push_back(t);
