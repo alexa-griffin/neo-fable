@@ -21,6 +21,7 @@ namespace graphics {
 		vao.bind();
 
 		program.setUniform("translation", glUniformMatrix4fv, 1, GL_FALSE, glm::value_ptr(transforms));
+
 		if (config.textured)
 		{
 			texture.bind();
@@ -41,7 +42,7 @@ namespace graphics {
 		opengl::Buffer texBuffer(texCoords, 8, 2);
 		vao.addBuffer(texBuffer, I_TEX_COORD_LOCATION);
 
-		//TODO: have this go through a central pipeline
+		//TODO: have texture loading go through a central pipeline
 		texture = opengl::Texture(path);
 		config.textured = true;
 	}

@@ -3,22 +3,52 @@
 
 
 namespace graphics {
-	std::map<std::string, opengl::Program> Renderer::programs;
+	std::map<defaultProgram, opengl::Program> Renderer::defaultPrograms;
 
 	Renderer::~Renderer()
 	{
 	}
 
+	void Renderer::loadDefaultPrograms()
+	{
+		// defaultPrograms.insert(
+		// 	std::pair<defaultProgram, opengl::Program>(defaultProgram::tinted,
+		// 		opengl::Program(
+		// 			"./data/shaders/default/tinted.vert.shader",
+		// 			"./data/shaders/default/tinted.frag.shader"
+		// 		)
+		// 	)
+		// );
+
+		// defaultPrograms.insert(
+		// 	std::pair<defaultProgram, opengl::Program>(defaultProgram::textured,
+		// 		opengl::Program(
+		// 			"./data/shaders/default/textured.vert.shader",
+		// 			"./data/shaders/default/textured.frag.shader"
+		// 		)
+		// 	)
+		// );
+
+		// defaultPrograms.insert(
+		// 	std::pair<defaultProgram, opengl::Program>(defaultProgram::tintedTextured, 
+		// 		opengl::Program(
+		// 			"./data/shaders/default/tintedTextured.vert.shader", 
+		// 			"./data/shaders/default/tintedTextured.frag.shader"
+		// 		)
+		// 	)
+		// );
+	}
+
 	void Renderer::clearScreen(float r, float g, float b, float a) 
 	{
 		//TODO: make this check the current clear color
-		glClearColor(r, g, b, a);
+		GL_DEBUG_CALL(glClearColor(r, g, b, a));
 		clearScreen();
 	}
 
 	void Renderer::clearScreen()
 	{
-		glClear(GL_COLOR_BUFFER_BIT);
+		GL_DEBUG_CALL(glClear(GL_COLOR_BUFFER_BIT));
 	}
 
 	void Renderer::resizeOrthoProj(float w, float h)
@@ -51,6 +81,17 @@ namespace graphics {
 		RenderTarget t;
 		t.program = &program;
 		t.target = &obj;
+		quedRenderables.push_back(t);
+		//TODO: some kind of buffer combination
+	}
+
+	void Renderer::submit(Renderable &obj)
+	{
+		RenderTarget t;
+		t.target = &obj;
+
+		t.program;
+		
 		quedRenderables.push_back(t);
 		//TODO: some kind of buffer combination
 	}

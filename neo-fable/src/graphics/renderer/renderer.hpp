@@ -23,11 +23,20 @@ namespace graphics {
 		Renderable *target;
 	};
 
+	enum defaultProgram {
+		none = 0,
+		textured, 
+		tinted,
+		tintedTextured
+	};
+
 	class Renderer
 	{
 	public:
 		Renderer() {};
 		~Renderer();
+
+		void loadDefaultPrograms(); // removed from constructor for hot reloading
 
 		void clearScreen();
 		void clearScreen(float r, float g, float b, float a);
@@ -38,12 +47,13 @@ namespace graphics {
 
 		// void submit(Renderable &obj);
 		void submit(Renderable &obj, opengl::Program &program);
+		void submit(Renderable &obj);
 		void drawQue();
 	private:
 		// view matrix
 		glm::mat4 orthoProj;
 
-		static std::map<std::string, opengl::Program> programs;
+		static std::map<defaultProgram, opengl::Program> defaultPrograms;
 		
 		std::vector<RenderTarget> quedRenderables;
 	};
