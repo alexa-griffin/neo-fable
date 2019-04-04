@@ -17,14 +17,14 @@ namespace graphics {
 		// 		"./data/shaders/default/tinted.frag.shader"
 		// 	)
 		// ));
-		// 
+
 		// defaultPrograms.insert(std::pair<DefaultProgram, opengl::Program>(
 		// 	TEXTURED_SHADER, opengl::Program(
 		// 		"./data/shaders/default/texture.vert.shader",
 		// 		"./data/shaders/default/texture.frag.shader"
 		// 	)
 		// ));
-
+		// 
 		// defaultPrograms.insert(std::pair<DefaultProgram, opengl::Program>(
 		// 	TINTED_TEXTURED_SHADER, opengl::Program(
 		// 		"./data/shaders/default/tintedTextured.vert.shader",
@@ -72,7 +72,6 @@ namespace graphics {
 	{
 		for (int i = 0; i < quedRenderables.size(); i++)
 		{
-			LOG_INFO("program: ", quedRenderables[i].program->getUID());
 			draw(*(quedRenderables[i].target), *(quedRenderables[i].program));
 		}
 	}

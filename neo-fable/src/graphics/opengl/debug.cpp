@@ -63,21 +63,13 @@ namespace opengl {
 	bool programLogErrors(GLuint program)
 	{
 		int compiled;
-		GL_DEBUG_CALL(glGetProgramiv(program, GL_VALIDATE_STATUS, &compiled));
-		LOG_VAR(compiled);
+		glGetProgramiv(program, GL_VALIDATE_STATUS, &compiled);
 		if (compiled == GL_FALSE)
 		{
 			int len;
-			GL_DEBUG_CALL(glGetShaderiv(program, GL_INFO_LOG_LENGTH, &len));
-			
-			if (len < 0) 
-			{ 
-				LOG_WARN("log length of program: ", program, " is negative"); 
-				return false;
-			}
-
+			glGetShaderiv(program, GL_INFO_LOG_LENGTH, &len);
 			char* err = new char[len];
-			GL_DEBUG_CALL(glGetShaderInfoLog(program, len, &len, err));
+			glGetShaderInfoLog(program, len, &len, err);
 			LOG_ERROR(err);
 
 			delete err;
