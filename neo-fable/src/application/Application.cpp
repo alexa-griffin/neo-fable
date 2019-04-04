@@ -13,8 +13,6 @@ Application::Application(application::WindowConfig config)
 
 void Application::onEvent(events::Event& e) 
 {
-	e.debugPrint();
-
 	for (application::Layer* overlay : overlayStack)
 	{
 		if (overlay->onEvent(e)) return;

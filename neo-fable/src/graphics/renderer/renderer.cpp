@@ -20,23 +20,23 @@ namespace graphics {
 			)
 		);
 
-		// defaultPrograms.insert(
-		// 	std::pair<defaultProgram, opengl::Program>(defaultProgram::textured,
-		// 		opengl::Program(
-		// 			"./data/shaders/default/textured.vert.shader",
-		// 			"./data/shaders/default/textured.frag.shader"
-		// 		)
-		// 	)
-		// );
+		defaultPrograms.insert(
+			std::pair<defaultProgram, opengl::Program>(defaultProgram::textured,
+				opengl::Program(
+					"./data/shaders/default/textured.vert.shader",
+					"./data/shaders/default/textured.frag.shader"
+				)
+			)
+		);
 
-		// defaultPrograms.insert(
-		// 	std::pair<defaultProgram, opengl::Program>(defaultProgram::tintedTextured, 
-		// 		opengl::Program(
-		// 			"./data/shaders/default/tintedTextured.vert.shader", 
-		// 			"./data/shaders/default/tintedTextured.frag.shader"
-		// 		)
-		// 	)
-		// );
+		defaultPrograms.insert(
+			std::pair<defaultProgram, opengl::Program>(defaultProgram::tintedTextured, 
+				opengl::Program(
+					"./data/shaders/default/tintedTextured.vert.shader", 
+					"./data/shaders/default/tintedTextured.frag.shader"
+				)
+			)
+		);
 	}
 
 	void Renderer::clearScreen(float r, float g, float b, float a) 
@@ -90,9 +90,17 @@ namespace graphics {
 		RenderTarget t;
 		t.target = &obj;
 
-		if (obj.config.tinted)
+		if (obj.config.textured && obj.config.tinted)
+		{
+			t.program = &defaultPrograms[defaultProgram::tintedTextured];
+		} 
+		else if (obj.config.tinted)
 		{
 			t.program = &defaultPrograms[defaultProgram::tinted];
+		}
+		else if (obj.config.textured) 
+		{
+			t.program = &defaultPrograms[defaultProgram::textured];
 		}
 		
 		quedRenderables.push_back(t);

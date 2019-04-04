@@ -1296,5 +1296,7 @@
     <None Include="data\shaders\default\tintedTextured.frag.shader" />
     <None Include="data\shaders\default\tinted.frag.shader" />
     <None Include="data\shaders\default\tinted.vert.shader" />
+    <None Include="data\shaders\default\textured.frag.shader" />
+    <None Include="data\shaders\default\textured.vert.shader" />
   </ItemGroup>
 </Project>
