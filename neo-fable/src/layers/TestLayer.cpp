@@ -25,7 +25,7 @@ namespace layers {
 		box = graphics::Renderable(vertices, 4);
 
 		box.addTexture("./data/graphics/tile.png");
-		box.setFill(RGB(0, 0, 255));
+		box.setFill(RGB(0, 0, 255), RGB(0, 255, 0), RGB(0, 255, 255), RGB(255, 0, 255));
 	};
 
 	TestLayer::~TestLayer()
