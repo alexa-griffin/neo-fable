@@ -11,14 +11,14 @@ namespace graphics {
 
 	void Renderer::loadDefaultPrograms()
 	{
-		// defaultPrograms.insert(
-		// 	std::pair<defaultProgram, opengl::Program>(defaultProgram::tinted,
-		// 		opengl::Program(
-		// 			"./data/shaders/default/tinted.vert.shader",
-		// 			"./data/shaders/default/tinted.frag.shader"
-		// 		)
-		// 	)
-		// );
+		defaultPrograms.insert(
+			std::pair<defaultProgram, opengl::Program>(defaultProgram::tinted,
+				opengl::Program(
+					"./data/shaders/default/tinted.vert.shader",
+					"./data/shaders/default/tinted.frag.shader"
+				)
+			)
+		);
 
 		// defaultPrograms.insert(
 		// 	std::pair<defaultProgram, opengl::Program>(defaultProgram::textured,
@@ -90,7 +90,10 @@ namespace graphics {
 		RenderTarget t;
 		t.target = &obj;
 
-		t.program;
+		if (obj.config.tinted)
+		{
+			t.program = &defaultPrograms[defaultProgram::tinted];
+		}
 		
 		quedRenderables.push_back(t);
 		//TODO: some kind of buffer combination

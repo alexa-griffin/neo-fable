@@ -39,7 +39,7 @@ namespace layers {
 
 	void TestLayer::update()
 	{
-		window->rCtx.submit(box, program);
+		window->rCtx.submit(box);
 
 		window->rCtx.drawQue();
 	}

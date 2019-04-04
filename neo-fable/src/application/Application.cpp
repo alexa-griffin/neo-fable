@@ -8,6 +8,7 @@ Application::Application(application::WindowConfig config)
 	window->setEventCallback(std::bind(&Application::onEvent, this, std::placeholders::_1));
 	window->createCallbacks();
 	window->rCtx.resizeOrthoProj(config.width, config.height);
+	window->rCtx.loadDefaultPrograms();
 }
 
 void Application::onEvent(events::Event& e) 
