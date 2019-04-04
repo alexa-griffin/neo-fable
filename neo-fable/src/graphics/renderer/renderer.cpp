@@ -5,18 +5,21 @@
 namespace graphics {
 	std::map<DefaultProgram, opengl::Program> Renderer::defaultPrograms;
 
-	Renderer::Renderer(bool preOpengl) : loadedDefaultPrograms()
+	Renderer::Renderer(bool preOpengl)
 	{
 		if (loadedDefaultPrograms || !preOpengl) return;
-		LOG_INFO("loading default programs");
+
+		LOG_INFO("initing renderer");
 
 		// load default programs
-		// defaultPrograms.insert(std::pair<DefaultProgram, opengl::Program>(TINTED_SHADER,
-		// 	opengl::Program(
-		// 		"./data/shaders/default/tinted.vert.shader",
-		// 		"./data/shaders/default/tinted.frag.shader"
-		// 	)
-		// ));
+		defaultPrograms.insert(std::pair<DefaultProgram, opengl::Program>(
+			TINTED_SHADER, opengl::Program(
+				"./data/shaders/default/tinted.vert.shader",
+				"./data/shaders/default/tinted.frag.shader"
+			)
+		));
+
+		LOG_INFO("loaded default programs");
 
 		// defaultPrograms.insert(std::pair<DefaultProgram, opengl::Program>(
 		// 	TEXTURED_SHADER, opengl::Program(
@@ -89,18 +92,17 @@ namespace graphics {
 	{
 		RenderTarget t;
 		t.target = &obj;
-		DefaultProgram program = DefaultProgram::none;
+		DefaultProgram proj = DefaultProgram::none;
 		if (obj.config.textured) 
 		{
-			if (obj.config.tinted) program = TINTED_TEXTURED_SHADER;
-			else program = TEXTURED_SHADER;
+			if (obj.config.tinted) proj = TINTED_TEXTURED_SHADER;
+			else proj = TEXTURED_SHADER;
 		}
 		else if (obj.config.tinted) 
 		{
-			program = TINTED_SHADER;
+			proj = TINTED_SHADER;
 		}
-
-		t.program = &defaultPrograms[program];
+		t.program = &defaultPrograms[proj];
 		quedRenderables.push_back(t);
 		//TODO: some kind of buffer combination
 	}
