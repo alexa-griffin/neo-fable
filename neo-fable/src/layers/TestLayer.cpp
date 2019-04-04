@@ -20,17 +20,12 @@ namespace layers {
 
 		opengl::VertexArray vertices = opengl::VertexArray();
 
-		program = opengl::Program(
-			"./data/shaders/default/textured.vert.shader", 
-			"./data/shaders/default/textured.frag.shader"
-		);
-
 		vertices.addBuffer(posBuffer, I_POS_LOCATION);
 
 		box = graphics::Renderable(vertices, 4);
 
 		box.addTexture("./data/graphics/tile.png");
-		// box.setFill(RGB(0, 0, 255));
+		box.setFill(RGB(0, 0, 255));
 	};
 
 	TestLayer::~TestLayer()
@@ -39,7 +34,7 @@ namespace layers {
 
 	void TestLayer::update()
 	{
-		window->rCtx.submit(box, program);
+		window->rCtx.submit(box);
 
 		window->rCtx.drawQue();
 	}
