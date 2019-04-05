@@ -3,9 +3,6 @@
 
 
 namespace layers {
-	using namespace application;
-	using namespace events;
-
 	TestLayer::TestLayer(std::string name, std::shared_ptr<application::Window> win)
 		: Layer(name, win), box(100, 100)
 	{
@@ -17,7 +14,7 @@ namespace layers {
 	{
 	}
 
-	void TestLayer::update()
+	void TestLayer::update(unsigned int dT)
 	{
 		window->rCtx.submit(box);
 		
@@ -28,7 +25,7 @@ namespace layers {
 	{
 		ON_EVENT(mouseMove, {
 			box.resetTransforms();
-			box.translate(glm::vec3(e.getX() / (window->getWidth() / 2), -e.getY() / (window->getHeight() / 2), 0.0f));
+			box.translate(glm::vec3(e.getX(), e.getY(), 0.0f));
 		});
 
 		return false;

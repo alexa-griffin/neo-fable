@@ -30,12 +30,12 @@ void Application::update()
 
 	for (application::Layer* layer : layerStack)
 	{
-		layer->update();
+		layer->update(0);
 	}
 
 	for (application::Layer* overlay : overlayStack)
 	{
-		overlay->update();
+		overlay->update(0);
 	}
 
 	window->update();

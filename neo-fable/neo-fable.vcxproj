@@ -190,6 +190,7 @@
     <ClCompile Include="src\vendor\glm\detail\glm.cpp" />
     <ClCompile Include="src\vendor\stb_image\stb_image.cpp" />
     <ClCompile Include="src\graphics\opengl\Texture.cpp" />
+    <ClCompile Include="src\layers\TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\graphics\renderer\Rect.hpp" />
@@ -459,6 +460,7 @@
     <ClInclude Include="src\vendor\glm\vec3.hpp" />
     <ClInclude Include="src\vendor\glm\vec4.hpp" />
     <ClInclude Include="src\vendor\glm\vector_relational.hpp" />
+    <ClInclude Include="src\layers\TileMap.hpp" />
     <ClInclude Include="TODO.md" />
     <ClInclude Include="src\util\util.hpp" />
     <ClInclude Include="src\vendor\stb_image\stb_image.h" />

@@ -14,7 +14,7 @@ namespace application {
 
 		inline const std::string getName() const { return name; }
 
-		virtual void update() = 0;
+		virtual void update(unsigned int dT) = 0;
 
 		// lifecycle methods
 		virtual void onMount() {}

@@ -75,6 +75,9 @@
     <ClCompile Include="src\graphics\renderer\Rect.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\layers\TileMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\events\events.hpp">
@@ -891,6 +894,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\graphics\renderer\Rect.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\layers\TileMap.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

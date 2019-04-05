@@ -1,14 +1,16 @@
 #include "application/log.hpp"
 #include "application/Application.hpp"
 #include "layers/TestLayer.hpp"
+#include "layers/TileMap.hpp"
 #include "data_loader/util.hpp"
-
-Application neoFable({ "derp", 700, 360 });
-
-layers::TestLayer test("test layer", neoFable.getWindow());
 
 int main(void)
 {
+	Application neoFable({ "derp", 960, 360 });
+
+	layers::TestLayer test("test layer", neoFable.getWindow());
+	// layers::TileMap map("tile map", neoFable.getWindow());
+
 	neoFable.pushLayer(&test);
 
 	while (neoFable.shouldUpdate())

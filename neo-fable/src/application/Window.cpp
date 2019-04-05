@@ -110,7 +110,7 @@ namespace application {
 		{
 			WindowConfig& data = *(WindowConfig*)glfwGetWindowUserPointer(window);
 
-			events::MouseMove ev(x, y);
+			events::MouseMove ev(x, -y + data.height);
 			if (data.onEvent) { data.onEvent(ev); }
 		});
 

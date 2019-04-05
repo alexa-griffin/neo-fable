@@ -21,7 +21,7 @@ namespace layers {
 		~TestLayer();
 
 		bool onEvent (const events::Event &e) override;
-		virtual void update();
+		virtual void update(unsigned int dT);
 		virtual void onMount();
 	private:
 		opengl::Texture texture;

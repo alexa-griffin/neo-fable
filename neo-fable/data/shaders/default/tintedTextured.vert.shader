@@ -13,5 +13,5 @@ uniform mat4 proj;
 void main() {
 	fColor = vec4(iColor, 1.0f);
 	fTexCoord = iTexCoord;
-	gl_Position = translation * proj * vec4(iPos, 1.0, 1.0);
+	gl_Position = proj * translation * vec4(iPos, 1.0, 1.0);
 }

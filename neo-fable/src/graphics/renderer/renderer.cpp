@@ -54,7 +54,7 @@ namespace graphics {
 
 	void Renderer::resizeOrthoProj(float w, float h)
 	{
-		orthoProj = glm::ortho(0.0f, w, h, 0.0f);
+		orthoProj = glm::ortho(0.0f, w, 0.0f, h, -1.0f, 1.0f);
 	}
 
 	void Renderer::draw(Renderable &obj, opengl::Program program)
