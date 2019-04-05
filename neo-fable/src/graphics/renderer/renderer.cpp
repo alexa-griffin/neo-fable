@@ -62,7 +62,7 @@ namespace graphics {
 		program.use();
 
 		// set ortho projection for renderable shader
-		// all renderable shaders are assumed to have a mat4 uniform "orthoProj"
+		// all renderable shaders are assumed to have a mat4 uniform "proj"
 		//TODO: figure out if there is a way to warn if the uniform does not exist
 		program.setUniform("proj", glUniformMatrix4fv, 1, GL_FALSE, glm::value_ptr(orthoProj));
 		

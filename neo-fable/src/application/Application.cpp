@@ -11,16 +11,20 @@ Application::Application(application::WindowConfig config)
 	window->rCtx.loadDefaultPrograms();
 }
 
-void Application::onEvent(events::Event& e) 
+void Application::onEvent(events::Event& event) 
 {
+	ON_WINDOW_RESIZE({
+		window->rCtx.resizeOrthoProj(e.getWidth(), e.getHeight());
+	});
+
 	for (application::Layer* overlay : overlayStack)
 	{
-		if (overlay->onEvent(e)) return;
+		if (overlay->onEvent(event)) return;
 	}
 
 	for (application::Layer* layer : layerStack)
 	{
-		if (layer->onEvent(e)) return;
+		if (layer->onEvent(event)) return;
 	}
 }
 

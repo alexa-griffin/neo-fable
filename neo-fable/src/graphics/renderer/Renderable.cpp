@@ -29,8 +29,8 @@ namespace graphics {
 		}
 		GL_DEBUG_CALL(glDrawElements(GL_TRIANGLES, ibo.getLength(), GL_UNSIGNED_INT, nullptr));
 
-		vao.unbind();
-		ibo.unbind();
+		// vao.unbind(); // for preformance
+		// ibo.unbind();
 	}
 
 	void Renderable::addTexture(std::string path)

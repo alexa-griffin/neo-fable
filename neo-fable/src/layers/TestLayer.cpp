@@ -23,7 +23,7 @@ namespace layers {
 
 	bool TestLayer::onEvent(const events::Event &event)
 	{
-		ON_EVENT(mouseMove, {
+		ON_MOUSE_MOVE({
 			box.resetTransforms();
 			box.translate(glm::vec3(e.getX(), e.getY(), 0.0f));
 		});

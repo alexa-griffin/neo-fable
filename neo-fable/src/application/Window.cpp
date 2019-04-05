@@ -67,7 +67,19 @@ namespace application {
 		glfwSetWindowUserPointer(window, &config);
 
 		// create window events
-		glfwSetWindowSizeCallback(window, [](GLFWwindow* window, int w, int h)
+		// glfwSetWindowSizeCallback(window, [](GLFWwindow* window, int w, int h)
+		// {
+		// 	WindowConfig& data = *(WindowConfig*)glfwGetWindowUserPointer(window);
+		// 
+		// 	data.width = w;
+		// 	data.height = h;
+		// 
+		// 	events::WindowResize ev(w, h);
+		// 	
+		// 	if (data.onEvent) { data.onEvent(ev); }
+		// });
+
+		glfwSetFramebufferSizeCallback(window, [](GLFWwindow* window, int w, int h)
 		{
 			WindowConfig& data = *(WindowConfig*)glfwGetWindowUserPointer(window);
 
@@ -75,7 +87,6 @@ namespace application {
 			data.height = h;
 
 			events::WindowResize ev(w, h);
-			data.rCtx.resizeOrthoProj((float)w, (float)h);
 
 			if (data.onEvent) { data.onEvent(ev); }
 		});
