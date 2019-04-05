@@ -72,7 +72,7 @@ namespace graphics {
 		}
 		else 
 		{
-			vao.modBuffer(I_COLOR_LOCATION, colors);
+			vao.modBuffer(I_COLOR_LOCATION, colors, 12 * sizeof(float));
 		}
 	}
 

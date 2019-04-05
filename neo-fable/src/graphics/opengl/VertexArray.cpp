@@ -27,7 +27,7 @@ namespace opengl {
 		unbind();
 	}
 
-	void VertexArray::modBuffer(GLuint index, const float* data)
+	void VertexArray::modBuffer(GLuint index, const float* data, GLuint length)
 	{
 		if (buffers.find(index) == buffers.end())
 		{
@@ -38,7 +38,7 @@ namespace opengl {
 		bind();
 		buffers[index].bind();
 
-		buffers[index].setData(data);
+		buffers[index].setData(data, length);
 
 		GL_DEBUG_CALL(glEnableVertexAttribArray(index));
 		GL_DEBUG_CALL(glVertexAttribPointer(index, buffers[index].getCount(), GL_FLOAT, GL_FALSE, buffers[index].getLength(), (void*)0));

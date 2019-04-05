@@ -9,6 +9,21 @@ namespace graphics {
 	{
 	}
 
+	defaultProgram Renderer::getDefaultProgram(Renderable &obj) {
+		if (obj.config.textured && obj.config.tinted)
+			return defaultProgram::tintedTextured;
+		
+		else if (obj.config.tinted)
+			return defaultProgram::tinted;
+
+		else if (obj.config.textured)
+			return defaultProgram::textured;
+		
+		else LOG_ERROR("obj does not have a valid default program");
+
+		return defaultProgram::none;
+	}
+
 	void Renderer::loadDefaultPrograms()
 	{
 		LOG_INFO("loading default programs");
@@ -79,6 +94,14 @@ namespace graphics {
 		}
 	}
 
+	void Renderer::drawBatched()
+	{
+		opengl::IndexBuffer ibo = opengl::IndexBuffer(batchVertexLength);
+		ibo.bind();
+
+		GL_DEBUG_CALL(glDrawElements(GL_TRIANGLES, ibo.getLength(), GL_UNSIGNED_INT, nullptr));
+	}
+
 	void Renderer::submit(Renderable &obj, opengl::Program &program)
 	{
 		RenderTarget *t = new RenderTarget;
@@ -93,20 +116,20 @@ namespace graphics {
 		RenderTarget *t = new RenderTarget;
 		t->target = &obj;
 
-		if (obj.config.textured && obj.config.tinted)
-		{
-			t->program = &defaultPrograms[defaultProgram::tintedTextured];
-		} 
-		else if (obj.config.tinted)
-		{
-			t->program = &defaultPrograms[defaultProgram::tinted];
-		}
-		else if (obj.config.textured) 
-		{
-			t->program = &defaultPrograms[defaultProgram::textured];
-		}
+		t->program = &defaultPrograms[getDefaultProgram(obj)];
 		
 		quedRenderables.push_back(t);
-		//TODO: some kind of buffer combination
 	}
+
+	void Renderer::submitBatched(Renderable &obj)
+	{
+		batchVertexLength += obj.ibo.getOriginLength();
+
+		RenderTarget *t = new RenderTarget;
+		t->target = &obj;
+		t->program = &defaultPrograms[getDefaultProgram(obj)];
+		
+		quedRenderables.push_back(t);
+	}
+
 }

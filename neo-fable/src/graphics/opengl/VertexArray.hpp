@@ -15,7 +15,7 @@ namespace opengl {
 		~VertexArray();
 
 		void addBuffer(Buffer b, GLuint index);
-		void modBuffer(GLuint index, const float* data);
+		void modBuffer(GLuint index, const float* data, GLuint length);
 
 		void bind() const;
 		void unbind() const;

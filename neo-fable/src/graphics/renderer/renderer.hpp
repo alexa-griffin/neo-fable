@@ -45,10 +45,11 @@ namespace graphics {
 
 		void draw(Renderable &obj, opengl::Program program);
 
-		// void submit(Renderable &obj);
 		void submit(Renderable &obj, opengl::Program &program);
 		void submit(Renderable &obj);
+		void submitBatched(Renderable &obj);
 		void drawQue();
+		void drawBatched();
 	private:
 		// view matrix
 		glm::mat4 orthoProj;
@@ -56,5 +57,10 @@ namespace graphics {
 		static std::map<defaultProgram, opengl::Program> defaultPrograms;
 		
 		std::vector<RenderTarget*> quedRenderables;
+
+		// for batching
+		unsigned int batchVertexLength;
+	private:
+		static defaultProgram getDefaultProgram(Renderable &obj);
 	};
 }
