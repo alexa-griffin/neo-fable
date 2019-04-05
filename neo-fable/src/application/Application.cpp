@@ -16,6 +16,7 @@ void Application::onEvent(events::Event& event)
 	ON_WINDOW_RESIZE({
 		window->rCtx.resizeOrthoProj(e.getWidth(), e.getHeight());
 	});
+	LOG_INFO("(", window->getWidth(), ", ", window->getHeight());
 
 	for (application::Layer* overlay : overlayStack)
 	{

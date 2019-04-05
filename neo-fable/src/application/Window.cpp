@@ -86,6 +86,8 @@ namespace application {
 			data.width = w;
 			data.height = h;
 
+			GL_DEBUG_CALL(glViewport(0, 0, w, h));
+
 			events::WindowResize ev(w, h);
 
 			if (data.onEvent) { data.onEvent(ev); }
