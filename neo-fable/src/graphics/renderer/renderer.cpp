@@ -94,14 +94,6 @@ namespace graphics {
 		}
 	}
 
-	void Renderer::drawBatched()
-	{
-		opengl::IndexBuffer ibo = opengl::IndexBuffer(batchVertexLength);
-		ibo.bind();
-
-		GL_DEBUG_CALL(glDrawElements(GL_TRIANGLES, ibo.getLength(), GL_UNSIGNED_INT, nullptr));
-	}
-
 	void Renderer::submit(Renderable &obj, opengl::Program &program)
 	{
 		RenderTarget *t = new RenderTarget;
@@ -120,16 +112,4 @@ namespace graphics {
 		
 		quedRenderables.push_back(t);
 	}
-
-	void Renderer::submitBatched(Renderable &obj)
-	{
-		batchVertexLength += obj.ibo.getOriginLength();
-
-		RenderTarget *t = new RenderTarget;
-		t->target = &obj;
-		t->program = &defaultPrograms[getDefaultProgram(obj)];
-		
-		quedRenderables.push_back(t);
-	}
-
 }

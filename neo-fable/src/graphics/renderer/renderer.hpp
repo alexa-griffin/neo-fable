@@ -47,9 +47,7 @@ namespace graphics {
 
 		void submit(Renderable &obj, opengl::Program &program);
 		void submit(Renderable &obj);
-		void submitBatched(Renderable &obj);
 		void drawQue();
-		void drawBatched();
 	private:
 		// view matrix
 		glm::mat4 orthoProj;

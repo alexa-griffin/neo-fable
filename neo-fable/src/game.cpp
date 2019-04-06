@@ -9,9 +9,10 @@ int main(void)
 	Application neoFable({ "derp", 960, 360 });
 
 	layers::TestLayer test("test layer", neoFable.getWindow());
-	// layers::TileMap map("tile map", neoFable.getWindow());
-
 	neoFable.pushLayer(&test);
+
+	// layers::TileMap map("tile map", neoFable.getWindow());
+	// neoFable.pushLayer(&map);
 
 	while (neoFable.shouldUpdate())
 	{

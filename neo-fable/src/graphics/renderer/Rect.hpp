@@ -15,5 +15,7 @@ namespace graphics {
 	private:
 		float width;
 		float height;
+
+		static GLuint indices[6];
 	};
 }

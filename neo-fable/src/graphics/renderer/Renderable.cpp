@@ -6,8 +6,8 @@ namespace graphics {
 	{
 	}
 
-	Renderable::Renderable(opengl::VertexArray va, unsigned int indices)
-		: transforms(1.0f), vao(va), ibo(indices)
+	Renderable::Renderable(opengl::VertexArray va, GLuint *data, GLuint count)
+		: transforms(1.0f), vao(va), ibo(data, count)
 	{
 	}
 
@@ -27,10 +27,16 @@ namespace graphics {
 			texture.bind();
 			program.setUniform("img", glUniform1i, texture.getBoundSlot());
 		}
-		GL_DEBUG_CALL(glDrawElements(GL_TRIANGLES, ibo.getLength(), GL_UNSIGNED_INT, nullptr));
+		GL_DEBUG_CALL(glDrawElements(GL_TRIANGLES, ibo.getCount(), GL_UNSIGNED_INT, nullptr));
 
 		// vao.unbind(); // for preformance
 		// ibo.unbind();
+	}
+
+	void Renderable::use()
+	{
+		vao.bind();
+		ibo.bind();
 	}
 
 	void Renderable::addTexture(std::string path)

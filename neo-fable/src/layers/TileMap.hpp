@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 #include "../application/Window.hpp"
 #include "../application/Layer.hpp"
 #include "../graphics/graphics.hpp"
@@ -11,17 +13,16 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#define MAP_WIDTH 32
-#define MAP_HEIGHT 32
+#define MAP_WIDTH 36
+#define MAP_HEIGHT 24
 
 #define TILE_WIDTH 32
 #define TILE_HEIGHT 32
 
 namespace layers {
 	struct Tile {
-		glm::vec3 position;
-		graphics::Rect rect;
-		Tile() : rect(TILE_WIDTH, TILE_HEIGHT) {};
+		glm::vec2 position;
+		glm::vec3 color;
 	};
 
 	class TileMap : public application::Layer
@@ -36,6 +37,9 @@ namespace layers {
 
 
 	private:
-		Tile map[MAP_WIDTH][MAP_HEIGHT];
+		Tile map[MAP_WIDTH * MAP_HEIGHT];
+
+		graphics::Rect tile;
+		opengl::Program program;
 	};
 }

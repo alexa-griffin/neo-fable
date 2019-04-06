@@ -7,17 +7,15 @@ namespace opengl {
 	class IndexBuffer
 	{
 	public:
-		IndexBuffer(unsigned int length);
+		IndexBuffer(GLuint *data, GLuint count);
 		IndexBuffer() {};
 
 		void bind() const;
 		void unbind() const;
-		const unsigned int getLength() const { return indexLength; }
-		const unsigned int getOriginLength() const { return length; }
+		const unsigned int getCount() const { return count; }
 
 	private:
 		GLuint uid;
-		unsigned int length;
-		unsigned int indexLength;
+		unsigned int count;
 	};
 }

@@ -14,7 +14,7 @@ namespace graphics {
 	{
 	public:
 		Renderable();
-		Renderable(opengl::VertexArray va, unsigned int indices);
+		Renderable(opengl::VertexArray va, GLuint *data, GLuint count);
 
 		virtual ~Renderable();
 
@@ -23,6 +23,7 @@ namespace graphics {
 		virtual void addTexture(std::string path);
 		virtual void setFill(glm::vec3 color);
 		virtual void setFill(glm::vec3 bl, glm::vec3 tl, glm::vec3 tr, glm::vec3 br);
+		void use();
 
 		// transformation methods
 		void translate(glm::vec3 m);

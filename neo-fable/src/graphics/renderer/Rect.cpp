@@ -2,6 +2,8 @@
 
 
 namespace graphics {
+	GLuint Rect::indices[6] = { 0, 1, 2, 0, 2, 3 };
+
 	Rect::Rect(float w, float h) : width(w), height(h)
 	{
 		float pos[8] = {
@@ -19,7 +21,7 @@ namespace graphics {
 
 		transforms = glm::mat4(1.0f); 
 		vao = opengl::VertexArray(vertices);
-		ibo = opengl::IndexBuffer(4);
+		ibo = opengl::IndexBuffer(indices, 6);
 	}
 
 	Rect::~Rect()

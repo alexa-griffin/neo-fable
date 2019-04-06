@@ -1300,8 +1300,6 @@
     <None Include="data\shaders\tests\color.frag.shader" />
     <None Include="data\shaders\tests\texture.frag.shader" />
     <None Include="data\shaders\tests\texture.vert.shader" />
-    <None Include="data\shaders\main.frag.shader" />
-    <None Include="data\shaders\main.vert.shader" />
     <None Include="data\shaders\tests\va.frag.shader" />
     <None Include="data\shaders\tests\va.vert.shader" />
     <None Include="data\shaders\default\tintedTextured.vert.shader" />
@@ -1310,5 +1308,7 @@
     <None Include="data\shaders\default\tinted.vert.shader" />
     <None Include="data\shaders\default\textured.frag.shader" />
     <None Include="data\shaders\default\textured.vert.shader" />
+    <None Include="data\shaders\tileMap.frag.shader" />
+    <None Include="data\shaders\tileMap.vert.shader" />
   </ItemGroup>
 </Project>
