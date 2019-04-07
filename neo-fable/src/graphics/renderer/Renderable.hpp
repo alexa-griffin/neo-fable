@@ -17,13 +17,16 @@ namespace graphics {
 		Renderable(opengl::VertexArray va, GLuint *data, GLuint count);
 
 		virtual ~Renderable();
-
-		virtual void draw(opengl::Program program);
-
+		
 		virtual void addTexture(std::string path);
 		virtual void setFill(glm::vec3 color);
 		virtual void setFill(glm::vec3 bl, glm::vec3 tl, glm::vec3 tr, glm::vec3 br);
-		void use();
+		
+		unsigned int getIboCount() { return ibo.getCount(); };
+
+		void bindVAO();
+		void bindIBO();
+		virtual void setUniforms(opengl::Program program);
 
 		// transformation methods
 		void translate(glm::vec3 m);

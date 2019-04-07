@@ -81,7 +81,11 @@ namespace graphics {
 		//TODO: figure out if there is a way to warn if the uniform does not exist
 		program.setUniform("proj", glUniformMatrix4fv, 1, GL_FALSE, glm::value_ptr(orthoProj));
 		
-		obj.draw(program);
+		obj.setUniforms(program);
+		obj.bindVAO();
+		obj.bindIBO();
+
+		GL_DEBUG_CALL(glDrawElements(GL_TRIANGLES, obj.getIboCount(), GL_UNSIGNED_INT, nullptr));
 	}
 
 	void Renderer::drawQue()

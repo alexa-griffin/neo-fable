@@ -15,11 +15,18 @@ namespace graphics {
 	{
 	}
 
-	void Renderable::draw(opengl::Program program)
+	void Renderable::bindIBO()
+	{
+		ibo.bind();
+	}
+
+	void Renderable::bindVAO() 
 	{
 		vao.bind();
-		ibo.bind();
+	}
 
+	void Renderable::setUniforms(opengl::Program program) 
+	{
 		program.setUniform("translation", glUniformMatrix4fv, 1, GL_FALSE, glm::value_ptr(transforms));
 
 		if (config.textured)
@@ -27,17 +34,8 @@ namespace graphics {
 			texture.bind();
 			program.setUniform("img", glUniform1i, texture.getBoundSlot());
 		}
-		GL_DEBUG_CALL(glDrawElements(GL_TRIANGLES, ibo.getCount(), GL_UNSIGNED_INT, nullptr));
-
-		// vao.unbind(); // for preformance
-		// ibo.unbind();
 	}
 
-	void Renderable::use()
-	{
-		vao.bind();
-		ibo.bind();
-	}
 
 	void Renderable::addTexture(std::string path)
 	{
