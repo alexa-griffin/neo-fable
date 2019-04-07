@@ -39,7 +39,7 @@ namespace layers {
 	private:
 		Tile map[MAP_WIDTH * MAP_HEIGHT];
 
-		graphics::Rect tile;
+		graphics::StaticRect tile;
 		opengl::Program program;
 	};
 }

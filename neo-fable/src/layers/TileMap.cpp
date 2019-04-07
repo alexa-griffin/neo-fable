@@ -3,18 +3,18 @@
 
 namespace layers {
 	TileMap::TileMap(std::string name, std::shared_ptr<application::Window> win)
-		: Layer(name, win), tile(TILE_WIDTH, TILE_HEIGHT)
+		: Layer(name, win), tile(TILE_WIDTH, TILE_HEIGHT), program("./data/shaders/tileMap.vert.shader", "./data/shaders/tileMap.frag.shader")
 	{
-		program = opengl::Program("./data/shaders/tileMap.vert.shader", "./data/shaders/tileMap.frag.shader");
-
-		for (int i = 0; i < MAP_WIDTH; i++)
-		{
-			for (int j = 0; j < MAP_HEIGHT; j++)
-			{
-				map[i * j].position = glm::vec2(TILE_WIDTH * i, TILE_HEIGHT * j);
-				map[i * j].color = RGB(255, 0, 255);
-			}
-		}
+		// program = opengl::Program("./data/shaders/tileMap.vert.shader", "./data/shaders/tileMap.frag.shader");
+		// 
+		// for (int i = 0; i < MAP_WIDTH; i++)
+		// {
+		// 	for (int j = 0; j < MAP_HEIGHT; j++)
+		// 	{
+		// 		map[i * j].position = glm::vec2(TILE_WIDTH * i, TILE_HEIGHT * j);
+		// 		map[i * j].color = RGB(255, 0, 255);
+		// 	}
+		// }
 	}
 
 

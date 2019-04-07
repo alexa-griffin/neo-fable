@@ -4,14 +4,14 @@
 
 #include "../opengl.hpp"
 
-#include "./Renderable.hpp"
+#include "./StaticRenderable.hpp"
 
 namespace graphics {
-	class Rect : public Renderable
+	class StaticRect : public StaticRenderable
 	{
 	public:
-		Rect(float w, float h);
-		~Rect();
+		StaticRect(float w, float h);
+		~StaticRect();
 	private:
 		float width;
 		float height;

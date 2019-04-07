@@ -21,7 +21,6 @@ namespace application {
 		unsigned int height = 480;
 		bool open = true;
 		windowEventCallback onEvent;
-		graphics::Renderer rCtx;
 	};
 
 	class Window
@@ -40,15 +39,15 @@ namespace application {
 
 		void setEventCallback(const windowEventCallback callback);
 
+		void clearScreen();
+		void clearScreen(float r, float g, float b, float a);
+
 		unsigned int getHeight();
 		unsigned int getWidth();
 
 	private:
 		GLFWwindow* window;
 		WindowConfig config;
-
-	public:
-		graphics::Renderer rCtx;
 	};
 }
 

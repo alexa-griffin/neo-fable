@@ -2,15 +2,11 @@
 
 
 namespace opengl {
-	Program::Program()
-	{
-		GL_DEBUG_CALL(uid = glCreateProgram());
-	}
-	
 	//TODO: make this take a map so it supports other types of shaders
 	Program::Program(std::string vertPath, std::string fragPath)
 	{
 		GL_DEBUG_CALL(uid = glCreateProgram());
+		LOG_INFO("creating program: ", uid);
 
 		Shader vertShader = opengl::Shader(GL_VERTEX_SHADER, vertPath);
 		Shader fragShader = opengl::Shader(GL_FRAGMENT_SHADER, fragPath);
@@ -24,7 +20,7 @@ namespace opengl {
 
 	Program::~Program()
 	{
-		// glDeleteProgram(uid);
+		glDeleteProgram(uid);
 	}
 
 	void Program::attach(Shader shader)

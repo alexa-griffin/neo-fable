@@ -1,70 +1,12 @@
 #include "Renderer.hpp"
-#include "Renderable.hpp"
 
 
 namespace graphics {
-	std::map<defaultProgram, opengl::Program> Renderer::defaultPrograms;
+	std::map<defaultProgram, opengl::Program*> Renderer::defaultPrograms;
 
 	Renderer::~Renderer()
 	{
-	}
-
-	defaultProgram Renderer::getDefaultProgram(Renderable &obj) {
-		if (obj.config.textured && obj.config.tinted)
-			return defaultProgram::tintedTextured;
-		
-		else if (obj.config.tinted)
-			return defaultProgram::tinted;
-
-		else if (obj.config.textured)
-			return defaultProgram::textured;
-		
-		else LOG_ERROR("obj does not have a valid default program");
-
-		return defaultProgram::none;
-	}
-
-	void Renderer::loadDefaultPrograms()
-	{
-		LOG_INFO("loading default programs");
-		defaultPrograms.insert(
-			std::pair<defaultProgram, opengl::Program>(defaultProgram::tinted,
-				opengl::Program(
-					"./data/shaders/default/tinted.vert.shader",
-					"./data/shaders/default/tinted.frag.shader"
-				)
-			)
-		);
-
-		defaultPrograms.insert(
-			std::pair<defaultProgram, opengl::Program>(defaultProgram::textured,
-				opengl::Program(
-					"./data/shaders/default/textured.vert.shader",
-					"./data/shaders/default/textured.frag.shader"
-				)
-			)
-		);
-
-		defaultPrograms.insert(
-			std::pair<defaultProgram, opengl::Program>(defaultProgram::tintedTextured, 
-				opengl::Program(
-					"./data/shaders/default/tintedTextured.vert.shader", 
-					"./data/shaders/default/tintedTextured.frag.shader"
-				)
-			)
-		);
-	}
-
-	void Renderer::clearScreen(float r, float g, float b, float a) 
-	{
-		//TODO: make this check the current clear color
-		GL_DEBUG_CALL(glClearColor(r, g, b, a));
-		clearScreen();
-	}
-
-	void Renderer::clearScreen()
-	{
-		GL_DEBUG_CALL(glClear(GL_COLOR_BUFFER_BIT));
+		defaultPrograms.clear();
 	}
 
 	void Renderer::resizeOrthoProj(float w, float h)
@@ -72,48 +14,44 @@ namespace graphics {
 		orthoProj = glm::ortho(0.0f, w, 0.0f, h, -1.0f, 1.0f);
 	}
 
-	void Renderer::draw(Renderable &obj, opengl::Program program)
+	void Renderer::loadDefaultPrograms()
 	{
-		program.use();
+		//TODO: some kind of recording to prevent double loading
+		LOG_INFO("loading default programs");
 
-		// set ortho projection for renderable shader
-		// all renderable shaders are assumed to have a mat4 uniform "proj"
-		//TODO: figure out if there is a way to warn if the uniform does not exist
-		program.setUniform("proj", glUniformMatrix4fv, 1, GL_FALSE, glm::value_ptr(orthoProj));
-		
-		obj.setUniforms(program);
-		obj.bindVAO();
-		obj.bindIBO();
+		LOG_INFO("defaultProgram::textured: ");
+		defaultPrograms.insert(
+			std::pair<defaultProgram, opengl::Program*>(defaultProgram::textured,
+				new opengl::Program(
+					"./data/shaders/default/textured.vert.shader",
+					"./data/shaders/default/textured.frag.shader"
+				)
+			)
+		);
+		LOG_BLK();
 
-		GL_DEBUG_CALL(glDrawElements(GL_TRIANGLES, obj.getIboCount(), GL_UNSIGNED_INT, nullptr));
+		LOG_INFO("defaultProgram::tinted: ");
+		defaultPrograms.insert(
+			std::pair<defaultProgram, opengl::Program*>(defaultProgram::tinted,
+				new opengl::Program(
+					"./data/shaders/default/tinted.vert.shader",
+					"./data/shaders/default/tinted.frag.shader"
+				)
+			)
+		);
+		LOG_BLK();
+
+		LOG_INFO("defaultProgram::tintedTextured: ");
+		defaultPrograms.insert(
+			std::pair<defaultProgram, opengl::Program*>(defaultProgram::tintedTextured,
+				new opengl::Program(
+					"./data/shaders/default/tintedTextured.vert.shader",
+					"./data/shaders/default/tintedTextured.frag.shader"
+				)
+			)
+		);
+
+		LOG_INFO("finished loading default programs");
 	}
 
-	void Renderer::drawQue()
-	{
-		for (int i = 0; i < quedRenderables.size(); i++)
-		{
-			draw(*(quedRenderables[i]->target), *(quedRenderables[i]->program));
-			delete quedRenderables[i];
-			quedRenderables.erase(quedRenderables.begin() + i);
-		}
-	}
-
-	void Renderer::submit(Renderable &obj, opengl::Program &program)
-	{
-		RenderTarget *t = new RenderTarget;
-		t->program = &program;
-		t->target = &obj;
-		quedRenderables.push_back(t);
-		//TODO: some kind of buffer combination
-	}
-
-	void Renderer::submit(Renderable &obj)
-	{
-		RenderTarget *t = new RenderTarget;
-		t->target = &obj;
-
-		t->program = &defaultPrograms[getDefaultProgram(obj)];
-		
-		quedRenderables.push_back(t);
-	}
 }

@@ -26,21 +26,23 @@ namespace application {
 
 
 #ifdef __PRODUCTION_BUILD__
-	#define LOG_ERROR(m)
-	#define LOG_WARN(m)
-	#define LOG_INFO(m)
-	#define LOG_VAR(v)
+	#define LOG_ERROR(...)
+	#define LOG_WARN(...)
+	#define LOG_INFO(...)
+	#define LOG_TRACE(...)
+	#define LOG_NL()
+	#define LOG_BLK()
+	#define LOG_VAR(...)
 #else
 //TODO: define log levels for these
-#define LOG_ERROR(...) \
-	std::cout << ::termcolor::red << "[ERROR]" << ::termcolor::reset << ": "; \
-	::application::log::print(__VA_ARGS__)
-#define LOG_WARN(...)  \
-	std::cout << ::termcolor::yellow << "[WARNING]" << ::termcolor::reset << ": "; \
-	::application::log::print(__VA_ARGS__)
-#define LOG_INFO(...)  \
-	std::cout << ::termcolor::cyan << "[INFO]" << ::termcolor::reset << ": "; \
-	::application::log::print(__VA_ARGS__)
+#define LOG_ERROR(...) ::application::log::print(::termcolor::red, "[ERROR]", ::termcolor::reset, ": ", __VA_ARGS__)
+#define LOG_WARN(...) ::application::log::print(::termcolor::yellow, "[WARNING]", ::termcolor::reset, ": ", __VA_ARGS__)
+#define LOG_INFO(...) ::application::log::print(::termcolor::cyan, "[INFO]", ::termcolor::reset, ": ", __VA_ARGS__)
+#define LOG_TRACE(...) ::application::log::print(::termcolor::grey, "[TRACE]", ::termcolor::reset, ": ", __VA_ARGS__)
+
+#define LOG_NL() ::application::log::print(std::endl)
+#define LOG_BLK() ::application::log::print("")
+
 // for logging expression names and values
 #define LOG_VAR(v) ::application::log::print(#v, v)
 #endif

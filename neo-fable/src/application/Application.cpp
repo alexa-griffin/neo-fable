@@ -7,16 +7,10 @@ Application::Application(application::WindowConfig config)
 	window = std::unique_ptr<application::Window>(application::Window::create(config));
 	window->setEventCallback(std::bind(&Application::onEvent, this, std::placeholders::_1));
 	window->createCallbacks();
-	window->rCtx.resizeOrthoProj(config.width, config.height);
-	window->rCtx.loadDefaultPrograms();
 }
 
 void Application::onEvent(events::Event& event) 
 {
-	ON_WINDOW_RESIZE({
-		window->rCtx.resizeOrthoProj(e.getWidth(), e.getHeight());
-	});
-
 	for (application::Layer* overlay : overlayStack)
 	{
 		if (overlay->onEvent(event)) return;
@@ -30,7 +24,7 @@ void Application::onEvent(events::Event& event)
 
 void Application::update()
 {
-	window->rCtx.clearScreen();
+	window->clearScreen();
 
 	for (application::Layer* layer : layerStack)
 	{

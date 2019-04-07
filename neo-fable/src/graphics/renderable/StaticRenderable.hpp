@@ -5,18 +5,18 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "../opengl.hpp"
-#include "Renderer.hpp"
+#include "../renderer/StaticRenderer.hpp"
 #include "../util/util.hpp"
 #include "../shaderLayout.hpp"
 
 namespace graphics {
-	class Renderable
+	class StaticRenderable
 	{
 	public:
-		Renderable();
-		Renderable(opengl::VertexArray va, GLuint *data, GLuint count);
+		StaticRenderable();
+		StaticRenderable(opengl::VertexArray va, GLuint *data, GLuint count);
 
-		virtual ~Renderable();
+		virtual ~StaticRenderable();
 		
 		virtual void addTexture(std::string path);
 		virtual void setFill(glm::vec3 color);

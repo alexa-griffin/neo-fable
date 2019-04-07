@@ -12,7 +12,6 @@ namespace opengl {
 	class Program
 	{
 	public:
-		Program();
 		Program(std::string vertPath, std::string fragPath);
 
 		~Program();

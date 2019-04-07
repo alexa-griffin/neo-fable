@@ -1,10 +1,10 @@
-#include "Rect.hpp"
+#include "StaticRect.hpp"
 
 
 namespace graphics {
-	GLuint Rect::indices[6] = { 0, 1, 2, 0, 2, 3 };
+	GLuint StaticRect::indices[6] = { 0, 1, 2, 0, 2, 3 };
 
-	Rect::Rect(float w, float h) : width(w), height(h)
+	StaticRect::StaticRect(float w, float h) : width(w), height(h)
 	{
 		float pos[8] = {
 			0.0f,  0.0f,
@@ -24,7 +24,7 @@ namespace graphics {
 		ibo = opengl::IndexBuffer(indices, 6);
 	}
 
-	Rect::~Rect()
+	StaticRect::~StaticRect()
 	{
 	}
 }

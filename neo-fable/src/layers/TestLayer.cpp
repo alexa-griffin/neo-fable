@@ -4,10 +4,12 @@
 
 namespace layers {
 	TestLayer::TestLayer(std::string name, std::shared_ptr<application::Window> win)
-		: Layer(name, win), box(100, 100)
+		: Layer(name, win), box(100, 100), box1(100, 100)
 	{
-		box.addTexture("./data/graphics/tile.png");
+		// rctx.loadDefaultPrograms();
+		// box.addTexture("./data/graphics/tile.png");
 		box.setFill(RGB(0, 0, 255), RGB(0, 255, 0), RGB(0, 255, 255), RGB(255, 0, 255));
+		box1.setFill(RGB(0, 0, 255), RGB(0, 255, 0), RGB(0, 255, 255), RGB(255, 0, 255));
 	};
 
 	TestLayer::~TestLayer()
@@ -16,9 +18,10 @@ namespace layers {
 
 	void TestLayer::update(unsigned int dT)
 	{
-		window->rCtx.submit(box);
-		
-		window->rCtx.drawQue();
+		rctx.submit(box);
+		rctx.submit(box1);
+
+		rctx.drawQue();
 	}
 
 	bool TestLayer::onEvent(const events::Event &event)
@@ -26,14 +29,20 @@ namespace layers {
 		ON_MOUSE_MOVE({
 			box.resetTransforms();
 			box.translate(glm::vec3(e.getX(), e.getY(), 0.0f));
+			box1.resetTransforms();
+			box1.translate(glm::vec3(e.getX() - 100, e.getY() - 100, 0.0f));
+		});
+
+		ON_WINDOW_RESIZE({
+			rctx.resizeOrthoProj(e.getWidth(), e.getHeight());
 		});
 
 		return false;
 	}
 
-
 	void TestLayer::onMount()
 	{
-
+		rctx.resizeOrthoProj(window->getWidth(), window->getHeight());
+		rctx.loadDefaultPrograms();
 	}
 }

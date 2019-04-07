@@ -26,7 +26,10 @@ namespace layers {
 	private:
 		opengl::Texture texture;
 
-		graphics::Rect box;
+		graphics::StaticRect box;
+		graphics::StaticRect box1;
+
+		graphics::StaticRenderer rctx;
 	};
 }
 

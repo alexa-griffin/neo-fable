@@ -170,10 +170,12 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\graphics\renderer\Rect.cpp" />
+    <ClCompile Include="src\graphics\renderable\StaticRect.cpp" />
     <ClCompile Include="src\graphics\opengl\VertexArray.cpp" />
-    <ClCompile Include="src\graphics\renderer\Renderable.cpp" />
+    <ClCompile Include="src\graphics\renderable\StaticRenderable.cpp" />
+    <ClCompile Include="src\graphics\renderer\BatchRenderer.cpp" />
     <ClCompile Include="src\graphics\renderer\Renderer.cpp" />
+    <ClCompile Include="src\graphics\renderer\StaticRenderer.cpp" />
     <ClCompile Include="src\graphics\opengl\Program.cpp" />
     <ClCompile Include="src\graphics\opengl\Shader.cpp" />
     <ClCompile Include="src\application\LayerStack.cpp" />
@@ -193,11 +195,13 @@
     <ClCompile Include="src\layers\TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\graphics\renderer\Rect.hpp" />
+    <ClInclude Include="src\graphics\renderable\StaticRect.hpp" />
+    <ClInclude Include="src\graphics\renderer\BatchRenderer.hpp" />
+    <ClInclude Include="src\graphics\renderer\Renderer.hpp" />
     <ClInclude Include="src\graphics\shaderLayout.hpp" />
     <ClInclude Include="src\graphics\opengl\VertexArray.hpp" />
-    <ClInclude Include="src\graphics\renderer\Renderable.hpp" />
-    <ClInclude Include="src\graphics\renderer\Renderer.hpp" />
+    <ClInclude Include="src\graphics\renderable\StaticRenderable.hpp" />
+    <ClInclude Include="src\graphics\renderer\StaticRenderer.hpp" />
     <ClInclude Include="src\graphics\opengl.hpp" />
     <ClInclude Include="src\graphics\opengl\Program.hpp" />
     <ClInclude Include="src\graphics\opengl\Shader.hpp" />
