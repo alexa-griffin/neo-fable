@@ -62,9 +62,6 @@ namespace graphics {
 		StaticRenderTarget *t = new StaticRenderTarget;
 		t->target = &obj;
 
-		// LOG_VAR(getDefaultProgram(obj));
-		// LOG_VAR(defaultPrograms[getDefaultProgram(obj)].getUID());
-
 		t->program = defaultPrograms[getDefaultProgram(obj)];
 		
 		quedRenderables.push_back(t);
