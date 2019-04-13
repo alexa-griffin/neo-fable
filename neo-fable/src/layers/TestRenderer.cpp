@@ -7,6 +7,7 @@ namespace layers {
 		: Layer(name, win), box(100, 100),
 		  prog("./data/shaders/default/tinted.vert.shader", "./data/shaders/default/tinted.frag.shader")
 	{
+		rctx.setProgram(&prog);
 		box.setFill(RGB(0, 0, 255), RGB(0, 255, 0), RGB(0, 255, 255), RGB(255, 0, 255));
 	};
 
@@ -16,7 +17,6 @@ namespace layers {
 
 	void TestRenderer::update(unsigned int dT)
 	{
-		rctx.setProgram(&prog);
 		rctx.submit(box);
 		rctx.draw();
 	}
@@ -33,6 +33,6 @@ namespace layers {
 	void TestRenderer::onMount()
 	{
 		rctx.resizeOrthoProj(window->getWidth(), window->getHeight());
-		rctx.loadDefaultPrograms();
+		// rctx.loadDefaultPrograms();
 	}
 }

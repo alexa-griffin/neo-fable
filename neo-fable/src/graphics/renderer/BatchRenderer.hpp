@@ -12,8 +12,8 @@
 #include "../renderable/DynamicRenderable.hpp"
 #include "../shaderLayout.hpp"
 
-#define MAX_VERTICES 8
-#define MAX_INDICES 12
+#define MAX_VERTICES 4
+#define MAX_INDICES 6
 
 namespace graphics {
 	class BatchRenderer : public Renderer 

@@ -3,8 +3,8 @@
 namespace graphics {
 	BatchRenderer::BatchRenderer() 
 		: ibo(nullptr, MAX_INDICES), numVertices(0), 
-		  colorBuffer(nullptr, MAX_VERTICES, 3), 
-		  posBuffer(nullptr, MAX_VERTICES, 2)
+		  colorBuffer(nullptr, MAX_VERTICES * 3, 3), 
+		  posBuffer(nullptr, MAX_VERTICES * 2, 2)
 	{
 		vao.addBuffer(colorBuffer, I_COLOR_LOCATION);
 		vao.addBuffer(posBuffer, I_POS_LOCATION);
@@ -28,6 +28,9 @@ namespace graphics {
 
 	void BatchRenderer::draw()
 	{
+		activeProgram->use();
+		activeProgram->setUniform("proj", glUniformMatrix4fv, 1, GL_FALSE, glm::value_ptr(orthoProj));
+
 		float posData[MAX_VERTICES * 2] = {};
 		float colorData[MAX_VERTICES * 3] = {};
 		GLuint indexData[MAX_INDICES] = {};
@@ -67,13 +70,9 @@ namespace graphics {
 
 		ibo.setData(indexData, MAX_INDICES);
 
-		vao.modBuffer(I_POS_LOCATION, posData, MAX_VERTICES * 2);
-		vao.modBuffer(I_COLOR_LOCATION, colorData, MAX_VERTICES * 3);
+		vao.modBuffer(I_POS_LOCATION, posData, MAX_VERTICES * 2 * sizeof(float));
+		vao.modBuffer(I_COLOR_LOCATION, colorData, MAX_VERTICES * 3 * sizeof(float));
 
-		activeProgram->use();
-		
-		activeProgram->setUniform("proj", glUniformMatrix4fv, 1, GL_FALSE, glm::value_ptr(orthoProj));
-		
 		vao.bind();
 		ibo.bind();
 

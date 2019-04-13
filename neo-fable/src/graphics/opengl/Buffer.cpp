@@ -27,7 +27,11 @@ namespace opengl {
 	void Buffer::setData(const float* data, GLuint length)
 	{
 		if (size < length) 
-			{ LOG_WARN("data is larger than stored size"); }
+		{ 
+			LOG_WARN("data is larger than stored size"); 
+			LOG_VAR(size);
+			LOG_VAR(length);
+		}
 
 		GL_DEBUG_CALL(glBufferData(GL_ARRAY_BUFFER, length, data, GL_STATIC_DRAW));
 	}

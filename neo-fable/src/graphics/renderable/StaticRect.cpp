@@ -19,7 +19,7 @@ namespace graphics {
 
 		vertices.addBuffer(posBuffer, I_POS_LOCATION);
 
-		transforms = glm::mat4(1.0f); 
+		transforms = glm::mat4(1.0f);
 		vao = opengl::VertexArray(vertices);
 		ibo = opengl::IndexBuffer(indices, 6);
 	}

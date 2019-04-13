@@ -36,7 +36,6 @@ namespace graphics {
 		}
 	}
 
-
 	void StaticRenderable::addTexture(std::string path)
 	{
 		float texCoords[] = {

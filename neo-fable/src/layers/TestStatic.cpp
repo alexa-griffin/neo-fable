@@ -24,6 +24,10 @@ namespace layers {
 		ON_WINDOW_RESIZE({
 			rctx.resizeOrthoProj(e.getWidth(), e.getHeight());
 		});
+		
+		ON_MOUSE_MOVE({
+			box.setFill(RGB(e.getX(), 0, 255), RGB(e.getX(), 255, 0), RGB(e.getX(), 255, 255), RGB(255, e.getX(), 255));
+		});
 
 		return false;
 	}
