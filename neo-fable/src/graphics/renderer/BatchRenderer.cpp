@@ -2,9 +2,12 @@
 
 namespace graphics {
 	BatchRenderer::BatchRenderer() 
-		: vao()
+		: ibo(nullptr, MAX_INDICES), numVertices(0), 
+		  colorBuffer(nullptr, MAX_VERTICES, 3), 
+		  posBuffer(nullptr, MAX_VERTICES, 2)
 	{
-
+		vao.addBuffer(colorBuffer, I_COLOR_LOCATION);
+		vao.addBuffer(posBuffer, I_POS_LOCATION);
 	}
 
 	BatchRenderer::~BatchRenderer()
@@ -18,46 +21,67 @@ namespace graphics {
 
 	void BatchRenderer::submit(DynamicRenderable &obj)
 	{
+		numVertices += obj.getVertexCount();
+
 		quedRenderables.push_back(&obj);
 	}
 
 	void BatchRenderer::draw()
 	{
-		std::vector<float> posData;
-		std::vector<float> colorData;
+		float posData[MAX_VERTICES * 2] = {};
+		float colorData[MAX_VERTICES * 3] = {};
+		GLuint indexData[MAX_INDICES] = {};
 		
-		std::vector<GLuint> indices;
-
-		unsigned int offset = 0;
-
+		int iOff = 0;
+		int vOff = 0;
+		int rOff = 0;
 		for (int i = 0; i < quedRenderables.size(); i++)
 		{
-			posData.insert(posData.end(), quedRenderables[i]->getPosData().begin(), quedRenderables[i]->getPosData().end());
-
-			for (int j = 0; j < quedRenderables[i]->getIndicesCount(); j++)
+			int localOff = 0;
+			unsigned int len = quedRenderables[i]->getVertexCount();
+			for (int j = 0; j < len; j++)
 			{
-				indices[j] = offset + j;
-			}
+				if (j < len - 2)
+				{
+					indexData[iOff] = rOff;
+					indexData[iOff + 1] = rOff + localOff + 1;
+					indexData[iOff + 2] = rOff + localOff + 2;
 
-			offset += quedRenderables[i]->getIndices();
+					iOff += 3;
+					localOff++;
+				}
+
+				VertexData vertex = quedRenderables[i]->getVertex(j);
+
+				posData[(vOff * 2) + 0] = vertex.pos.x;
+				posData[(vOff * 2) + 1] = vertex.pos.y;
+
+				colorData[(vOff * 3) + 0] = vertex.color.r;
+				colorData[(vOff * 3) + 1] = vertex.color.g;
+				colorData[(vOff * 3) + 2] = vertex.color.b;
+
+				vOff++;
+			}
+			rOff += quedRenderables[i]->getVertexCount();
 		}
 
-		opengl::Buffer posBuffer(&posData[0],     sizeof(float) * 2 * MAX_VERTICES, 2);
-		opengl::Buffer colorBuffer(&colorData[0], sizeof(float) * 3 * MAX_VERTICES, 3);
+		ibo.setData(indexData, MAX_INDICES);
+
+		vao.modBuffer(I_POS_LOCATION, posData, MAX_VERTICES * 2);
+		vao.modBuffer(I_COLOR_LOCATION, colorData, MAX_VERTICES * 3);
 
 		activeProgram->use();
 		
-		vao.addBuffer(posBuffer, I_POS_LOCATION);
-		vao.addBuffer(colorBuffer, I_COLOR_LOCATION);
-
-		ibo.bind();
+		activeProgram->setUniform("proj", glUniformMatrix4fv, 1, GL_FALSE, glm::value_ptr(orthoProj));
+		
 		vao.bind();
+		ibo.bind();
 
 		GL_DEBUG_CALL(glDrawElements(GL_TRIANGLES, ibo.getCount(), GL_UNSIGNED_INT, nullptr));
 
 		for (int i = 0; i < quedRenderables.size(); i++)
 		{
-			delete quedRenderables[i];
+			// delete quedRenderables[i];
 			quedRenderables.erase(quedRenderables.begin() + i);
 		}
 	}

@@ -14,22 +14,19 @@
 #include <glm/gtc/type_ptr.hpp>
 
 namespace layers {
-	class TestLayer : public application::Layer
+	class TestStatic : public application::Layer
 	{
 	public:
-		TestLayer(std::string name, std::shared_ptr<application::Window> win);
-		~TestLayer();
+		TestStatic(std::string name, std::shared_ptr<application::Window> win);
+		~TestStatic();
 
-		bool onEvent (const events::Event &e) override;
+		bool onEvent(const events::Event &e) override;
 		virtual void update(unsigned int dT);
 		virtual void onMount();
 	private:
-		opengl::Program program;
+		graphics::StaticRect box;
 
-		graphics::Rect box;
-		graphics::Rect box1;
-
-		graphics::BatchRenderer rctx;
+		graphics::StaticRenderer rctx;
 	};
 }
 

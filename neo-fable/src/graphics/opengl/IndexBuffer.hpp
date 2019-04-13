@@ -13,6 +13,7 @@ namespace opengl {
 		void bind() const;
 		void unbind() const;
 		const unsigned int getCount() const { return count; }
+		void setData(GLuint *data, GLuint length);
 
 	private:
 		GLuint uid;

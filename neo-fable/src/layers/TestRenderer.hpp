@@ -14,20 +14,18 @@
 #include <glm/gtc/type_ptr.hpp>
 
 namespace layers {
-	class TestLayer : public application::Layer
+	class TestRenderer : public application::Layer
 	{
 	public:
-		TestLayer(std::string name, std::shared_ptr<application::Window> win);
-		~TestLayer();
+		TestRenderer(std::string name, std::shared_ptr<application::Window> win);
+		~TestRenderer();
 
-		bool onEvent (const events::Event &e) override;
+		bool onEvent(const events::Event &e) override;
 		virtual void update(unsigned int dT);
 		virtual void onMount();
 	private:
-		opengl::Program program;
-
+		opengl::Program prog;
 		graphics::Rect box;
-		graphics::Rect box1;
 
 		graphics::BatchRenderer rctx;
 	};

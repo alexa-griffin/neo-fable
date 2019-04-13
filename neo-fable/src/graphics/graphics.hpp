@@ -6,3 +6,6 @@
 
 #include "./renderable/StaticRenderable.hpp"
 #include "./renderable/StaticRect.hpp"
+
+#include "./renderable/DynamicRenderable.hpp"
+#include "./renderable/Rect.hpp"

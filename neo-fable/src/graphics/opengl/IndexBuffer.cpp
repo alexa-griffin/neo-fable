@@ -19,4 +19,12 @@ namespace opengl {
 	{
 		GL_DEBUG_CALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
 	}
+
+	void IndexBuffer::setData(GLuint *data, GLuint length)
+	{
+		if (count < length)
+			{ LOG_WARN("data is larger than stored size"); }
+
+		GL_DEBUG_CALL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, length * sizeof(GLuint), data, GL_STATIC_DRAW));
+	}
 }

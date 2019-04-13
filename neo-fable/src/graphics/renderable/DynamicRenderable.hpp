@@ -2,6 +2,11 @@
 
 #include <vector>
 
+#include <GLEW/GL/glew.h>
+#include <GLFW/glfw3.h>
+
+#include "../shaderLayout.hpp"
+
 namespace graphics {
 
 	class DynamicRenderable
@@ -10,9 +15,8 @@ namespace graphics {
 		DynamicRenderable();
 		~DynamicRenderable();
 
-		std::vector<float> getPosData();
-		std::vector<float> getColorData();
+		virtual unsigned int getVertexCount() = 0;
 
-		unsigned int getIndices();
+		virtual VertexData getVertex(unsigned int index) = 0;
 	};
 }
