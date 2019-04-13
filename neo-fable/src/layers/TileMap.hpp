@@ -21,7 +21,7 @@
 
 namespace layers {
 	struct Tile {
-		glm::vec2 position;
+		graphics::Rect rect;
 		glm::vec3 color;
 	};
 
@@ -38,8 +38,8 @@ namespace layers {
 
 	private:
 		Tile map[MAP_WIDTH * MAP_HEIGHT];
+		graphics::BatchRenderer rctx;
 
-		graphics::StaticRect tile;
 		opengl::Program program;
 	};
 }

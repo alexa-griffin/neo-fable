@@ -8,7 +8,8 @@
 namespace graphics {
 	class Rect : public DynamicRenderable {
 	public:
-		Rect(int width, int height);
+		Rect(int width, int height, glm::vec2 off = glm::vec2(0, 0));
+		Rect() {};
 		~Rect();
 
 		virtual unsigned int getVertexCount() { return 4; };

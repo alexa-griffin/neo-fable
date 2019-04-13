@@ -1,12 +1,12 @@
 #include "rect.hpp"
 
 namespace graphics {
-	Rect::Rect(int w, int h) : width(w), height(h) 
+	Rect::Rect(int w, int h, glm::vec2 off) : width(w), height(h) 
 	{
-		vertices[0].pos = glm::vec2(0.0f,  0.0f);
-		vertices[1].pos = glm::vec2(0.0f,  height);
+		vertices[0].pos = off;
+		vertices[1].pos = glm::vec2(off.x,  height);
 		vertices[2].pos = glm::vec2(width, height);
-		vertices[3].pos = glm::vec2(width, 0.0f);
+		vertices[3].pos = glm::vec2(width, off.y);
 	}
 	
 	Rect::~Rect() {}
