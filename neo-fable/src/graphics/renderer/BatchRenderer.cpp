@@ -22,7 +22,7 @@ namespace graphics {
 	void BatchRenderer::submit(DynamicRenderable &obj)
 	{
 		numVertices += obj.getVertexCount();
-
+		numIndices += (obj.getVertexCount() - 2) * 3;
 		quedRenderables.push_back(&obj);
 	}
 
@@ -76,12 +76,17 @@ namespace graphics {
 		vao.bind();
 		ibo.bind();
 
-		GL_DEBUG_CALL(glDrawElements(GL_TRIANGLES, ibo.getCount(), GL_UNSIGNED_INT, nullptr));
+		// GL_DEBUG_CALL(glDrawElements(GL_TRIANGLES, ibo.getCount(), GL_UNSIGNED_INT, nullptr));
+
+		GL_DEBUG_CALL(glDrawRangeElements(GL_TRIANGLES, 0, numIndices, ibo.getCount(), GL_UNSIGNED_INT, nullptr));
 
 		for (int i = 0; i < quedRenderables.size(); i++)
 		{
 			// delete quedRenderables[i];
 			quedRenderables.erase(quedRenderables.begin() + i);
 		}
+
+		numIndices = 0;
+		numVertices = 0;
 	}
 }

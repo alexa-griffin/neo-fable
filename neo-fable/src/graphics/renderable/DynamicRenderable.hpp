@@ -16,6 +16,7 @@ namespace graphics {
 		~DynamicRenderable();
 
 		virtual unsigned int getVertexCount() = 0;
+		virtual unsigned int getIndexCount() = 0;
 
 		virtual VertexData getVertex(unsigned int index) = 0;
 	};

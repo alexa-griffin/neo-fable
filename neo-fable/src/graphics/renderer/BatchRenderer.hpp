@@ -13,7 +13,7 @@
 #include "../shaderLayout.hpp"
 
 #define MAX_VERTICES 4
-#define MAX_INDICES 6
+#define MAX_INDICES 10000
 
 namespace graphics {
 	class BatchRenderer : public Renderer 
@@ -36,6 +36,7 @@ namespace graphics {
 		opengl::Buffer posBuffer;
 
 		unsigned int numVertices;
+		unsigned int numIndices;
 
 		opengl::Program *activeProgram;
 

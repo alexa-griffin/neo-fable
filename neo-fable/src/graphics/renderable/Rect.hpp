@@ -13,6 +13,8 @@ namespace graphics {
 		~Rect();
 
 		virtual unsigned int getVertexCount() { return 4; };
+		virtual unsigned int getIndexCount() { return 6; };
+
 		virtual VertexData getVertex(unsigned int index) { return vertices[index]; };
 
 		virtual void setFill(glm::vec3 color);

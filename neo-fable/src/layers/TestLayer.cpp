@@ -20,18 +20,11 @@ namespace layers {
 	}
 
 	void TestLayer::update(unsigned int dT)
-	{
-		LOG_INFO("begining render");
-		
+	{		
 		rctx.submit(box);
-		LOG_INFO("submitted box");
 		rctx.submit(box1);
-		LOG_INFO("submitted box1");
 
 		rctx.draw();
-		LOG_INFO("end draw");
-
-		LOG_INFO("ending render");
 	}
 
 	bool TestLayer::onEvent(const events::Event &event)
