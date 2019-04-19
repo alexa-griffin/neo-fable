@@ -23,6 +23,10 @@ namespace graphics {
 	{
 		numVertices += obj.getVertexCount();
 		numIndices += (obj.getVertexCount() - 2) * 3;
+
+		if (numVertices > MAX_VERTICES) { LOG_WARN("more vertices provided than thespecified max"); }
+		if (numIndices > MAX_INDICES) { LOG_WARN("more indices provided than the specified max"); }
+
 		quedRenderables.push_back(&obj);
 	}
 
@@ -78,7 +82,7 @@ namespace graphics {
 
 		// GL_DEBUG_CALL(glDrawElements(GL_TRIANGLES, ibo.getCount(), GL_UNSIGNED_INT, nullptr));
 
-		GL_DEBUG_CALL(glDrawRangeElements(GL_TRIANGLES, 0, numIndices, ibo.getCount(), GL_UNSIGNED_INT, nullptr));
+		GL_DEBUG_CALL(glDrawRangeElements(GL_TRIANGLES, 0, numIndices, numIndices, GL_UNSIGNED_INT, nullptr));
 
 		for (int i = 0; i < quedRenderables.size(); i++)
 		{

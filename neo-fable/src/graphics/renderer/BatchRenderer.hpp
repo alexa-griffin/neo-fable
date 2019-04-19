@@ -12,7 +12,7 @@
 #include "../renderable/DynamicRenderable.hpp"
 #include "../shaderLayout.hpp"
 
-#define MAX_VERTICES 4
+#define MAX_VERTICES 1000
 #define MAX_INDICES 10000
 
 namespace graphics {
