@@ -80,9 +80,11 @@ namespace graphics {
 		vao.bind();
 		ibo.bind();
 
+		// LOG_VAR(iOff);
+
 		// GL_DEBUG_CALL(glDrawElements(GL_TRIANGLES, ibo.getCount(), GL_UNSIGNED_INT, nullptr));
 
-		GL_DEBUG_CALL(glDrawRangeElements(GL_TRIANGLES, 0, numIndices, numIndices, GL_UNSIGNED_INT, nullptr));
+		// GL_DEBUG_CALL(glDrawRangeElements(GL_TRIANGLES, 0, numIndices, numIndices, GL_UNSIGNED_INT, nullptr));
 
 		for (int i = 0; i < quedRenderables.size(); i++)
 		{

@@ -21,6 +21,8 @@ namespace opengl {
 		GL_DEBUG_CALL(glEnableVertexAttribArray(index));
 		GL_DEBUG_CALL(glVertexAttribPointer(index, buffer.getCount(), GL_FLOAT, GL_FALSE, buffer.getLength(), (void*)0));
 
+		LOG_VAR((GLsizei)buffer.getLength());
+		
 		buffers.insert(std::pair<GLuint, Buffer>(index, buffer));
 
 		buffer.unbind();
@@ -40,9 +42,10 @@ namespace opengl {
 
 		buffers[index].setData(data, length);
 
-		GL_DEBUG_CALL(glEnableVertexAttribArray(index));
-		GL_DEBUG_CALL(glVertexAttribPointer(index, buffers[index].getCount(), GL_FLOAT, GL_FALSE, buffers[index].getLength(), (void*)0));
 
+		// LOG_VAR(buffers[index].getLength());
+		// GL_DEBUG_CALL(glEnableVertexAttribArray(index));
+		// GL_DEBUG_CALL(glVertexAttribPointer(index, buffers[index].getCount(), GL_FLOAT, GL_FALSE, buffers[index].getLength(), (void*)0));
 
 		buffers[index].unbind();
 		unbind();
