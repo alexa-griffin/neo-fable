@@ -13,7 +13,7 @@ int main()
 	application::init();
 	Application game("hecka");
 
-	layers::TestLayer* test = new layers::TestLayer();
+	layers::TestLayer* test = new layers::TestLayer(game.getWindow());
 
 	game.pushLayer(test);
 

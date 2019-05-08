@@ -4,7 +4,9 @@
 namespace layers {
 	int TestLayer::num = 0;
 
-	TestLayer::TestLayer() : application::Layer("Test Layer" + num)
+	TestLayer::TestLayer(SDL_Window *win) 
+		: application::Layer("Test Layer" + num), 
+		  renderer(SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED))
 	{
 		num++;
 	}

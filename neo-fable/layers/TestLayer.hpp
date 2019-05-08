@@ -7,7 +7,7 @@ namespace layers {
 	class TestLayer : public application::Layer
 	{
 	public:
-		TestLayer();
+		TestLayer(SDL_Window *win);
 		~TestLayer();
 
 		virtual void onUpdate(unsigned int dT);
@@ -15,6 +15,8 @@ namespace layers {
 
 	private:
 		static int num;
+
+		SDL_Renderer *renderer;
 	};
 }
 
