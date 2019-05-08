@@ -10,7 +10,8 @@ namespace layers {
 		TestLayer();
 		~TestLayer();
 
-		virtual void onUpdate();
+		virtual void onUpdate(unsigned int dT);
+		virtual bool onEvent(SDL_Event *e);
 
 	private:
 		static int num;

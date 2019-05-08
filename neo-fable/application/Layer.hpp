@@ -14,7 +14,7 @@ namespace application {
 		virtual void onMount() {};
 		virtual void onUnmount() {};
 		virtual void onUpdate(unsigned int dT) = 0;
-		virtual void onEvent(const SDL_Event* e) {};
+		virtual bool onEvent(SDL_Event* e) { return false; };
 
 	protected:
 		std::string debugName;

@@ -14,8 +14,16 @@ namespace layers {
 	{
 	}
 
-	TestLayer::onUpdate()
+	void TestLayer::onUpdate(unsigned int dT)
 	{
-		std::cout << debugName << std::endl;
+	}
+
+	bool TestLayer::onEvent(SDL_Event *e)
+	{
+		if (e->type == SDL_MOUSEMOTION)
+		{
+			std::cout << "(" << e->motion.x << ", " << e->motion.y << ")" << std::endl;
+		}
+		return true;
 	}
 }

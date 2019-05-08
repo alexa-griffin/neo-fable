@@ -1,20 +1,26 @@
 #include <iostream>
-#include "SDL.h"
+#include <string>
 
+#include "SDL.h"
 #undef main
 
 #include "./application/Window.hpp"
-
+#include "./application/Application.hpp"
+#include "layers/TestLayer.hpp"
 
 int main()
 {
+	application::init();
+	Application game("hecka");
 
-	SDL_Init(SDL_INIT_EVERYTHING);
-	application::Window win("hecka");
-	SDL_Renderer* renderer = SDL_CreateRenderer(win.getSDL(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	
-	SDL_ShowWindow(win.getSDL());
+	layers::TestLayer* test = new layers::TestLayer();
 
-	std::cin.get();
+	game.pushLayer(test);
+
+	while (game.shouldUpdate())
+	{
+		game.update();
+	}
+
 	return 0;
 }

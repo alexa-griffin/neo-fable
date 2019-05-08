@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 #include "Layer.hpp"
 #include "Window.hpp"
@@ -17,9 +18,20 @@ public:
 	void pushLayer(application::Layer* layer);
 	void popLayer(application::Layer* layer);
 
+	void update();
+	bool shouldUpdate() { return running; };
+	void pollEvents();
+
 private:
 	std::vector<application::Layer*> layerStack;
+	application::Window window;
+	SDL_Renderer* renderer;
+	bool running;
+	SDL_Event ev;
 
-	application::Window window
+	friend class Window;
 };
 
+namespace application {
+	void init();
+}
