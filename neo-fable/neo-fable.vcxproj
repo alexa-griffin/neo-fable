@@ -166,11 +166,17 @@ xcopy $(ProjectDir)dep\SDL2\lib\$(PlatformShortName)\SDL2.dll $(OutDir) /y</Comm
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="application\Application.cpp" />
+    <ClCompile Include="application\Layer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="application\Window.cpp" />
+    <ClCompile Include="layers\TestLayer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="application\Application.hpp" />
     <ClInclude Include="application\Window.hpp" />
+    <ClInclude Include="application\Layer.hpp" />
+    <ClInclude Include="layers\TestLayer.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
