@@ -13,6 +13,9 @@ export default class Application {
     this.layerstack = []
 
     this.canvas = document.createElement("canvas")
+    this.canvas.width = window.innerWidth
+    this.canvas.height = window.innerHeight
+
     this.ctx = this.canvas.getContext("2d")
 
     this.store = new Store({
@@ -23,16 +26,19 @@ export default class Application {
     })
   }
 
-  init() {
+  init(): void {
     document.body.appendChild(this.canvas)
   }
 
-  setState(delta: object) {
+  setState(delta: object): void {
     this.store.set(delta)
-    console.log(this.store)
   }
 
-  start() {
+  getState(): object {
+    return this.store.state
+  }
+
+  start(): void {
     // requestAnimationFrame(_ => this.start())
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
     this.layerstack.forEach(layer => {

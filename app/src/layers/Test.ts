@@ -14,7 +14,9 @@ export default class Test extends Layer {
     this.ctx.fillRect(20, 20, 100, 100)
     this.setState({ 
       num: 1,
-      ["data.kevin"]: "heck"
+      ["data.kevin.name"]: "not kevin"
     })
+
+    this.getState().hi = "dog"
   }
 }
