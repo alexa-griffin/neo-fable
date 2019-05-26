@@ -34,7 +34,7 @@ export default class Application {
     this.store.set(delta)
   }
 
-  getState(): object {
+  getState(): boolean {
     return this.store.state
   }
 

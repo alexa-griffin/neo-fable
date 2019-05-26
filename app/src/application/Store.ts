@@ -7,7 +7,7 @@ export default class Store {
     this._state = defaultValue
     this.state = new Proxy(this._state, {
       defineProperty: (target: object, prop: string | number | symbol, desc: PropertyDescriptor): boolean => {
-        console.error("do not try to mutate state directly!")
+        console.error("%c do not try to mutate state directly!", "font-weight: bold; font-size: 32px")
         return false
       }
     })
