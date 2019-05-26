@@ -1,12 +1,19 @@
-
+import Application from "./Application"
 
 export default abstract class Layer {
+  protected ctx: CanvasRenderingContext2D
+
   constructor() {
     
   }
 
+  applyApplicationContext(application: Application) {
+    this.ctx = application.ctx
+  }
+
+  // lifecycle methods
   onMount?() {}
-  onUpdate?() { console.log("default update") }
-  onUnmount?() {}
+  onUpdate?() { }
   onEvent?() { }
+  onUnmount?() {}
 }

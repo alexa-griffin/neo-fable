@@ -4,9 +4,7 @@ import Test from "./layers/Test"
 
 const app: Application = new Application()
 
-const defaultLayer: Test = new Test()
-
-app.pushLayer(defaultLayer)
+app.pushLayer(new Test())
 
 app.init()
 app.start()
