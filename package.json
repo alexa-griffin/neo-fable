@@ -1,0 +1,31 @@
+{
+  "name": "neo-fable",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/main.js",
+  "build": {
+    "files": [
+      "build/main.js",
+      "node_modules",
+      "app",
+      "index.html"
+    ]
+  },
+  "scripts": {
+    "watch-app": "tsc -p ./app -w",
+    "watch-electron": "tsc -w",
+    "start-electron": "electron .",
+    "start": "concurrently \"npm:watch-app\" \"npm:watch-electron\" \"npm:start-electron\"",
+    "build": "electron-builder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexa-griffin/neo-fable.git"
+  },
+  "author": "alexa",
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "electron": "^5.0.2",
+    "electron-builder": "^20.41.0"
+  }
+}
