@@ -1,3 +1,12 @@
-import printThing from "./other"
+import Application from "./application/Application"
+import Test from "./layers/Test"
 
-printThing("3")
+
+const app: Application = new Application()
+
+const defaultLayer: Test = new Test()
+
+app.pushLayer(defaultLayer)
+
+app.init()
+app.start()
