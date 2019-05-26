@@ -16,7 +16,5 @@ export default class Test extends Layer {
       num: 1,
       ["data.kevin.name"]: "not kevin"
     })
-
-    this.getState().hi = "dog"
   }
 }
