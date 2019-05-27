@@ -10,7 +10,7 @@ export default class Test extends Layer {
     this.addStateListener("data", (o, n) => {
       console.log("data changed")
     })
-    this.addStateListener("num.heck", (o, n) => {
+    this.addStateListener("num", (o, n) => {
       console.log("num changed")
     })
     this.addStateListener("data.kevin", (o, n) => {
@@ -19,6 +19,13 @@ export default class Test extends Layer {
     this.addStateListener("data.kevin.name", (o, n) => {
       console.log("name changed")
     })
+  }
+
+  onUnmount() {
+    this.removeStateListener("data")
+    this.removeStateListener("num")
+    this.removeStateListener("data.kevin")
+    this.removeStateListener("data.kevin.name")
   }
 
   onUpdate() {

@@ -1,8 +1,11 @@
+import Layer from "./Layer"
+
 type STLCallback = (oldVal: any, newVal: any) => void
 
 interface StateChangeListener {
   key: string,
-  callback: STLCallback
+  callback: STLCallback,
+  source: Layer
 }
 
 export { STLCallback, StateChangeListener }
