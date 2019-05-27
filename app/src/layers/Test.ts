@@ -10,7 +10,7 @@ export default class Test extends Layer {
     this.addStateListener("data", (o, n) => {
       console.log("data changed")
     })
-    this.addStateListener("num", (o, n) => {
+    this.addStateListener("num.heck", (o, n) => {
       console.log("num changed")
     })
     this.addStateListener("data.kevin", (o, n) => {

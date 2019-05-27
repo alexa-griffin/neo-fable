@@ -32,14 +32,14 @@ export default class Application {
 
   // state management
   setState(deltas: object): void {
-    let prevState = { ...this.store.state }
+    const prevState: object = { ...this.store.state }
     this.store.set(deltas)
     this.listeners.forEach(listener => {
       let dAccess: any = access(listener.key, deltas)
       if (dAccess !== null && typeof(dAccess) !== "undefined") {
         listener.callback(prevState, this.store.state)
       } else {
-        let dKeys = Object.keys(deltas)
+        let dKeys: string[] = Object.keys(deltas)
         for(let i = 0; i < dKeys.length; i++) {
           if(dKeys[i].indexOf(listener.key) === 0) {
             listener.callback(prevState, this.store.state)
