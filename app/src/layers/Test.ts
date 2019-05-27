@@ -7,7 +7,18 @@ export default class Test extends Layer {
   }
 
   onMount() {
-    
+    this.addStateListener("data", (o, n) => {
+      console.log("data changed")
+    })
+    this.addStateListener("num", (o, n) => {
+      console.log("num changed")
+    })
+    this.addStateListener("data.kevin", (o, n) => {
+      console.log("kevin changed")
+    })
+    this.addStateListener("data.kevin.name", (o, n) => {
+      console.log("name changed")
+    })
   }
 
   onUpdate() {

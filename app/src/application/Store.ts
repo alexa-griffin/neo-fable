@@ -1,3 +1,11 @@
+type STLCallback = (oldVal: any, newVal: any) => void
+
+interface StateChangeListener {
+  key: string,
+  callback: STLCallback
+}
+
+export { STLCallback, StateChangeListener }
 
 export default class Store {
   private _state: object
