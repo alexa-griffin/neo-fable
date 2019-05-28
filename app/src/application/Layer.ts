@@ -1,10 +1,13 @@
+import * as PIXI from "pixi.js"
+
 import Application from "./Application"
 import { STLCallback } from "./Store"
 
+import { pixiApp } from "../graphics/index"
 
 export default abstract class Layer {
-  protected ctx: CanvasRenderingContext2D
-  protected getState: () => object
+  protected ctx: PIXI.Container
+  protected getState: () => any
   protected addStateListener: (key: string, callback: STLCallback) => void
   protected removeStateListener: (key: string) => void
 
@@ -15,7 +18,9 @@ export default abstract class Layer {
   }
 
   applyApplicationContext(application: Application) {
-    this.ctx = application.ctx
+    this.ctx = new PIXI.Container()
+
+    application.stage.addChild(this.ctx)
 
     this.getState = application.getState.bind(application)
     this.addStateListener = (key: string, callback: STLCallback) => {
@@ -28,14 +33,36 @@ export default abstract class Layer {
     this._application = application
   }
 
+  stage(renderable: PIXI.DisplayObject) {
+    this._application.stage.addChild(renderable)
+  }
+
   setState(delta: object) {
     this._application.setState(delta)
   }
 
   // lifecycle methods
   onMount?() { }
-  onUpdate?() { }
+  onUpdate?(dt: number) { }
   onStateChange?() { }
   onEvent?() { }
   onUnmount?() { }
+
+  superOnMount() { 
+    this.onMount()
+  }
+  superOnUpdate(dt: number) { 
+    this.onUpdate(dt)
+  }
+  superOnStateChange() { 
+    this.onStateChange()
+  }
+  superOnEvent() { 
+    this.onEvent()
+  }
+  superOnUnmount() { 
+    this.onUnmount()
+
+    this._application.stage.removeChild(this.ctx)
+  }
 }

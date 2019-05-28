@@ -1,35 +1,34 @@
+import * as PIXI from "pixi.js"
+
 import Layer from "./Layer"
 import Store, { STLCallback, StateChangeListener } from "./Store"
 
 import { access } from "../util/util"
+
+import { view, pixiApp, stage } from "../graphics/index"
+
 
 export default class Application {
   private layerstack: Layer[]
   private store: Store
       
   private canvas: HTMLCanvasElement
-  public ctx: CanvasRenderingContext2D
 
   private listeners: StateChangeListener[]
+
+  readonly stage: PIXI.Container
 
   constructor() {
     this.layerstack = []
     this.listeners = []
 
-    this.canvas = document.createElement("canvas")
-    this.canvas.width = window.innerWidth
-    this.canvas.height = window.innerHeight
+    this.canvas = view
 
-    this.ctx = this.canvas.getContext("2d")
+    this.stage = stage
 
     this.store = new Store({
       num: 0,
-      data: {
-        suzen: ""
-      }
     })
-
-    window.app = this
   }
 
   // state management
@@ -74,25 +73,29 @@ export default class Application {
   // layer management
   pushLayer(layer: Layer): void {
     layer.applyApplicationContext(this)
-    layer.onMount()
+    layer.superOnMount()
     this.layerstack.push(layer)
   }
 
   popLayer(layer: Layer): void {
-    layer.onUnmount()
+    layer.superOnUnmount()
     this.layerstack.splice(this.layerstack.indexOf(layer), 1)
   }
 
   // application
+  load(entry: string): void {
+
+  }
+
   init(): void {
     document.body.appendChild(this.canvas)
   }
 
   start(): void {
-    // requestAnimationFrame(_ => this.start())
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-    this.layerstack.forEach(layer => {
-      layer.onUpdate()
+    pixiApp.ticker.add(dT => {
+      this.layerstack.forEach(layer => {
+        layer.superOnUpdate(dT)
+      })
     })
   }
 }

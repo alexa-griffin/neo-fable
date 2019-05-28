@@ -16,6 +16,12 @@
   </style>
 </head>
 <body>
-  <script> require("./app/build/app.js") </script>
+  <script> 
+    const { app } = require("./app/build/app.js") 
+    app.load("./data/main.js")
+
+    app.init()
+    app.start()
+  </script>
 </body>
 </html>

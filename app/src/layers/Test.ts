@@ -1,38 +1,26 @@
+import * as PIXI from "pixi.js"
+
 import Layer from "../application/Layer"
 
-
 export default class Test extends Layer {
+  gtx: PIXI.Graphics
+
   constructor() {
     super()
+
+    this.gtx = new PIXI.Graphics()
   }
 
   onMount() {
-    this.addStateListener("data", (o, n) => {
-      console.log("data changed")
-    })
-    this.addStateListener("num", (o, n) => {
-      console.log("num changed")
-    })
-    this.addStateListener("data.kevin", (o, n) => {
-      console.log("kevin changed")
-    })
-    this.addStateListener("data.kevin.name", (o, n) => {
-      console.log("name changed")
-    })
+    this.stage(this.gtx)
   }
 
-  onUnmount() {
-    this.removeStateListener("data")
-    this.removeStateListener("num")
-    this.removeStateListener("data.kevin")
-    this.removeStateListener("data.kevin.name")
-  }
-
-  onUpdate() {
-    this.ctx.fillRect(20, 20, 100, 100)
+  onUpdate(dT: number) {
+    this.gtx.beginFill(0xffffff)
+      .drawRect(20, 20, 100, 100)
+      .endFill()
     this.setState({ 
-      num: 1,
-      ["data.kevin.name"]: "not kevin"
+      num: this.getState().num + 1,
     })
   }
 }
