@@ -22,6 +22,7 @@ public:
 	bool shouldUpdate() { return running; };
 	void pollEvents();
 	SDL_Window* getWindow() { return window.getSDL(); };
+
 private:
 	std::vector<application::Layer*> layerStack;
 	application::Window window;

@@ -15,6 +15,7 @@ Application::~Application()
 
 void Application::pushLayer(application::Layer* layer)
 {
+	layer->applyApplication(renderer);
 	layerStack.push_back(layer);
 	layer->onMount();
 }
@@ -28,11 +29,15 @@ void Application::popLayer(application::Layer *layer)
 void Application::update()
 {
 	pollEvents();
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	SDL_RenderClear(renderer);
 
 	for (application::Layer* layer : layerStack)
 	{
 		layer->onUpdate(0);
 	}
+
+	SDL_RenderPresent(renderer);
 }
 
 void Application::pollEvents()

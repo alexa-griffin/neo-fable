@@ -16,7 +16,7 @@ namespace layers {
 	private:
 		static int num;
 
-		SDL_Renderer *renderer;
+		SDL_Rect obj;
 	};
 }
 

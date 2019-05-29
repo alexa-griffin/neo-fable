@@ -8,7 +8,8 @@ namespace application {
 	class Layer
 	{
 	public:
-		Layer(std::string name) : debugName(name) {};
+		Layer(std::string name, SDL_Renderer *ren) 
+			: debugName(name), renderer(ren) {};
 		virtual ~Layer();
 
 		virtual void onMount() {};
@@ -16,8 +17,11 @@ namespace application {
 		virtual void onUpdate(unsigned int dT) = 0;
 		virtual bool onEvent(SDL_Event* e) { return false; };
 
+		void applyApplication(SDL_Renderer *ren);
+
 	protected:
 		std::string debugName;
+		SDL_Renderer *renderer;
 	};
 }
 
