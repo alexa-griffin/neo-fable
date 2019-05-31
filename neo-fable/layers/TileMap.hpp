@@ -5,6 +5,8 @@
 #include "../application/Layer.hpp"
 #include "../graphics/Tile.hpp"
 
+#include "../abstract/Camera.hpp"
+
 #define MAP_SIZE 1000
 
 namespace layers {
@@ -18,11 +20,8 @@ namespace layers {
 		virtual void onMount();
 		virtual bool onEvent(SDL_Event* e);
 	private:
-		struct {
-			int x = 11 * TILE_SIZE;
-			int y = 11 * TILE_SIZE;
-			unsigned int viewport = 10;
-		} camera;
+		unsigned int viewport = 10;
+		abstract::Camera camera;
 
 		graphics::Tile map[MAP_SIZE][MAP_SIZE];
 	};

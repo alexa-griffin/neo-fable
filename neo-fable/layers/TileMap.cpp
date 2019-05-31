@@ -1,7 +1,7 @@
 #include "TileMap.hpp"
 
 namespace layers {
-	TileMap::TileMap() : Layer("tilemap") 
+	TileMap::TileMap() : Layer("tilemap"), camera({ 11 * TILE_SIZE, 11 * TILE_SIZE })
 	{
 		for (int x = 0; x < MAP_SIZE; x++) 
 		{
@@ -19,29 +19,29 @@ namespace layers {
 	{
 		SDL_RenderSetClipRect(renderer, new SDL_Rect{
 			0, 0, 
-			(int)camera.viewport * TILE_SIZE * 2, 
-			(int)camera.viewport * TILE_SIZE * 2
+			(int)viewport * TILE_SIZE * 2, 
+			(int)viewport * TILE_SIZE * 2
 		});
 	}
 
 	void TileMap::onUpdate(unsigned int dT) 
 	{
-		float oX = camera.x / TILE_SIZE;
-		float oY = camera.y / TILE_SIZE;
-		int sX = floor(oX) - camera.viewport;
-		int sY = floor(oY) - camera.viewport;
+		float oX = camera.pos.x / TILE_SIZE;
+		float oY = camera.pos.y / TILE_SIZE;
+		int sX = floor(oX) - viewport;
+		int sY = floor(oY) - viewport;
 
-		std::cout << camera.x << ", " << camera.y << std::endl;
+		std::cout << camera.pos.x << ", " << camera.pos.y << std::endl;
 
-		for (int x = sX - 1; x < ceil(oX) + camera.viewport + 1; x++)
+		for (int x = sX - 1; x < ceil(oX) + viewport + 1; x++)
 		{
-			for (int y = sY - 1; y < ceil(oY) + camera.viewport + 1; y++)
+			for (int y = sY - 1; y < ceil(oY) + viewport + 1; y++)
 			{	
 				if (x >= 0 && x < MAP_SIZE && y >= 0 && y < MAP_SIZE)
 				{
 					map[x][y].draw(
-						((x - sX) * TILE_SIZE) - (camera.x % TILE_SIZE),
-						((y - sY) * TILE_SIZE) - (camera.y % TILE_SIZE),
+						((x - sX) * TILE_SIZE) - ((int)camera.pos.x % TILE_SIZE),
+						((y - sY) * TILE_SIZE) - ((int)camera.pos.y % TILE_SIZE),
 						*renderer
 					);
 				}
@@ -49,8 +49,8 @@ namespace layers {
 		}
 
 		SDL_RenderFillRect(renderer, new SDL_Rect{
-			(int)(((TILE_SIZE * camera.viewport * 2) / 2) - 16),
-			(int)(((TILE_SIZE * camera.viewport * 2) / 2) - 16),
+			(int)(((TILE_SIZE * viewport * 2) / 2) - 16),
+			(int)(((TILE_SIZE * viewport * 2) / 2) - 16),
 			32,
 			32
 		});
@@ -60,17 +60,17 @@ namespace layers {
 	{
 		if (e->type == SDL_KEYDOWN)
 		{
-			if (e->key.keysym.sym == SDLK_UP)			camera.y -= 4;
-			else if (e->key.keysym.sym == SDLK_DOWN)	camera.y += 4;
-			else if (e->key.keysym.sym == SDLK_LEFT)	camera.x -= 4;
-			else if (e->key.keysym.sym == SDLK_RIGHT)	camera.x += 4;
+			if (e->key.keysym.sym == SDLK_UP)			camera.pos.y -= 4;
+			else if (e->key.keysym.sym == SDLK_DOWN)	camera.pos.y += 4;
+			else if (e->key.keysym.sym == SDLK_LEFT)	camera.pos.x -= 4;
+			else if (e->key.keysym.sym == SDLK_RIGHT)	camera.pos.x += 4;
 		}
 		else if (e->type == SDL_MOUSEBUTTONDOWN)
 		{
-			camera.y = 0;
-			camera.y = 0;
-			camera.x = 0;
-			camera.x = 0;
+			camera.pos.y = 0;
+			camera.pos.y = 0;
+			camera.pos.x = 0;
+			camera.pos.x = 0;
 		}
 
 		return false;
