@@ -4,8 +4,11 @@
 #include <vector>
 #include <iostream>
 
-#include "Layer.hpp"
 #include "Window.hpp"
+
+namespace application {
+	class Layer;
+}
 
 class Application
 {
@@ -22,6 +25,11 @@ public:
 	bool shouldUpdate() { return running; };
 	void pollEvents();
 	SDL_Window* getWindow() { return window.getSDL(); };
+
+	void destroy();
+
+public:
+
 
 private:
 	std::vector<application::Layer*> layerStack;

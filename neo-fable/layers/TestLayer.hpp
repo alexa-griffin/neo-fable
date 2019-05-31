@@ -7,7 +7,7 @@ namespace layers {
 	class TestLayer : public application::Layer
 	{
 	public:
-		TestLayer(SDL_Window *win);
+		TestLayer();
 		~TestLayer();
 
 		virtual void onUpdate(unsigned int dT);

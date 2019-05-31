@@ -1,11 +1,11 @@
 #include "Application.hpp"
 
+#include "Layer.hpp"
 
 
 Application::Application(std::string name, SDL_WindowFlags flags) 
 	: window(name, flags), running(true)
 {
-	renderer = SDL_CreateRenderer(window.getSDL(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
 
@@ -15,8 +15,9 @@ Application::~Application()
 
 void Application::pushLayer(application::Layer* layer)
 {
-	layer->applyApplication(renderer);
+	layer->applyApplication(&window);
 	layerStack.push_back(layer);
+	layer->__onMount();
 	layer->onMount();
 }
 
@@ -29,15 +30,16 @@ void Application::popLayer(application::Layer *layer)
 void Application::update()
 {
 	pollEvents();
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	SDL_RenderClear(renderer);
 
 	for (application::Layer* layer : layerStack)
 	{
+		SDL_SetRenderDrawColor(layer->renderer, 0, 0, 0, 255);
+		SDL_RenderClear(layer->renderer);
 		layer->onUpdate(0);
+		SDL_RenderPresent(layer->renderer);
+		//TODO: make delta time work
 	}
 
-	SDL_RenderPresent(renderer);
 }
 
 void Application::pollEvents()
@@ -52,6 +54,11 @@ void Application::pollEvents()
 	}
 }
 
+void Application::destroy()
+{
+	SDL_DestroyWindow(window.getSDL());
+	SDL_Quit();
+}
 
 namespace application {
 	void init() 

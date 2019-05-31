@@ -4,13 +4,10 @@
 namespace layers {
 	int TestLayer::num = 0;
 
-	TestLayer::TestLayer(SDL_Window *win) 
-		: application::Layer("Test Layer" + num, NULL)
+	TestLayer::TestLayer() : 
+		application::Layer("Test Layer" + num),
+		obj(SDL_Rect{ 100, 100, 100, 100 })
 	{
-		obj.w = 100;
-		obj.h = 100;
-		obj.x = 100;
-		obj.y = 100;
 		num++;
 	}
 
@@ -21,7 +18,7 @@ namespace layers {
 	void TestLayer::onUpdate(unsigned int dT)
 	{
 		SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);
-		SDL_RenderDrawRect(renderer, &obj);
+		SDL_RenderFillRect(renderer, &obj);
 	}
 
 	bool TestLayer::onEvent(SDL_Event *e)

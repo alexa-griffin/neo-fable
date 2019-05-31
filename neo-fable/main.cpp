@@ -7,20 +7,23 @@
 #include "./application/Window.hpp"
 #include "./application/Application.hpp"
 #include "layers/TestLayer.hpp"
+#include "layers/TileMap.hpp"
 
 int main()
 {
 	application::init();
-	Application game("hecka");
+	Application game("neo fable");
 
-	layers::TestLayer* test = new layers::TestLayer(game.getWindow());
+	layers::TileMap* map = new layers::TileMap();
 
-	game.pushLayer(test);
+	game.pushLayer(map);
 
 	while (game.shouldUpdate())
 	{
 		game.update();
 	}
+
+	game.destroy();
 
 	return 0;
 }
