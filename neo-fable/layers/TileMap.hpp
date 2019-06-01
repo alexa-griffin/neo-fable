@@ -7,6 +7,8 @@
 
 #include "../abstract/Camera.hpp"
 
+#include "../util/maths/Vec2.hpp"
+
 #define MAP_SIZE 1000
 
 namespace layers {
@@ -22,6 +24,7 @@ namespace layers {
 	private:
 		unsigned int viewport = 10;
 		abstract::Camera camera;
+		util::maths::Vec2 playerPos;
 
 		graphics::Tile map[MAP_SIZE][MAP_SIZE];
 	};

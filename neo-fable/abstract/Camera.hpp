@@ -6,11 +6,11 @@ namespace abstract {
 	class Camera
 	{
 	public:
-		Camera() {};
 		Camera(util::maths::Vec2 p);
 		~Camera();
 
 		void setTarget(util::maths::Vec2 t) { trg = t; };
+		void moveTarget(util::maths::Vec2 t) { trg += t; };
 
 		void update();
 
@@ -18,6 +18,9 @@ namespace abstract {
 		util::maths::Vec2 pos;
 
 	private:
+		float maxSpeed;
+		float maxForce;
+
 		util::maths::Vec2 trg;
 
 		util::maths::Vec2 vel;

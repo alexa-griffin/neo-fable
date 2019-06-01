@@ -1,7 +1,9 @@
 #include "TileMap.hpp"
 
 namespace layers {
-	TileMap::TileMap() : Layer("tilemap"), camera({ 11 * TILE_SIZE, 11 * TILE_SIZE })
+	TileMap::TileMap() : Layer("tilemap"), 
+		playerPos(11 * TILE_SIZE, 11 * TILE_SIZE),
+		camera({ 11 * TILE_SIZE, 11 * TILE_SIZE })
 	{
 		for (int x = 0; x < MAP_SIZE; x++) 
 		{
@@ -26,6 +28,9 @@ namespace layers {
 
 	void TileMap::onUpdate(unsigned int dT) 
 	{
+		camera.update();
+		camera.setTarget(playerPos);
+
 		float oX = camera.pos.x / TILE_SIZE;
 		float oY = camera.pos.y / TILE_SIZE;
 		int sX = floor(oX) - viewport;
@@ -60,17 +65,10 @@ namespace layers {
 	{
 		if (e->type == SDL_KEYDOWN)
 		{
-			if (e->key.keysym.sym == SDLK_UP)			camera.pos.y -= 4;
-			else if (e->key.keysym.sym == SDLK_DOWN)	camera.pos.y += 4;
-			else if (e->key.keysym.sym == SDLK_LEFT)	camera.pos.x -= 4;
-			else if (e->key.keysym.sym == SDLK_RIGHT)	camera.pos.x += 4;
-		}
-		else if (e->type == SDL_MOUSEBUTTONDOWN)
-		{
-			camera.pos.y = 0;
-			camera.pos.y = 0;
-			camera.pos.x = 0;
-			camera.pos.x = 0;
+			if (e->key.keysym.sym == SDLK_UP)			playerPos += {  0, -4 };
+			else if (e->key.keysym.sym == SDLK_DOWN)	playerPos += {  0,  4 };
+			else if (e->key.keysym.sym == SDLK_LEFT)	playerPos += { -4,  0 };
+			else if (e->key.keysym.sym == SDLK_RIGHT)	playerPos += {  4,  0 };
 		}
 
 		return false;
