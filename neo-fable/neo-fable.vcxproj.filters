@@ -42,6 +42,9 @@
     <ClCompile Include="util\maths\maths.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="application\Store.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application\Window.hpp">
@@ -69,6 +72,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="util\maths\maths.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="application\Store.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="util\util.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

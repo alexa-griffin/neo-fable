@@ -1,3 +1,6 @@
 [submodule "neo-fable/dep/SDL2"]
 	path = neo-fable/dep/SDL2
 	url = https://github.com/RetroAchievements/SDL2
+[submodule "neo-fable/dep/json.hpp"]
+	path = neo-fable/dep/json.hpp
+	url = https://github.com/nlohmann/json

@@ -11,9 +11,11 @@ namespace application {
 	{
 	}
 
-	void Layer::applyApplication(Window* win)
+	void Layer::applyApplication(Application* app)
 	{
 		ready = true;
-		renderer = SDL_CreateRenderer(win->getSDL(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+		renderer = SDL_CreateRenderer(app->window.getSDL(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+		store = &app->store;
+		state = app->store.getState();
 	}
 }

@@ -13,7 +13,7 @@ int main()
 {
 	application::init();
 	Application game("neo fable");
-
+	
 	layers::TileMap* map = new layers::TileMap();
 
 	game.pushLayer(map);

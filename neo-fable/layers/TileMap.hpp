@@ -23,7 +23,6 @@ namespace layers {
 		virtual bool onEvent(SDL_Event* e);
 	private:
 		unsigned int viewport = 10;
-		abstract::Camera camera;
 		util::maths::Vec2 playerPos;
 
 		graphics::Tile map[MAP_SIZE][MAP_SIZE];

@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "Window.hpp"
+#include "Store.hpp"
 
 namespace application {
 	class Layer;
@@ -28,9 +29,6 @@ public:
 
 	void destroy();
 
-public:
-
-
 private:
 	std::vector<application::Layer*> layerStack;
 	application::Window window;
@@ -38,7 +36,10 @@ private:
 	bool running;
 	SDL_Event ev;
 
+	application::Store store;
+
 	friend class Window;
+	friend class application::Layer;
 };
 
 namespace application {

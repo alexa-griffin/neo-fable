@@ -91,7 +91,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)dep\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)dep\json.hpp\single_include\nlohmann\;$(ProjectDir)dep\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -110,7 +110,7 @@ xcopy $(ProjectDir)dep\SDL2\lib\$(PlatformShortName)\SDL2.dll $(OutDir) /y</Comm
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)dep\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)dep\json.hpp\single_include\nlohmann\;$(ProjectDir)dep\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -131,7 +131,7 @@ xcopy $(ProjectDir)dep\SDL2\lib\$(PlatformShortName)\SDL2.dll $(OutDir) /y</Comm
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)dep\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)dep\json.hpp\single_include\nlohmann\;$(ProjectDir)dep\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -154,7 +154,7 @@ xcopy $(ProjectDir)dep\SDL2\lib\$(PlatformShortName)\SDL2.dll $(OutDir) /y</Comm
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)dep\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)dep\json.hpp\single_include\nlohmann\;$(ProjectDir)dep\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -178,6 +178,7 @@ xcopy $(ProjectDir)dep\SDL2\lib\$(PlatformShortName)\SDL2.dll $(OutDir) /y</Comm
     <ClCompile Include="application\Window.cpp" />
     <ClCompile Include="layers\TestLayer.cpp" />
     <ClCompile Include="graphics\Tile.cpp" />
+    <ClCompile Include="application\Store.cpp" />
     <ClCompile Include="util\maths\maths.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -188,8 +189,10 @@ xcopy $(ProjectDir)dep\SDL2\lib\$(PlatformShortName)\SDL2.dll $(OutDir) /y</Comm
     <ClInclude Include="layers\TestLayer.hpp" />
     <ClInclude Include="layers\TileMap.hpp" />
     <ClInclude Include="graphics\Tile.hpp" />
+    <ClInclude Include="application\Store.hpp" />
     <ClInclude Include="util\maths\maths.hpp" />
     <ClInclude Include="util\maths\Vec2.hpp" />
+    <ClInclude Include="util\util.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

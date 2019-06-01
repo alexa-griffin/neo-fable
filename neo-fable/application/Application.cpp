@@ -15,7 +15,7 @@ Application::~Application()
 
 void Application::pushLayer(application::Layer* layer)
 {
-	layer->applyApplication(&window);
+	layer->applyApplication(this);
 	layerStack.push_back(layer);
 	layer->__onMount();
 	layer->onMount();

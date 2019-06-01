@@ -2,9 +2,9 @@
 
 namespace layers {
 	TileMap::TileMap() : Layer("tilemap"), 
-		playerPos(11 * TILE_SIZE, 11 * TILE_SIZE),
-		camera({ 11 * TILE_SIZE, 11 * TILE_SIZE })
+		playerPos(11 * TILE_SIZE, 11 * TILE_SIZE)
 	{
+
 		for (int x = 0; x < MAP_SIZE; x++) 
 		{
 			for (int y = 0; y < MAP_SIZE; y++)
@@ -19,6 +19,8 @@ namespace layers {
 
 	void TileMap::onMount()
 	{
+		state->camera = new abstract::Camera({ 11 * TILE_SIZE, 11 * TILE_SIZE });
+
 		SDL_RenderSetClipRect(renderer, new SDL_Rect{
 			0, 0, 
 			(int)viewport * TILE_SIZE * 2, 
@@ -28,15 +30,13 @@ namespace layers {
 
 	void TileMap::onUpdate(unsigned int dT) 
 	{
-		camera.update();
-		camera.setTarget(playerPos);
+		state->camera->update();
+		state->camera->setTarget(playerPos);
 
-		float oX = camera.pos.x / TILE_SIZE;
-		float oY = camera.pos.y / TILE_SIZE;
+		float oX = state->camera->pos.x / TILE_SIZE;
+		float oY = state->camera->pos.y / TILE_SIZE;
 		int sX = floor(oX) - viewport;
 		int sY = floor(oY) - viewport;
-
-		std::cout << camera.pos.x << ", " << camera.pos.y << std::endl;
 
 		for (int x = sX - 1; x < ceil(oX) + viewport + 1; x++)
 		{
@@ -45,8 +45,8 @@ namespace layers {
 				if (x >= 0 && x < MAP_SIZE && y >= 0 && y < MAP_SIZE)
 				{
 					map[x][y].draw(
-						((x - sX) * TILE_SIZE) - ((int)camera.pos.x % TILE_SIZE),
-						((y - sY) * TILE_SIZE) - ((int)camera.pos.y % TILE_SIZE),
+						((x - sX) * TILE_SIZE) - ((int)state->camera->pos.x % TILE_SIZE),
+						((y - sY) * TILE_SIZE) - ((int)state->camera->pos.y % TILE_SIZE),
 						*renderer
 					);
 				}
@@ -56,8 +56,8 @@ namespace layers {
 		SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
 
 		SDL_RenderFillRect(renderer, new SDL_Rect{
-			(int)(playerPos.x - camera.pos.x) + (int)(viewport * TILE_SIZE),
-			(int)(playerPos.y - camera.pos.y) + (int)(viewport * TILE_SIZE),
+			(int)(playerPos.x - state->camera->pos.x) + (int)(viewport * TILE_SIZE),
+			(int)(playerPos.y - state->camera->pos.y) + (int)(viewport * TILE_SIZE),
 			32,
 			32
 		});

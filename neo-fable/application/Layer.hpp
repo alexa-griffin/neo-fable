@@ -22,13 +22,15 @@ namespace application {
 
 		void __onMount() { if (!ready) std::cout << "[WARN] attempting to mount a layer that has not been applied to the application" << std::endl; };
 
-		void applyApplication(Window* win);
+		void applyApplication(Application* app);
 
 	protected:
 		friend class Application;
 
 		std::string debugName;
 		SDL_Renderer* renderer;
+		application::Store* store;
+		application::State* state;
 
 		bool ready;
 	};
