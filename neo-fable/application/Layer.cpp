@@ -3,7 +3,7 @@
 
 namespace application {
 	Layer::Layer(std::string name) 
-		: debugName(name), ready(false)
+		: debugName(name), ready(false), renderer(nullptr)
 	{
 	}
 

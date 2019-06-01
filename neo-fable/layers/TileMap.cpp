@@ -4,7 +4,6 @@ namespace layers {
 	TileMap::TileMap() : Layer("tilemap"), 
 		playerPos(11 * TILE_SIZE, 11 * TILE_SIZE)
 	{
-
 		for (int x = 0; x < MAP_SIZE; x++) 
 		{
 			for (int y = 0; y < MAP_SIZE; y++)
@@ -35,8 +34,8 @@ namespace layers {
 
 		float oX = state->camera->pos.x / TILE_SIZE;
 		float oY = state->camera->pos.y / TILE_SIZE;
-		int sX = floor(oX) - viewport;
-		int sY = floor(oY) - viewport;
+		int sX = (int)(floor(oX) - viewport);
+		int sY = (int)(floor(oY) - viewport);
 
 		for (int x = sX - 1; x < ceil(oX) + viewport + 1; x++)
 		{

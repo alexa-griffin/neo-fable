@@ -13,7 +13,7 @@ namespace graphics {
 				x * TILE_SIZE, y * TILE_SIZE,
 				TILE_SIZE, TILE_SIZE 
 			} {};
-		Tile() {};
+		Tile() : x(0), y(0), obj{0, 0, TILE_SIZE, TILE_SIZE} {};
 		~Tile();
 
 		void draw(int posX, int posY, SDL_Renderer& ren);
