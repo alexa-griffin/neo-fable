@@ -53,9 +53,11 @@ namespace layers {
 			}
 		}
 
+		SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
+
 		SDL_RenderFillRect(renderer, new SDL_Rect{
-			(int)(((TILE_SIZE * viewport * 2) / 2) - 16),
-			(int)(((TILE_SIZE * viewport * 2) / 2) - 16),
+			(int)(playerPos.x - camera.pos.x) + (int)(viewport * TILE_SIZE),
+			(int)(playerPos.y - camera.pos.y) + (int)(viewport * TILE_SIZE),
 			32,
 			32
 		});

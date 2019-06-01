@@ -2,6 +2,8 @@
 
 #include "../util/maths/vec2.hpp"
 
+#define MAX_OFFSET 20
+
 namespace abstract {
 	class Camera
 	{
