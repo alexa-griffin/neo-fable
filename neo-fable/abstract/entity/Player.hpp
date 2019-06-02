@@ -16,6 +16,9 @@ namespace entity {
 
 		virtual void update();
 		virtual void draw(abstract::Camera* cam);
+
+	private:
+		SDL_Rect *rendered;
 	};
 }
 

@@ -179,7 +179,7 @@ xcopy $(ProjectDir)dep\SDL2\lib\$(PlatformShortName)\SDL2.dll $(OutDir) /y</Comm
     <ClCompile Include="main.cpp" />
     <ClCompile Include="application\Window.cpp" />
     <ClCompile Include="layers\TestLayer.cpp" />
-    <ClCompile Include="graphics\Tile.cpp" />
+    <ClCompile Include="abstract\Tile.cpp" />
     <ClCompile Include="application\Store.cpp" />
     <ClCompile Include="abstract\entity\Player.cpp" />
     <ClCompile Include="util\maths\maths.cpp" />
@@ -193,7 +193,7 @@ xcopy $(ProjectDir)dep\SDL2\lib\$(PlatformShortName)\SDL2.dll $(OutDir) /y</Comm
     <ClInclude Include="graphics\graphics.hpp" />
     <ClInclude Include="layers\TestLayer.hpp" />
     <ClInclude Include="layers\TileMap.hpp" />
-    <ClInclude Include="graphics\Tile.hpp" />
+    <ClInclude Include="abstract\Tile.hpp" />
     <ClInclude Include="application\Store.hpp" />
     <ClInclude Include="abstract\entity\Player.hpp" />
     <ClInclude Include="util\maths\maths.hpp" />

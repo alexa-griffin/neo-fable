@@ -4,9 +4,11 @@
 
 #include "../util/util.hpp"
 
+#include "../graphics/graphics.hpp"
+
 #define TILE_SIZE UNIT
 
-namespace graphics {
+namespace abstract {
 	class Tile
 	{
 	public:
@@ -18,7 +20,7 @@ namespace graphics {
 		Tile() : x(0), y(0), obj{0, 0, TILE_SIZE, TILE_SIZE} {};
 		~Tile();
 
-		void draw(int posX, int posY, SDL_Renderer& ren);
+		void draw(int posX, int posY);
 	private:
 		int x;
 		int y;

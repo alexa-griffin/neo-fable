@@ -3,11 +3,11 @@
 #include <cmath>
 
 #include "../application/Layer.hpp"
-#include "../graphics/Tile.hpp"
 #include "../graphics/graphics.hpp"
 
 #include "../abstract/Camera.hpp"
 #include "../abstract/entity/Player.hpp"
+#include "../abstract/Tile.hpp"
 
 #include "../util/maths/Vec2.hpp"
 
@@ -26,6 +26,6 @@ namespace layers {
 	private:
 		util::maths::Vec2 playerPos;
 
-		graphics::Tile map[MAP_SIZE][MAP_SIZE];
+		abstract::Tile map[MAP_SIZE][MAP_SIZE];
 	};
 }

@@ -8,7 +8,7 @@ namespace layers {
 		{
 			for (int y = 0; y < MAP_SIZE; y++)
 			{
-				map[x][y] = graphics::Tile(x, y);
+				map[x][y] = abstract::Tile(x, y);
 			}
 		}
 	}
@@ -52,8 +52,7 @@ namespace layers {
 				{
 					map[x][y].draw(
 						((x - sX) * TILE_SIZE) - ((int)state->camera->pos.x % TILE_SIZE),
-						((y - sY) * TILE_SIZE) - ((int)state->camera->pos.y % TILE_SIZE),
-						*renderer
+						((y - sY) * TILE_SIZE) - ((int)state->camera->pos.y % TILE_SIZE)
 					);
 				}
 			}
