@@ -17,5 +17,6 @@ namespace application {
 		renderer = SDL_CreateRenderer(app->window.getSDL(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 		store = &app->store;
 		state = app->store.getState();
+		window = &app->window;
 	}
 }

@@ -31,6 +31,7 @@ namespace application {
 		SDL_Renderer* renderer;
 		application::Store* store;
 		application::State* state;
+		application::Window* window;
 
 		bool ready;
 	};

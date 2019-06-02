@@ -23,10 +23,12 @@ namespace layers {
 
 		state->player->moveTo({ 11 * TILE_SIZE, 11 * TILE_SIZE });
 
-		SDL_RenderSetClipRect(renderer, new SDL_Rect{
-			0, 0, 
-			(int)state->camera->viewport * TILE_SIZE * 2, 
-			(int)state->camera->viewport * TILE_SIZE * 2
+		const int size = state->camera->viewport * TILE_SIZE * 2;
+
+		SDL_RenderSetViewport(renderer, new SDL_Rect{
+			(window->getWidth() / 2) - (size / 2),
+			0,
+			size, size
 		});
 	}
 
