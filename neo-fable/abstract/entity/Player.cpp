@@ -23,8 +23,8 @@ namespace entity {
 		SDL_RenderFillRect(renderer, new SDL_Rect{
 			(int)(pos.x - cam->pos.x) + (int)(cam->viewport * UNIT),
 			(int)(pos.y - cam->pos.y) + (int)(cam->viewport * UNIT),
-			(int)size.x,
-			(int)size.y
+			(int)size.w,
+			(int)size.h
 		});
 	}
 }

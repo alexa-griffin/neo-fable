@@ -6,8 +6,15 @@
 namespace util {
 	namespace maths {
 		struct Vec2 {
-			float x;
-			float y;
+			union {
+				float x;
+				float w;
+			};
+			union {
+				float y;
+				float h;
+			};
+
 			Vec2(float a) : x(a), y(a) {};
 			Vec2(float a, float b) : x(a), y(b) {};
 			Vec2() : x(0), y(0) {};
