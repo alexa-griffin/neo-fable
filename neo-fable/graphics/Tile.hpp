@@ -1,8 +1,10 @@
 #pragma once
 #include <iostream>
-#include <SDL.h>
+#include "SDL.h"
 
-#define TILE_SIZE 32
+#include "../util/util.hpp"
+
+#define TILE_SIZE UNIT
 
 namespace graphics {
 	class Tile

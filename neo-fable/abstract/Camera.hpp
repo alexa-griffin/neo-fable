@@ -18,6 +18,7 @@ namespace abstract {
 
 	public:
 		util::maths::Vec2 pos;
+		unsigned int viewport = 10;
 
 	private:
 		float maxSpeed;

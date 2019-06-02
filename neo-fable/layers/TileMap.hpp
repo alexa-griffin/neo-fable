@@ -6,6 +6,7 @@
 #include "../graphics/Tile.hpp"
 
 #include "../abstract/Camera.hpp"
+#include "../abstract/entity/Player.hpp"
 
 #include "../util/maths/Vec2.hpp"
 
@@ -22,7 +23,6 @@ namespace layers {
 		virtual void onMount();
 		virtual bool onEvent(SDL_Event* e);
 	private:
-		unsigned int viewport = 10;
 		util::maths::Vec2 playerPos;
 
 		graphics::Tile map[MAP_SIZE][MAP_SIZE];
