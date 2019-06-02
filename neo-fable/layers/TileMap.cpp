@@ -34,6 +34,8 @@ namespace layers {
 
 	void TileMap::onUpdate(unsigned int dT) 
 	{
+		graphics::bind(renderer);
+
 		state->camera->update();
 		state->camera->setTarget(state->player->getPos());
 
@@ -57,7 +59,7 @@ namespace layers {
 			}
 		}
 
-		state->player->draw(renderer, state->camera);
+		state->player->draw(state->camera);
 	}
 
 	bool TileMap::onEvent(SDL_Event *e) 

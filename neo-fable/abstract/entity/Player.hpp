@@ -2,7 +2,7 @@
 
 #include "../Entity.hpp"
 #include "../../util/util.hpp"
-
+#include "../../graphics/graphics.hpp"
 
 namespace entity {
 	class Player : public abstract::Entity
@@ -15,7 +15,7 @@ namespace entity {
 		void moveTo(util::maths::Vec2 trg) { pos = trg; };
 
 		virtual void update();
-		virtual void draw(SDL_Renderer* renderer, abstract::Camera* cam);
+		virtual void draw(abstract::Camera* cam);
 	};
 }
 

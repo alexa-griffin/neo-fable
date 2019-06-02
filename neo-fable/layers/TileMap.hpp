@@ -4,6 +4,7 @@
 
 #include "../application/Layer.hpp"
 #include "../graphics/Tile.hpp"
+#include "../graphics/graphics.hpp"
 
 #include "../abstract/Camera.hpp"
 #include "../abstract/entity/Player.hpp"

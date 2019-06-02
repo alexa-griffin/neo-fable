@@ -10,7 +10,7 @@ namespace abstract {
 	{
 	public:
 		//TODO: renderer+camera combination
-		virtual void draw(SDL_Renderer* renderer, Camera* cam) {};
+		virtual void draw(Camera* cam) {};
 		virtual void update() {};
 
 		virtual util::maths::Vec2 getPos() { return pos; };

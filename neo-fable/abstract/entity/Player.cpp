@@ -16,15 +16,17 @@ namespace entity {
 
 	}
 
-	void Player::draw(SDL_Renderer* renderer, abstract::Camera* cam)
+	void Player::draw(abstract::Camera* cam)
 	{
-		SDL_SetRenderDrawColor(renderer, RGB(255, 0, 255));
+		graphics::direct([=](SDL_Renderer* renderer) {
+			SDL_SetRenderDrawColor(renderer, RGB(255, 0, 255));
 
-		SDL_RenderFillRect(renderer, new SDL_Rect{
-			(int)(pos.x - cam->pos.x) + (int)(cam->viewport * UNIT),
-			(int)(pos.y - cam->pos.y) + (int)(cam->viewport * UNIT),
-			(int)size.w,
-			(int)size.h
+			SDL_RenderFillRect(renderer, new SDL_Rect{
+				(int)(pos.x - cam->pos.x) + (int)(cam->viewport * UNIT),
+				(int)(pos.y - cam->pos.y) + (int)(cam->viewport * UNIT),
+				(int)size.w,
+				(int)size.h
+			});
 		});
 	}
 }
