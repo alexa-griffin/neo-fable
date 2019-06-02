@@ -9,6 +9,7 @@ namespace application {
 		abstract::Camera* camera;
 		util::Json data;
 	};
+
 	class Store
 	{
 	public:
