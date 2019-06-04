@@ -1,8 +1,7 @@
 #include "TileMap.hpp"
 
 namespace layers {
-	TileMap::TileMap() : Layer("tilemap"), 
-		playerPos(11 * TILE_SIZE, 11 * TILE_SIZE)
+	TileMap::TileMap() : Layer("tilemap")
 	{
 		for (int x = 0; x < MAP_SIZE; x++) 
 		{

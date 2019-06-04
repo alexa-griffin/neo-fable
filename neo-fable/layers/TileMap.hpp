@@ -24,8 +24,6 @@ namespace layers {
 		virtual void onMount();
 		virtual bool onEvent(SDL_Event* e);
 	private:
-		util::maths::Vec2 playerPos;
-
 		abstract::Tile map[MAP_SIZE][MAP_SIZE];
 	};
 }

@@ -33,7 +33,7 @@ void Application::update()
 
 	for (application::Layer* layer : layerStack)
 	{
-		SDL_SetRenderDrawColor(layer->renderer, 0, 0, 0, 255);
+		SDL_SetRenderDrawColor(layer->renderer, 0, 0, 0, 0);
 		SDL_RenderClear(layer->renderer);
 		layer->onUpdate(0);
 		SDL_RenderPresent(layer->renderer);

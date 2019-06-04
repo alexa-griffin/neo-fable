@@ -175,6 +175,7 @@ xcopy $(ProjectDir)dep\SDL2\lib\$(PlatformShortName)\SDL2.dll $(OutDir) /y</Comm
     <ClCompile Include="abstract\Camera.cpp" />
     <ClCompile Include="abstract\Entity.cpp" />
     <ClCompile Include="graphics\graphics.cpp" />
+    <ClCompile Include="layers\EntitySet.cpp" />
     <ClCompile Include="layers\TileMap.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="application\Window.cpp" />
@@ -182,6 +183,7 @@ xcopy $(ProjectDir)dep\SDL2\lib\$(PlatformShortName)\SDL2.dll $(OutDir) /y</Comm
     <ClCompile Include="abstract\Tile.cpp" />
     <ClCompile Include="application\Store.cpp" />
     <ClCompile Include="abstract\entity\Player.cpp" />
+    <ClCompile Include="abstract\entity\StaticObject.cpp" />
     <ClCompile Include="util\maths\maths.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -191,11 +193,13 @@ xcopy $(ProjectDir)dep\SDL2\lib\$(PlatformShortName)\SDL2.dll $(OutDir) /y</Comm
     <ClInclude Include="application\Layer.hpp" />
     <ClInclude Include="abstract\Entity.hpp" />
     <ClInclude Include="graphics\graphics.hpp" />
+    <ClInclude Include="layers\EntitySet.hpp" />
     <ClInclude Include="layers\TestLayer.hpp" />
     <ClInclude Include="layers\TileMap.hpp" />
     <ClInclude Include="abstract\Tile.hpp" />
     <ClInclude Include="application\Store.hpp" />
     <ClInclude Include="abstract\entity\Player.hpp" />
+    <ClInclude Include="abstract\entity\StaticObject.hpp" />
     <ClInclude Include="util\maths\maths.hpp" />
     <ClInclude Include="util\maths\Vec2.hpp" />
     <ClInclude Include="util\util.hpp" />

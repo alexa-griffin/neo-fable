@@ -2,9 +2,13 @@
 
 #include "json.hpp"
 
-// rename for convenience
 namespace util {
+	// rename for convenience
 	using Json = nlohmann::json;
+
+	struct Color {
+		int r, g, b, a;
+	};
 }
 
 #define RGB(r, g, b) (r), (g), (b), (255)

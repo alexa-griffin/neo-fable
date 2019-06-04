@@ -2,7 +2,9 @@
 
 
 namespace entity {
-	Player::Player() : Entity({ 0, 0 }, { UNIT, UNIT }), rendered(new SDL_Rect{ 0, 0, UNIT, UNIT })
+	Player::Player() : 
+		Entity({ 0, 0 }, { UNIT, UNIT }), 
+		rendered(new SDL_Rect{ 0, 0, UNIT, UNIT })
 	{
 	}
 
