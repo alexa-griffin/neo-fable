@@ -19,11 +19,14 @@ namespace layers {
 
 	void EntitySet::onUpdate(unsigned int dT)
 	{
-		std::cout << "on update entity set" << std::endl;
 		graphics::bind(renderer);
-		for (abstract::Entity* entity : entities)
-		{
-			entity->draw(state->camera);
-		}
+
+		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 0);
+		SDL_RenderFillRect(renderer, new SDL_Rect({ 0, 0, 100, 100 }));
+		
+		// for (abstract::Entity* entity : entities)
+		// {
+		// 	entity->draw(state->camera);
+		// }
 	}
 }

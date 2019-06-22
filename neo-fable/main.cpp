@@ -18,8 +18,8 @@ int main()
 	layers::TileMap* map = new layers::TileMap();
 	layers::EntitySet* ents = new layers::EntitySet();
 
-	game.pushLayer(map);
 	game.pushLayer(ents);
+	game.pushLayer(map);
 
 	while (game.shouldUpdate())
 	{
