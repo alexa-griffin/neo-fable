@@ -110,5 +110,8 @@
     <ClInclude Include="layers\EntitySet.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="layers\viewports.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

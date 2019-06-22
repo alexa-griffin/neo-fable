@@ -29,7 +29,7 @@ namespace layers {
 		int maxSize = std::min(window->getHeight() - 200, window->getWidth());
 		if (maxSize < size) scalar = ((float)maxSize / (float)(size));
 
-		renderViewport = new SDL_Rect{
+		renderViewport = SDL_Rect{
 			(int)((window->getWidth() / 2) - ((size * scalar) / 2)),
 			0,
 			(int)(size * scalar),
@@ -74,6 +74,27 @@ namespace layers {
 			else if (e->key.keysym.sym == SDLK_DOWN)	state->player->moveFor({  0,  4 });
 			else if (e->key.keysym.sym == SDLK_LEFT)	state->player->moveFor({ -4,  0 });
 			else if (e->key.keysym.sym == SDLK_RIGHT)	state->player->moveFor({  4,  0 });
+		}
+
+		if (e->type == SDL_WINDOWEVENT && e->window.event == SDL_WINDOWEVENT_RESIZED)
+		{
+			std::cout << "resize" << std::endl;
+
+			int size = state->camera->viewport * TILE_SIZE * 2;
+
+			float scalar = 1;
+
+			int maxSize = std::min(window->getHeight() - 200, window->getWidth());
+			if (maxSize < size) scalar = ((float)maxSize / (float)(size));
+
+			renderViewport = SDL_Rect{
+				(int)((window->getWidth() / 2) - ((size * scalar) / 2)),
+				0,
+				(int)(size * scalar),
+				(int)(size * scalar)
+			};
+
+			renderScalar = { scalar, scalar };
 		}
 
 		return false;

@@ -194,6 +194,7 @@ xcopy $(ProjectDir)dep\SDL2\lib\$(PlatformShortName)\SDL2.dll $(OutDir) /y</Comm
     <ClInclude Include="abstract\Entity.hpp" />
     <ClInclude Include="graphics\graphics.hpp" />
     <ClInclude Include="layers\EntitySet.hpp" />
+    <ClInclude Include="layers\viewports.hpp" />
     <ClInclude Include="layers\TestLayer.hpp" />
     <ClInclude Include="layers\TileMap.hpp" />
     <ClInclude Include="abstract\Tile.hpp" />

@@ -20,12 +20,12 @@ namespace application {
 		virtual void onUpdate(unsigned int dT) = 0;
 		virtual bool onEvent(SDL_Event* e) { return false; };
 
+
 		void __onMount() { if (!ready) std::cout << "[WARN] attempting to mount a layer that has not been applied to the application" << std::endl; };
 
 		void applyApplication(Application* app);
 
 		virtual void applyRenderTransform();
-
 	protected:
 		friend class Application;
 
@@ -38,7 +38,7 @@ namespace application {
 		bool ready;
 
 		// these need to be updated on window resize
-		SDL_Rect* renderViewport;
+		SDL_Rect renderViewport;
 		util::maths::Vec2 renderScalar;
 	};
 }
