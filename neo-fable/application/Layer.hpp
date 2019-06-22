@@ -15,17 +15,24 @@ namespace application {
 		Layer(std::string name);
 		virtual ~Layer();
 
+		// layer lifecycle
 		virtual void onMount() {};
-		virtual void onUnmount() {};
+		virtual void onMounted() {};
+		// repeat until unmounted
 		virtual void onUpdate(unsigned int dT) = 0;
 		virtual bool onEvent(SDL_Event* e) { return false; };
+		// then
+		virtual void onUnmount() {};
 
-
+		// meta methods called by Layer not its children
 		void __onMount() { if (!ready) std::cout << "[WARN] attempting to mount a layer that has not been applied to the application" << std::endl; };
+		void __onMounted();
 
 		void applyApplication(Application* app);
 
 		virtual void applyRenderTransform();
+		virtual void configRenderTransform();
+
 	protected:
 		friend class Application;
 

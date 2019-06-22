@@ -19,6 +19,21 @@ namespace application {
 		SDL_RenderSetScale(renderer, renderScalar.w, renderScalar.h);
 	}
 
+	void Layer::configRenderTransform()
+	{
+		if (ready)
+		{
+			renderScalar = { 1, 1 };
+			renderViewport = SDL_Rect({ 0, 0, window->getWidth(), window->getHeight() });
+		}
+		else std::cout << "attempting to rendertransform an unmounted layer." << std::endl;
+	}
+
+	void Layer::__onMounted()
+	{
+		configRenderTransform();
+	}
+
 	void Layer::applyApplication(Application* app)
 	{
 		renderer = app->renderer;
@@ -26,9 +41,6 @@ namespace application {
 		state = app->store.getState();
 		window = &app->window;
 
-		renderScalar = { 1, 1 };
-		renderViewport = SDL_Rect({ 0, 0, app->window.getWidth(), app->window.getHeight() });
-		
 		ready = true;
 	}
 }

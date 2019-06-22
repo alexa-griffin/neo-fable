@@ -12,31 +12,36 @@ namespace layers {
 		}
 	}
 
-
 	TileMap::~TileMap() {}
+
+	void TileMap::configRenderTransform()
+	{
+		if (ready)
+		{
+			int size = state->camera->viewport * TILE_SIZE * 2;
+
+			float scalar = 1;
+
+			int maxSize = std::min(window->getHeight() - 200, window->getWidth());
+			if (maxSize < size) scalar = ((float)maxSize / (float)(size));
+
+			renderViewport = SDL_Rect{
+				(int)((window->getWidth() / 2) - ((size * scalar) / 2)),
+				0,
+				(int)(size * scalar),
+				(int)(size * scalar)
+			};
+
+			renderScalar = { scalar, scalar };
+		}
+		else std::cout << "attempting to render transform an unmounted layer" << std::endl;
+	}
 
 	void TileMap::onMount()
 	{
 		state->camera = new abstract::Camera({ 11 * TILE_SIZE, 11 * TILE_SIZE });
 		state->player = new entity::Player();
-
 		state->player->moveTo({ 11 * TILE_SIZE, 11 * TILE_SIZE });
-
-		int size = state->camera->viewport * TILE_SIZE * 2;
-
-		float scalar = 1;
-
-		int maxSize = std::min(window->getHeight() - 200, window->getWidth());
-		if (maxSize < size) scalar = ((float)maxSize / (float)(size));
-
-		renderViewport = SDL_Rect{
-			(int)((window->getWidth() / 2) - ((size * scalar) / 2)),
-			0,
-			(int)(size * scalar),
-			(int)(size * scalar)
-		};
-
-		renderScalar = { scalar, scalar };
 	}
 
 	void TileMap::onUpdate(unsigned int dT) 

@@ -20,6 +20,7 @@ void Application::pushLayer(application::Layer* layer)
 	layerStack.push_back(layer);
 	layer->__onMount();
 	layer->onMount();
+	layer->__onMounted();
 }
 
 void Application::popLayer(application::Layer *layer)
