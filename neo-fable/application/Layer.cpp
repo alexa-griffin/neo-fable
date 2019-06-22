@@ -14,7 +14,7 @@ namespace application {
 	void Layer::applyApplication(Application* app)
 	{
 		ready = true;
-		renderer = SDL_CreateRenderer(app->window.getSDL(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+		renderer = app->renderer;
 		store = &app->store;
 		state = app->store.getState();
 		window = &app->window;

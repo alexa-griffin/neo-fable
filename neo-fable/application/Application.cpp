@@ -6,6 +6,7 @@
 Application::Application(std::string name, SDL_WindowFlags flags) 
 	: window(name, flags), running(true)
 {
+	renderer = SDL_CreateRenderer(window.getSDL(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
 
@@ -29,17 +30,15 @@ void Application::popLayer(application::Layer *layer)
 
 void Application::update()
 {
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+	SDL_RenderClear(renderer);
 	pollEvents();
-
 	for (application::Layer* layer : layerStack)
 	{
-		SDL_SetRenderDrawColor(layer->renderer, 0, 0, 0, 0);
-		SDL_RenderClear(layer->renderer);
 		layer->onUpdate(0);
-		SDL_RenderPresent(layer->renderer);
 		//TODO: make delta time work
 	}
-
+	SDL_RenderPresent(renderer);
 }
 
 void Application::pollEvents()

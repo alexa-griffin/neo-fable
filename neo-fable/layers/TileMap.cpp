@@ -26,7 +26,6 @@ namespace layers {
 		
 		float scalar = 1;
 		
-
 		int maxSize = std::min(window->getHeight() - 200, window->getWidth());
 		if (maxSize < size)
 			scalar = ((float)maxSize / (float)(size));
