@@ -8,6 +8,8 @@
 #include "Window.hpp"
 #include "Application.hpp"
 
+#include "../graphics/viewport.hpp"
+
 namespace application {
 	class Layer
 	{
@@ -45,8 +47,7 @@ namespace application {
 		bool ready;
 
 		// these need to be updated on window resize
-		SDL_Rect renderViewport;
-		util::maths::Vec2 renderScalar;
+		viewport::Config renderView;
 	};
 }
 

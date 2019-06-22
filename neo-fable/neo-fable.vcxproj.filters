@@ -60,6 +60,9 @@
     <ClCompile Include="layers\EntitySet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\viewport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application\Window.hpp">
@@ -110,7 +113,7 @@
     <ClInclude Include="layers\EntitySet.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="layers\viewports.hpp">
+    <ClInclude Include="graphics\viewport.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

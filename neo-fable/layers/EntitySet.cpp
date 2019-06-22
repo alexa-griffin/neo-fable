@@ -16,6 +16,15 @@ namespace layers {
 	{
 	}
 
+	void EntitySet::configRenderTransform()
+	{
+		if (ready)
+		{
+			renderView = viewport::getMapViewport(window, state->camera);
+		}
+		else std::cout << "attempting to render transform an unmounted layer" << std::endl;
+	}
+
 	// void EntitySet::onMount()
 	// {
 	// 
@@ -30,5 +39,14 @@ namespace layers {
 		// {
 		// 	entity->draw(state->camera);
 		// }
+	}
+
+	bool EntitySet::onEvent(SDL_Event* e)
+	{
+		if (e->type == SDL_WINDOWEVENT && e->window.event == SDL_WINDOWEVENT_RESIZED)
+		{
+			renderView = viewport::getMapViewport(window, state->camera);
+		}
+		return false;
 	}
 }

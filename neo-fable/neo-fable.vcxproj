@@ -175,6 +175,7 @@ xcopy $(ProjectDir)dep\SDL2\lib\$(PlatformShortName)\SDL2.dll $(OutDir) /y</Comm
     <ClCompile Include="abstract\Camera.cpp" />
     <ClCompile Include="abstract\Entity.cpp" />
     <ClCompile Include="graphics\graphics.cpp" />
+    <ClCompile Include="graphics\viewport.cpp" />
     <ClCompile Include="layers\EntitySet.cpp" />
     <ClCompile Include="layers\TileMap.cpp" />
     <ClCompile Include="main.cpp" />
@@ -193,8 +194,8 @@ xcopy $(ProjectDir)dep\SDL2\lib\$(PlatformShortName)\SDL2.dll $(OutDir) /y</Comm
     <ClInclude Include="application\Layer.hpp" />
     <ClInclude Include="abstract\Entity.hpp" />
     <ClInclude Include="graphics\graphics.hpp" />
+    <ClInclude Include="graphics\viewport.hpp" />
     <ClInclude Include="layers\EntitySet.hpp" />
-    <ClInclude Include="layers\viewports.hpp" />
     <ClInclude Include="layers\TestLayer.hpp" />
     <ClInclude Include="layers\TileMap.hpp" />
     <ClInclude Include="abstract\Tile.hpp" />

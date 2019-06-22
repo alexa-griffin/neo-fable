@@ -18,21 +18,7 @@ namespace layers {
 	{
 		if (ready)
 		{
-			int size = state->camera->viewport * TILE_SIZE * 2;
-
-			float scalar = 1;
-
-			int maxSize = std::min(window->getHeight() - 200, window->getWidth());
-			if (maxSize < size) scalar = ((float)maxSize / (float)(size));
-
-			renderViewport = SDL_Rect{
-				(int)((window->getWidth() / 2) - ((size * scalar) / 2)),
-				0,
-				(int)(size * scalar),
-				(int)(size * scalar)
-			};
-
-			renderScalar = { scalar, scalar };
+			renderView = viewport::getMapViewport(window, state->camera);
 		}
 		else std::cout << "attempting to render transform an unmounted layer" << std::endl;
 	}
@@ -83,23 +69,7 @@ namespace layers {
 
 		if (e->type == SDL_WINDOWEVENT && e->window.event == SDL_WINDOWEVENT_RESIZED)
 		{
-			std::cout << "resize" << std::endl;
-
-			int size = state->camera->viewport * TILE_SIZE * 2;
-
-			float scalar = 1;
-
-			int maxSize = std::min(window->getHeight() - 200, window->getWidth());
-			if (maxSize < size) scalar = ((float)maxSize / (float)(size));
-
-			renderViewport = SDL_Rect{
-				(int)((window->getWidth() / 2) - ((size * scalar) / 2)),
-				0,
-				(int)(size * scalar),
-				(int)(size * scalar)
-			};
-
-			renderScalar = { scalar, scalar };
+			renderView = viewport::getMapViewport(window, state->camera);
 		}
 
 		return false;

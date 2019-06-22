@@ -13,10 +13,12 @@ namespace layers {
 		~EntitySet();
 
 		virtual void onUpdate(unsigned int dT);
+		virtual bool onEvent(SDL_Event* e);
 
+		virtual void configRenderTransform();
+		
 		//TODO: push/pop based on chunks
 		void push(abstract::Entity* en) { entities.push_back(en); };
-
 	private:
 		std::vector<abstract::Entity*> entities;
 	};
