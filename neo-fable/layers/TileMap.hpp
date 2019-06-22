@@ -23,6 +23,9 @@ namespace layers {
 		virtual void onUpdate(unsigned int dT);
 		virtual void onMount();
 		virtual bool onEvent(SDL_Event* e);
+		
+		virtual void applyRenderTransform();
+
 	private:
 		abstract::Tile map[MAP_SIZE][MAP_SIZE];
 	};

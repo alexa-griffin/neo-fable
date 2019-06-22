@@ -24,6 +24,8 @@ namespace application {
 
 		void applyApplication(Application* app);
 
+		virtual void applyRenderTransform();
+
 	protected:
 		friend class Application;
 

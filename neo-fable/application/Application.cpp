@@ -30,11 +30,14 @@ void Application::popLayer(application::Layer *layer)
 
 void Application::update()
 {
+	graphics::bind(renderer);
+
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 	SDL_RenderClear(renderer);
 	pollEvents();
 	for (application::Layer* layer : layerStack)
 	{
+		layer->applyRenderTransform();
 		layer->onUpdate(0);
 		//TODO: make delta time work
 	}

@@ -19,8 +19,6 @@ namespace layers {
 
 	void EntitySet::onUpdate(unsigned int dT)
 	{
-		graphics::bind(renderer);
-
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 0);
 		SDL_RenderFillRect(renderer, new SDL_Rect({ 0, 0, 100, 100 }));
 		
