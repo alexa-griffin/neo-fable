@@ -22,26 +22,21 @@ namespace layers {
 
 		state->player->moveTo({ 11 * TILE_SIZE, 11 * TILE_SIZE });
 
-	}
-
-	void TileMap::applyRenderTransform()
-	{
 		int size = state->camera->viewport * TILE_SIZE * 2;
 
 		float scalar = 1;
 
 		int maxSize = std::min(window->getHeight() - 200, window->getWidth());
-		if (maxSize < size)
-			scalar = ((float)maxSize / (float)(size));
+		if (maxSize < size) scalar = ((float)maxSize / (float)(size));
 
-		SDL_RenderSetViewport(renderer, new SDL_Rect{
+		renderViewport = new SDL_Rect{
 			(int)((window->getWidth() / 2) - ((size * scalar) / 2)),
 			0,
 			(int)(size * scalar),
 			(int)(size * scalar)
-			});
+		};
 
-		SDL_RenderSetScale(renderer, scalar, scalar);
+		renderScalar = { scalar, scalar };
 	}
 
 	void TileMap::onUpdate(unsigned int dT) 

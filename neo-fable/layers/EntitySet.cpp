@@ -12,10 +12,14 @@ namespace layers {
 		push(new entity::StaticObject({ 50, 200 }, { RGB(255, 0, 255) }));
 	}
 
-
 	EntitySet::~EntitySet()
 	{
 	}
+
+	// void EntitySet::onMount()
+	// {
+	// 
+	// }
 
 	void EntitySet::onUpdate(unsigned int dT)
 	{

@@ -36,6 +36,10 @@ namespace application {
 		application::Window* window;
 
 		bool ready;
+
+		// these need to be updated on window resize
+		SDL_Rect* renderViewport;
+		util::maths::Vec2 renderScalar;
 	};
 }
 

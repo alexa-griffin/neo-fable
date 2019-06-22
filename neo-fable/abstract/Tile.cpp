@@ -9,11 +9,10 @@ namespace abstract {
 	{
 		obj.x = posX;
 		obj.y = posY;
-		graphics::direct([=](SDL_Renderer* renderer) 
-			{
-				SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);
-				SDL_RenderDrawRect(renderer, &obj);
-			}
-		);
+
+		graphics::direct([=](SDL_Renderer* renderer) {
+			SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);
+			SDL_RenderDrawRect(renderer, &obj);
+		});
 	}
 }
