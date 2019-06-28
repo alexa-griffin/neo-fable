@@ -25,9 +25,9 @@ namespace layers {
 
 	void TileMap::onMount()
 	{
-		state->camera = new abstract::Camera({ 11 * TILE_SIZE, 11 * TILE_SIZE });
+		state->camera = new abstract::Camera({ 10 * TILE_SIZE, 10 * TILE_SIZE });
 		state->player = new entity::Player();
-		state->player->moveTo({ 11 * TILE_SIZE, 11 * TILE_SIZE });
+		state->player->moveTo({ 10 * TILE_SIZE, 10 * TILE_SIZE });
 	}
 
 	void TileMap::onUpdate(unsigned int dT) 

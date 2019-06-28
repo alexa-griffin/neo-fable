@@ -16,13 +16,13 @@ namespace entity {
 
 	void StaticObject::draw(abstract::Camera* cam)
 	{
-		std::cout << (int)(pos.x - cam->pos.x) << ", " << (int)(pos.y - cam->pos.y) << std::endl;
+		std::cout << cam->pos.x << ", " << cam->pos.y << std::endl;
 
 		graphics::direct([=](SDL_Renderer* renderer) {
 			SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
-			rendered->x = (int)(pos.x - cam->pos.x) - (int)(cam->viewport * UNIT);
-			rendered->y = (int)(pos.y - cam->pos.y) - (int)(cam->viewport * UNIT);
+			rendered->x = (int)(pos.x - cam->pos.x) + (cam->viewport * UNIT);
+			rendered->y = (int)(pos.y - cam->pos.y) + (cam->viewport * UNIT);
 
 			SDL_RenderFillRect(renderer, rendered);
 		});

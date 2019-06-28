@@ -24,8 +24,8 @@ namespace entity {
 		graphics::direct([=](SDL_Renderer* renderer) {
 			SDL_SetRenderDrawColor(renderer, RGB(255, 0, 255));
 
-			rendered->x = (int)(pos.x - cam->pos.x) + (int)(cam->viewport * UNIT);
-			rendered->y = (int)(pos.y - cam->pos.y) + (int)(cam->viewport * UNIT);
+			rendered->x = (int)(pos.x - cam->pos.x) + (cam->viewport * UNIT);
+			rendered->y = (int)(pos.y - cam->pos.y) + (cam->viewport * UNIT);
 
 			SDL_RenderFillRect(renderer, rendered);
 		});
